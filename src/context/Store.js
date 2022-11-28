@@ -15,38 +15,7 @@ const StoreProvider = ({ children }) => {
   // not found data
   const [notFound, setnotFound] = useState(false);
   // all nav list
-  const [navList, setnavList] = useState([
-    {
-      id: 1,
-      name: "Your vehicle",
-      status: false, //pass
-      current: false,
-    },
-    {
-      id: 2,
-      name: "Your details",
-      status: false, //pass
-      current: false,
-    },
-    {
-      id: 3,
-      name: "Your policy",
-      status: false, //pass
-      current: false,
-    },
-    {
-      id: 4,
-      name: "Your summary",
-      status: false, //pass
-      current: true,
-    },
-    {
-      id: 5,
-      name: "Your quotes",
-      status: false, //pass
-      current: false,
-    },
-  ]);
+
   // count steps
   const [countSteps, setCountSteps] = useState(1);
   // check value passed
@@ -67,7 +36,7 @@ const StoreProvider = ({ children }) => {
     driveHand: "",
     isModified: false, //not assign yet
     modifiedCaused: "", //not assign yet
-    leaseCarDate: '',
+    leaseCarDate: "",
     usedCarFor: "",
     businessuseFor: "",
     whobusinessuseFor: "", //select
@@ -156,17 +125,40 @@ const StoreProvider = ({ children }) => {
     contactText: false,
     contactPost: false,
     doNotContact: false,
-    TermsConditions: false
+    TermsConditions: false,
   });
 
+  const [travelInsurance, setTravelInsurance] = useState({
+    insuranceCover: "",
+    region: "",
+    dateOftrip: "",
+    monthsToCoverIns: "",
+    dateOftrip: "",
+    optionalInsuCover: "",
+    howWantToInsure: "",
+    maxExcess : "",
+    cancellationCover :"",
+    dateOfBirthTraveller: [],
+    valueBaggage :"",
+    medicalCover : "",
+    thirdPartyMedicalCondition: "",
+    email: "",
+    firstName: "", 
+    lastName: "", 
+    contactWithEmail: false, 
+    contactWithPhone: false, 
+    contactWithText: false ,
+    contactWithPost: false ,
+    dontContact: false ,
+    termsAgree: false
+
+  });
   return (
     <StoreContext.Provider
       value={{
         // global states
         loading,
         setLoading,
-        navList,
-        setnavList,
         countSteps,
         setCountSteps,
         vehicleDetails,
@@ -199,6 +191,8 @@ const StoreProvider = ({ children }) => {
         // your policy
         yourPolicy,
         setyourPolicy,
+
+        travelInsurance, setTravelInsurance
       }}
     >
       {children}

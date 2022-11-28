@@ -5,14 +5,15 @@ import { Wrapper } from "../../styles/Global.styled";
 import {} from "../form/Form.styled";
 import Navbar from "../navbar/Navbar";
 import { GiHand } from "react-icons/gi";
-import { GreatingSection } from "./Travel.stylled";
+import { ContentWrapper, GreatingSection } from "./Travel.stylled";
 export default function Travel() {
   /******************************************
    * GETTING CONTEXT VALUE
    ******************************************/
   const theme = useContext(ThemeContext);
 
-  let { countSteps, setCountSteps } = useContext(StoreContext);
+  let { countSteps, setCountSteps, travelInsurance, setTravelInsurance } =
+    useContext(StoreContext);
 
   /******************************************
    * VARIABLES AND STATES
@@ -27,36 +28,35 @@ export default function Travel() {
       <Navbar navItem={1} />
 
       <Wrapper>
-        <GreatingSection 
-            secondaryColor={theme.secondaryColor} 
-            primaryColor={theme.primaryColor}
-            liteprimaryColor={theme.liteprimaryColor}
-            grayColor={theme.grayColor}
-            liteBlackColor={theme.liteBlackColor}
-            whiteColor={theme.whiteColor}
-           
+        <GreatingSection
+          secondaryColor={theme.secondaryColor}
+          primaryColor={theme.primaryColor}
+          liteprimaryColor={theme.liteprimaryColor}
+          grayColor={theme.grayColor}
+          liteBlackColor={theme.liteBlackColor}
+          whiteColor={theme.whiteColor}
         >
           <div class="Section__content">
-            <div
-              class="HonestyNotice HonestyNotice__Content"
-         
-            >
+            <div class="HonestyNotice HonestyNotice__Content">
               <GiHand />
-         
+
               <p>
-              <span class="HonestyNotice__Title">
-                  Hi,
-              </span>
+                <span class="HonestyNotice__Title">Hi,</span>
                 We're here to help you get the cover you need for your travel.
                 Take care that the information you provide is accurate and
                 complete to the best of your knowledge. If you don’t, your
                 insurance provider could increase your premium, void your
                 policy, refuse a claim or not pay the claim in full.
               </p>
-
             </div>
           </div>
         </GreatingSection>
+
+        <ContentWrapper>
+          <div class="Section__header">
+            <h2 class="Section__header__title">Travel Insurance</h2>
+          </div>
+        </ContentWrapper>
       </Wrapper>
     </>
   );

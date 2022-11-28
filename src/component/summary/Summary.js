@@ -2,17 +2,15 @@ import React, { useContext, useState, useEffect } from "react";
 import { ThemeContext } from "styled-components";
 import Pdf from "react-to-pdf";
 
-
-
 import {
   Title,
   MainWrapper,
   NextPrevWrapper,
-} from "../Form.styled";
+} from "../form/Form.styled";
 
-import { StoreContext } from "../../../context/Store";
+import { StoreContext } from "../../context/Store";
 
-import Navbar from "../../navbar/Navbar";
+import Navbar from "../navbar/Navbar";
 
 
 export default function Summary() {

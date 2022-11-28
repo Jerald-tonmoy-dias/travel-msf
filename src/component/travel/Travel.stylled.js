@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const GreatingSection = styled.nav(
-    (props) =>(`
+  (props) => `
+
+    margin: 30px 0;
       .Section__content {
         position: relative;
         max-width: calc(9 / 12 * 100% - 200px);
@@ -36,4 +38,12 @@ export const GreatingSection = styled.nav(
       }
 
 
-    `));
+    `
+);
+
+export const ContentWrapper = styled.nav(
+  (props) => `
+  
+  
+  `
+);

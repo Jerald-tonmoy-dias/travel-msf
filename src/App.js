@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import Summary from "./component/form/summary/Summary";
+import Summary from "./component/summary/Summary";
 
 import Header from "./component/layout/Header";
 import Travel from "./component/travel/Travel";
