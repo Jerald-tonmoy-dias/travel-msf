@@ -8,13 +8,13 @@ import { ThemeProvider } from 'styled-components';
 
 const theme = {
   primaryColor: '#FF6600',
-  liteprimaryColor: '#ff660061',
   secondaryColor: '#FBAF7D',
-  grayColor: '#F7F8F9',
-  liteBlackColor: '#00000026',
+  blackColor: '#000000',
   whiteColor: '#ffffff',
+  grayColor: '#F7F8F9',
+  liteprimaryColor: '#ff660061',
+  liteBlackColor: '#00000026',
   litewhiteColor: '#ffffff9c',
-  blackColor: '#000000'
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
