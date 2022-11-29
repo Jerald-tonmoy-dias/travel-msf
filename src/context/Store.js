@@ -128,6 +128,7 @@ const StoreProvider = ({ children }) => {
     TermsConditions: false,
   });
 
+  // travelInsurance
   const [travelInsurance, setTravelInsurance] = useState({
     insuranceCover: "",
     region: "",

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { ThemeContext } from "styled-components";
-import Pdf from "react-to-pdf";
+// import Pdf from "react-to-pdf";
 
 import {
   Title,
@@ -71,9 +71,9 @@ export default function Summary() {
         {/* <button type="button" onClick={nextpageFunction} className="btn next ">
           get quote
         </button> */}
-        <Pdf targetRef={ref} filename="code-example.pdf">
+        {/* <Pdf targetRef={ref} filename="code-example.pdf">
           {({ toPdf }) => <button className="btn next" onClick={toPdf}> get quote</button>}
-        </Pdf>
+        </Pdf> */}
       </NextPrevWrapper>
     </div>
   );
