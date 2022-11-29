@@ -12,9 +12,11 @@ import {
   IoCloseCircle,
 } from "react-icons/io5";
 import {
+  Checkboxes,
   ContentWrapper,
   GreatingSection,
   RadioButtons,
+  TextInputs,
   ToolTipWrapper,
 } from "./Travel.stylled";
 import { toggleClassForHover } from "../../helper/helper";
@@ -109,6 +111,7 @@ export default function Travel() {
           liteBlackColor={theme.liteBlackColor}
           litewhiteColor={theme.litewhiteColor}
           warningColor={theme.warningColor}
+          hoverColor={theme.hoverColor}
         >
           <div class="left-side">
             <h2 class="section_header_title">Travel Insurance</h2>
@@ -260,7 +263,9 @@ export default function Travel() {
                 </button>
               </div>
 
-              <span className="sm-text">Select the region you wish to be covered for</span>
+              {/* if region  */}
+              <p>Select the region you wish to be covered for</p>
+              <p>Please tell us the country or resort below</p>
 
               {/* tooltip */}
               <ToolTipWrapper
@@ -276,6 +281,37 @@ export default function Travel() {
               </ToolTipWrapper>
 
               {/* input wrapper */}
+              <TextInputs
+                primaryColor={theme.primaryColor}
+                warningColor={theme.warningColor}
+                secondaryColor={theme.secondaryColor}
+                grayColor={theme.grayColor}
+              >
+                <input
+                  className="single-text-input"
+                  placeholder="Enter the frist few letters"
+                />
+              </TextInputs>
+
+              <Checkboxes>
+                <div className="termsCondInputWrapper">
+                  <div class="form-group">
+                    <input
+                      // onChange={(e) => {
+                      //   setyourPolicy({
+                      //     ...yourPolicy,
+                      //     [e.target.name]: !yourPolicy.TermsConditions,
+
+                      //   });
+                      // }}
+                      id="fortermsCondInput"
+                      type="checkbox"
+                      name="TermsConditions"
+                    />
+                    <label for="fortermsCondInput"></label>
+                  </div>
+                </div>
+              </Checkboxes>
 
               {/* validation */}
               {valudationError === true ? (

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const GreatingSection = styled.div(
-(props) => `
+  (props) => `
 
 margin: 30px 0;
 .Section__content {
@@ -42,7 +42,7 @@ color: ${props.primaryColor}
 );
 
 export const ContentWrapper = styled.div(
-(props) => `
+  (props) => `
 // *************component own styles*********** //
 display:flex;
 @media (max-width: 992px) {
@@ -128,7 +128,7 @@ border-bottom: 1px solid #d1e3f4;
 font-size: 14px;
 }
 &:hover {
-  background: rgba(247, 248, 249,.4);
+  background: ${props.hoverColor};
 }
 &.active {
   ${ToolTipWrapper} {
@@ -199,7 +199,7 @@ color: ${props.primaryColor};
 );
 
 export const RadioButtons = styled.div(
-(props) => `
+  (props) => `
 display:flex;
 flex-wrap: wrap;
 
@@ -281,7 +281,7 @@ fill: ${props.whiteColor};
 );
 
 export const ToolTipWrapper = styled.div(
-(props) => `
+  (props) => `
 padding: 20px;
 z-index: 1;
 width: 44%;
@@ -302,5 +302,84 @@ font-weight: 700;
 }
 }
 
+`
+);
+
+export const TextInputs = styled.div(
+  (props) => `
+.single-text-input {
+  border: 1px solid ${props.primaryColor};
+  border-bottom-width: 4px;
+  height: 56px;
+  line-height: 1;
+  font-weight: bold;
+  padding: 0px 17px;
+  max-width: 100%;
+  width: 54%;
+  border-radius: 3px;
+  color: ${props.primaryColor};
+  outline: none;
+  background: ${props.hoverColor};
+  &:focus {
+    border: 1px solid ${props.primaryColor};
+    border-bottom-width: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    background: ${props.whiteColor};
+    
+  }
+}
+`
+);
+export const Checkboxes = styled.div(
+  (props) => `
+
+  .termsCondInputWrapper {
+ 
+
+    .form-group input {
+      padding: 0;
+      height: initial;
+      width: initial;
+      margin-bottom: 0;
+      display: none;
+      cursor: pointer;
+    }
+    
+    .form-group label {
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .form-group label:before {
+      content:'';
+      -webkit-appearance: none;
+      border: 2px solid #FF6600;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+      padding: 15px;
+      display: inline-block;
+      position: relative;
+      vertical-align: middle;
+      cursor: pointer;
+      margin-right: 5px;
+      border-radius: 5px;
+    }
+    .form-group input:checked + label:before {
+      background: #FF6600;
+    }
+    .form-group input:checked + label:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 3px;
+      left: 14px;
+      width: 6px;
+      height: 14px;
+      border: solid #FFF;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      
+    }
+    
+    }
 `
 );

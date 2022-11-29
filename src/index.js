@@ -8,6 +8,7 @@ import { ThemeProvider } from 'styled-components';
 
 const theme = {
   primaryColor: '#FF6600',
+  hoverColor: "rgba(247, 248, 249,.4)",
   // warningColor: '#980909',
   warningColor: 'red',
   secondaryColor: '#FBAF7D',
