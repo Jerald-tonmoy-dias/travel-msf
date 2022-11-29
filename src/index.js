@@ -8,6 +8,8 @@ import { ThemeProvider } from 'styled-components';
 
 const theme = {
   primaryColor: '#FF6600',
+  // warningColor: '#980909',
+  warningColor: 'red',
   secondaryColor: '#FBAF7D',
   blackColor: '#000000',
   whiteColor: '#ffffff',

@@ -30,12 +30,43 @@ export default function Travel() {
   /******************************************
    * VARIABLES AND STATES
    ******************************************/
-  const [openToolTip, setopenToolTip] = useState(false);
+  // valiation text
+  const [validationText, setvalidationText] = useState(
+    "Please answer this question in order to proceed."
+  );
+  const [valudationError, setvaludationError] = useState(false);
   /******************************************
    * FUNCTIONS
    ******************************************/
   const handleOnChange = (e) => {
     setTravelInsurance({ ...travelInsurance, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (
+      travelInsurance.insuranceCover == "" ||
+      travelInsurance.region == "" ||
+      travelInsurance.dateOftrip == "" ||
+      travelInsurance.monthsToCoverIns == "" ||
+      travelInsurance.optionalInsuCover == "" ||
+      travelInsurance.howWantToInsure == "" ||
+      travelInsurance.maxExcess == "" ||
+      travelInsurance.cancellationCover == "" ||
+      travelInsurance.thirdPartyMedicalCondition == "" ||
+      travelInsurance.valueBaggage == "" ||
+      travelInsurance.email == "" ||
+      travelInsurance.firstName == "" ||
+      travelInsurance.lastName == "" ||
+      travelInsurance.termsAgree == false
+    ) {
+      // fill up the info to go forward
+      setvaludationError(true);
+    } else {
+      // go to next step
+      setvaludationError(false);
+      setCountSteps(2);
+    }
   };
   return (
     <>
@@ -67,7 +98,7 @@ export default function Travel() {
             </div>
           </div>
         </GreatingSection>
-
+        {/* Travel Insurance */}
         <ContentWrapper
           primaryColor={theme.primaryColor}
           secondaryColor={theme.secondaryColor}
@@ -77,12 +108,14 @@ export default function Travel() {
           liteprimaryColor={theme.liteprimaryColor}
           liteBlackColor={theme.liteBlackColor}
           litewhiteColor={theme.litewhiteColor}
+          warningColor={theme.warningColor}
         >
           <div class="left-side">
             <h2 class="section_header_title">Travel Insurance</h2>
           </div>
 
           <div className="right-side">
+            {/* What type of cover are you looking for? */}
             <div className="single-card-wrapper" id="travel_id_1">
               {/* card title wrapper */}
               <div className="card-title-wrapper">
@@ -100,7 +133,6 @@ export default function Travel() {
 
               {/* tooltip */}
               <ToolTipWrapper
-                open={openToolTip}
                 primaryColor={theme.primaryColor}
                 whiteColor={theme.whiteColor}
                 blackColor={theme.blackColor}
@@ -205,6 +237,52 @@ export default function Travel() {
                   <span className="input-title">long stay trip</span>
                 </label>
               </RadioButtons>
+
+              {/* validation */}
+              {valudationError === true ? (
+                travelInsurance.insuranceCover == "" ? (
+                  <span className="warning-text">{validationText}</span>
+                ) : null
+              ) : null}
+            </div>
+
+            {/* Where are you going?  */}
+            <div className="single-card-wrapper" id="travel_id_2">
+              {/* card title wrapper */}
+              <div className="card-title-wrapper">
+                <h4 className="title">Where are you going?</h4>
+                <button
+                  onClick={() => toggleClassForHover("travel_id_2")}
+                  className="tooltop-trigger-btn small-icon-btn"
+                >
+                  <IoInformationOutline className="openIcon" />
+                  <IoCloseOutline className="closeIcon" />
+                </button>
+              </div>
+
+              <span className="sm-text">Select the region you wish to be covered for</span>
+
+              {/* tooltip */}
+              <ToolTipWrapper
+                primaryColor={theme.primaryColor}
+                whiteColor={theme.whiteColor}
+                blackColor={theme.blackColor}
+              >
+                <p>
+                  Tell us the region or regions you plan on visiting throughout
+                  the period of your cover so we can make sure you get accurate
+                  quotes and the right level of protection.
+                </p>
+              </ToolTipWrapper>
+
+              {/* input wrapper */}
+
+              {/* validation */}
+              {valudationError === true ? (
+                travelInsurance.region == "" ? (
+                  <span className="warning-text">{validationText}</span>
+                ) : null
+              ) : null}
             </div>
           </div>
         </ContentWrapper>

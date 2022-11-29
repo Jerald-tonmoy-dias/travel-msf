@@ -116,7 +116,20 @@ width: 100%;
 .single-card-wrapper {
 position: relative;
 padding: 30px;
+border-bottom: 1px solid #d1e3f4;
+// warning text
+.warning-text {
+  color: ${props.warningColor};
+  font-size: 16px;
+  font-weight: 700;
+}
 
+.sm-text {
+font-size: 14px;
+}
+&:hover {
+  background: rgba(247, 248, 249,.4);
+}
 &.active {
   ${ToolTipWrapper} {
     display: block;
@@ -138,6 +151,7 @@ display: none;
   border-bottom: 12px solid transparent;
   border-right: 12px solid ${props.primaryColor};
 }
+
 @media only screen and (max-width: 767px) {
   position: static;
   margin-bottom: 30px;
@@ -213,6 +227,9 @@ box-shadow: rgb(33 35 38 / 10%) 0px 1px 20px 0px;
 margin: 0 10px 10px 0 ;
 padding-top: 30px;
 padding-bottom: 30px;
+@media only screen and (max-width: 1200px) {
+  flex-basis: 13.33%;
+}
 @media only screen and (max-width: 767px) {
   flex-basis: 23%;
 }
