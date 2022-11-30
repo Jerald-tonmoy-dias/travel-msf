@@ -555,7 +555,7 @@ export default function Travel() {
             </div>
 
             {/* When are you going on your trip? */}
-            <div className="single-card-wrapper" id="travel_id_2">
+            <div className="single-card-wrapper">
               {/* card title wrapper */}
               <div className="card-title-wrapper">
                 <h4 className="title">When are you going on your trip?</h4>
@@ -614,7 +614,6 @@ export default function Travel() {
               </div>
             ] : null}
 
-
             {/* Would you like to add cover for any of the following? (optional)*/}
             <div className="single-card-wrapper" >
               {/* card title wrapper */}
@@ -625,7 +624,6 @@ export default function Travel() {
               </div>
 
               <p>Select all that apply or leave it blank if none</p>
-
 
               <Checkboxes
                 primaryColor={theme.primaryColor}
@@ -808,6 +806,131 @@ export default function Travel() {
                 ) : null
               ) : null}
 
+            </div>
+
+            {/* Who do you want to insure? ::dev-note:has-tooltip*/}
+            <div className="single-card-wrapper" id="travel_id_3">
+              {/* card title wrapper */}
+              <div className="card-title-wrapper">
+                <h4 className="title">
+                  Who do you want to insure?
+                </h4>
+                <button
+                  onClick={() => toggleClassForHover("travel_id_3")}
+                  className="tooltop-trigger-btn small-icon-btn"
+                >
+                  <IoInformationOutline className="openIcon" />
+                  <IoCloseOutline className="closeIcon" />
+                </button>
+              </div>
+
+              {/* tooltip */}
+              <ToolTipWrapper
+                primaryColor={theme.primaryColor}
+                whiteColor={theme.whiteColor}
+                blackColor={theme.blackColor}
+              >
+                <p>
+                  <strong>A couple</strong>
+                </p>
+                <p>
+                  Two adults aged 18 or over who live at the same address and are in a relationship.
+                </p>
+                <p>
+                  <strong>A family</strong>
+                </p>
+                <p>
+                  One or two adults living at the same address plus at least one child (up to a maximum of 9 if one adult is travelling). If two adults are travelling under a family policy, they must be a spouse/partner, and up to eight children can be added.
+                </p>
+                <p>
+                  <strong>A group</strong>
+                </p>
+                <p>
+                  Is a collection of individuals covered under a single policy who are travelling together.
+                </p>
+              </ToolTipWrapper>
+
+              {/* input wrapper */}
+              <RadioButtons
+                primaryColor={theme.primaryColor}
+                blackColor={theme.blackColor}
+                whiteColor={theme.whiteColor}
+              >
+                <input
+                  onChange={handleOnChange}
+                  type="radio"
+                  id="howWantToInsu_1"
+                  name="howWantToInsure"
+                  value="single trip"
+                />
+                <label htmlFor="howWantToInsu_1">
+                  {/* icon */}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 60"><rect width="100%" height="100%" fill="none"></rect><g class="Single_svg__currentLayer"><path class="Single_svg__st0" d="M33.386 13.043c0 5.8 5.1 10.9 11.1 10.9 6.1 0 11.1-4.8 11.1-10.9 0-5.8-5.1-10.9-11.1-10.9-6.1 0-11.1 4.8-11.1 10.9zm-6.4 46.3v-13.4s2.5 1 2.5 5.1v9.1h29.9v-9.1c0-4 2.5-5.1 2.5-5.1v13.4h4.3v-20c-5.8-13.4-21.8-12.4-21.8-12.4s-15.7-.8-21.8 12.4v20h4.4z"></path></g></svg>
+                  {/* title */}
+                  <span className="input-title">An individual</span>
+                </label>
+
+                <input
+                  onChange={handleOnChange}
+                  type="radio"
+                  id="howWantToInsu_2"
+                  name="howWantToInsure"
+                  value="single trip"
+                />
+                <label htmlFor="howWantToInsu_2">
+                  {/* icon */}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 60"><rect width="100%" height="100%" fill="none"></rect><g class="Couple_svg__currentLayer"><g><path class="Couple_svg__st0" d="M26.2 22.8c6.1 0 11.1-4.8 11.1-10.9C37.3 6.1 32.2 1 26.2 1c-6.1 0-11.1 4.8-11.1 10.9 0 5.8 5 10.9 11.1 10.9zM58.2 22.8c6.1 0 11.1-4.8 11.1-10.9C69.3 6.1 64.2 1 58.2 1c-6.1 0-11.1 4.8-11.1 10.9 0 5.8 5 10.9 11.1 10.9zM58.3 25.8s-8.9-.4-15.9 5c-7-5.5-16.3-5-16.3-5S10.2 25 4.2 38.2V58h5V44.8s2 1 2 5.1V59h30v-9.1c0-1.8.4-3 1-3.8.6.8 1 2 1 3.8V59h30v-9.1c0-4 2-5.1 2-5.1V58h5V38.2c-6-13.4-21.9-12.4-21.9-12.4z"></path></g></g></svg>
+                  {/* title */}
+                  <span className="input-title">A couple</span>
+                </label>
+                <input
+                  onChange={handleOnChange}
+                  type="radio"
+                  id="howWantToInsu_3"
+                  name="howWantToInsure"
+                  value="single trip"
+                />
+                <label htmlFor="howWantToInsu_3">
+                  {/* icon */}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 60"><rect width="100%" height="100%" fill="none"></rect><g class="Family_svg__currentLayer"><g><path class="Family_svg__st0" d="M32.271 22.229c6.1 0 11.1-4.8 11.1-10.9 0-5.8-5.1-10.9-11.1-10.9-6.1 0-11.1 4.8-11.1 10.9-.1 5.8 5 10.9 11.1 10.9zM59.871 34.329s-3.3-.2-6.9 1.1c-6.5-11.1-20.6-10.3-20.6-10.3s-15.6-.8-21.6 12.4v19.9h4v-13.2s3 1 3 5.1v9.1h29v-9.1c0-.4.1-.8.2-1.1.4.2 1.8 1.1 1.8 3.6v6.6h22v-6.6c0-2.9 2-3.7 2-3.7v9.3h3v-14.1c-4-9.7-15.9-9-15.9-9z"></path><path class="Family_svg__st0" d="M59.871 32.129c4.4 0 8.1-3.5 8.1-7.9 0-4.2-3.7-7.9-8.1-7.9s-8.1 3.5-8.1 7.9c0 4.3 3.7 7.9 8.1 7.9z"></path></g></g></svg>
+                  {/* title */}
+                  <span className="input-title">A family</span>
+                </label>
+
+                <input
+                  onChange={handleOnChange}
+                  type="radio"
+                  id="howWantToInsu_4"
+                  name="howWantToInsure"
+                  value="single trip"
+                />
+                <label htmlFor="howWantToInsu_4">
+                  {/* icon */}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 60"><rect width="100%" height="100%" fill="none"></rect><g class="Group_svg__currentLayer"><g><path class="Group_svg__st0" d="M19.667 25.478c4.4 0 8.1-3.5 8.1-7.9 0-4.2-3.7-7.9-8.1-7.9s-8.1 3.5-8.1 7.9c0 4.3 3.7 7.9 8.1 7.9zM42.867 25.478c4.4 0 8.1-3.5 8.1-7.9 0-4.2-3.7-7.9-8.1-7.9s-8.1 3.5-8.1 7.9c0 4.3 3.7 7.9 8.1 7.9zM66.067 27.678s-6.4-.3-11.5 3.6c-5.1-4-11.7-3.6-11.7-3.6s-6.4-.3-11.5 3.6c-5-4-11.7-3.6-11.7-3.6s-11.4-.6-15.8 9v14.1h3v-9.3s2 .7 2 3.7v6.6h22v-6.6c0-1.3.1-2.2.5-2.7.4.6.5 1.4.5 2.7v6.6h22v-6.6c0-1.3.1-2.2.5-2.7.4.6.5 1.4.5 2.7v6.6h22v-6.6c0-3 2-3.7 2-3.7v9.3h3v-14.1c-4.2-9.7-15.8-9-15.8-9zM66.067 25.478c4.4 0 8.1-3.5 8.1-7.9 0-4.2-3.7-7.9-8.1-7.9s-8.1 3.5-8.1 7.9c0 4.3 3.7 7.9 8.1 7.9z"></path></g></g></svg>
+                  {/* title */}
+                  <span className="input-title">A group</span>
+
+                </label>
+
+              </RadioButtons>
+
+              {/* show status  ::::dev_note:only change the state*/}
+              {
+                travelInsurance.insuranceCover !== "" ? <div className={`show_input_status`}>  <IoCheckmarkCircle /></div> : [
+                  valudationError === true ? (
+                    travelInsurance.insuranceCover == "" ? <div className={`show_input_status warning`}>  <IoCloseCircle /></div> : null
+                  ) : null
+                ]
+              }
+
+              {/* validation */}
+              {valudationError === true ? (
+                travelInsurance.insuranceCover == "" ? (
+                  <>
+                    <span className="warning-text">{validationText}</span>
+                  </>
+                ) : null
+              ) : null}
             </div>
           </div>
         </ContentWrapper>

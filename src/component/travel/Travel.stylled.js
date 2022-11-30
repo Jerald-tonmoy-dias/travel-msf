@@ -124,6 +124,7 @@ border-bottom: 1px solid #d1e3f4;
     font-size: 14px;
     line-height: 1.5;
     strong {
+       font-size: 14px;
       color: ${props.primaryColor};
     }
   }
