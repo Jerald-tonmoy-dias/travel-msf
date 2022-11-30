@@ -328,8 +328,50 @@ export const TextInputs = styled.div(
     
   }
 }
+  .add-btn {
+  border: 1px solid ${props.primaryColor};
+  height: 62px;
+  line-height: 1;
+  font-weight: bold;
+  padding: 0px 17px;
+  background: ${props.primaryColor};
+  color: ${props.whiteColor};
+  text-transform: capitalize;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+  }
 `
 );
+export const ShowCountryList = styled.div(
+  (props) => `
+  .show-country-list {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px;
+
+    .country-name {
+      color: ${props.primaryColor};
+      text-transform: capitalize;
+      font-weight: 700;
+      font-size: 16px;
+  }
+
+      .rmv-btn {
+      color: ${props.primaryColor};
+      text-transform: capitalize;
+      font-weight: 700;
+      font-size: 16px;
+      border: none;
+      outline: none;
+      background: transparent;
+      cursor: pointer;
+    }
+`
+);
+
+
 export const Checkboxes = styled.div(
   (props) => `
 
