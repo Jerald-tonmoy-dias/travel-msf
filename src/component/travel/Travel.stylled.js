@@ -195,6 +195,24 @@ color: ${props.primaryColor};
 }
 
 }
+
+// toggleCountryRegion
+.toggleCountryRegion {
+  display: block;
+  margin-top: 20px;
+  line-height: 1;
+  font-size: 16px;
+  cursor: pointer;
+  color: ${props.primaryColor};
+
+  .icon {
+ display: inline-block;
+    position: relative;
+    right: -9px;
+    top: 4px;
+
+  }
+}
 `
 );
 
@@ -345,6 +363,7 @@ export const TextInputs = styled.div(
 );
 export const ShowCountryList = styled.div(
   (props) => `
+  margin-bottom: 20px;
   .show-country-list {
     display:flex;
     justify-content: space-between;
@@ -367,6 +386,13 @@ export const ShowCountryList = styled.div(
       outline: none;
       background: transparent;
       cursor: pointer;
+      padding: 4px;
+
+      &:hover {
+        background: ${props.primaryColor};
+        border-radius: 5px;
+        color: ${props.whiteColor};
+      }
     }
 `
 );

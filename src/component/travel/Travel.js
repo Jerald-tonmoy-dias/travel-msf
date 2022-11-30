@@ -10,6 +10,8 @@ import {
   IoCloseOutline,
   IoCheckmarkCircle,
   IoCloseCircle,
+  IoAdd,
+  IoArrowForwardOutline,
 } from "react-icons/io5";
 import {
   Checkboxes,
@@ -39,6 +41,7 @@ export default function Travel() {
   );
   const [valudationError, setvaludationError] = useState(false);
   const [singleCountry, setsingleCountry] = useState('');
+  const [showCountry, setshowCountry] = useState(true);
   /******************************************
    * FUNCTIONS
    ******************************************/
@@ -296,53 +299,66 @@ export default function Travel() {
                 </p>
               </ToolTipWrapper>
 
-              {/* input wrapper */}
-              <TextInputs
-                primaryColor={theme.primaryColor}
-                warningColor={theme.warningColor}
-                secondaryColor={theme.secondaryColor}
-                grayColor={theme.grayColor}
-                whiteColor={theme.whiteColor}
-              >
-                <input
-                  className="single-text-input"
-                  placeholder="Enter the frist few letters"
-                  onChange={(e) => {
-                    setsingleCountry(e.target.value);
-                  }}
-                />
-                <button onClick={addCountryList} className="add-btn">add</button>
-              </TextInputs>
+              {showCountry === true ? [
+                <>
+                  {/* country list */}
+                  {
+                    travelInsurance.countryList && travelInsurance.countryList.map((countryName, index) => (
+                      <ShowCountryList
+                        primaryColor={theme.primaryColor}
+                        warningColor={theme.warningColor}
+                        secondaryColor={theme.secondaryColor}
+                        grayColor={theme.grayColor}
+                        whiteColor={theme.whiteColor}
+                      >
+                        <div className="show-country-list" key={index}>
+                          <span className="country-name">{countryName}</span>
 
-              {/* country list */}
-              <ShowCountryList
-                primaryColor={theme.primaryColor}
-                warningColor={theme.warningColor}
-                secondaryColor={theme.secondaryColor}
-                grayColor={theme.grayColor}
-                whiteColor={theme.whiteColor}
-              >
-                {travelInsurance.countryList && travelInsurance.countryList.map((countryName, index) => (
-                  <div className="show-country-list" key={index}>
-                    <span className="country-name">{countryName}</span>
+                          <button onClick={() => {
+                            //  filter country list
+                            let filteredCountry = travelInsurance.countryList && travelInsurance.countryList.filter(item => item !== countryName);
+                            console.log(filteredCountry);
 
-                    <button onClick={() => {
-                      //  filter country list
-                      let filteredCountry = travelInsurance.countryList && travelInsurance.countryList.filter(item => item !== countryName);
-                      console.log(filteredCountry);
+                            // set country list
+                            setTravelInsurance({
+                              ...travelInsurance,
+                              ['countryList']: filteredCountry
+                            }
+                            );
 
-                      // set country list
-                      setTravelInsurance({
-                        ...travelInsurance,
-                        ['countryList']: filteredCountry
-                      }
-                      );
+                          }}
+                            className="rmv-btn">remove</button>
+                        </div>
+                      </ShowCountryList>
+                    ))
+                  }
 
-                    }}
-                      className="rmv-btn">remove</button>
-                  </div>
-                ))}
-              </ShowCountryList>
+                  {/* input wrapper */}
+                  < TextInputs
+                    primaryColor={theme.primaryColor}
+                    warningColor={theme.warningColor}
+                    secondaryColor={theme.secondaryColor}
+                    grayColor={theme.grayColor}
+                    whiteColor={theme.whiteColor}
+                  >
+                    <input
+                      className="single-text-input"
+                      placeholder="Enter the frist few letters"
+                      onChange={(e) => {
+                        setsingleCountry(e.target.value);
+                      }}
+                    />
+                    <button onClick={addCountryList} className="add-btn">add</button>
+                  </TextInputs>
+                </>
+              ] : []}
+
+              <span className="toggleCountryRegion" onClick={() => setshowCountry(!showCountry)}>
+                {showCountry == true ? `Let us know which region you'll be visiting` : `Or just tell us the country or countries`}
+                <span className="icon">
+                  <IoArrowForwardOutline />
+                </span>
+              </span>
 
               {/* <Checkboxes>
                 <div className="termsCondInputWrapper">
@@ -370,6 +386,7 @@ export default function Travel() {
                   <span className="warning-text">{validationText}</span>
                 ) : null
               ) : null}
+
             </div>
 
           </div>
