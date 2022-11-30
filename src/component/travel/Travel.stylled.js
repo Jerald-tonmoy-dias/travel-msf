@@ -46,8 +46,8 @@ export const ContentWrapper = styled.div(
 // *************component own styles*********** //
 display:flex;
 @media (max-width: 992px) {
-  flex-direction: column;
-  flex-wrap: wrap;
+flex-direction: column;
+flex-wrap: wrap;
 }
 // *************component global styles*********** //
 .small-icon-btn {
@@ -105,10 +105,10 @@ flex-basis: 80%;
 border-radius: 5px;
 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 @media (max-width: 992px) {
-  max-width: calc(9 / 12 * 100% - 60px);
+max-width: calc(9 / 12 * 100% - 60px);
 }
 @media only screen and (max-width: 767px) {
-  max-width: 100%;
+max-width: 100%;
 width: 100%;
 }
 
@@ -119,21 +119,21 @@ padding: 30px;
 border-bottom: 1px solid #d1e3f4;
 // warning text
 .warning-text {
-  color: ${props.warningColor};
-  font-size: 16px;
-  font-weight: 700;
+color: ${props.warningColor};
+font-size: 16px;
+font-weight: 700;
 }
 
 .sm-text {
 font-size: 14px;
 }
 &:hover {
-  background: ${props.hoverColor};
+background: ${props.hoverColor};
 }
 &.active {
-  ${ToolTipWrapper} {
-    display: block;
-  }
+${ToolTipWrapper} {
+display: block;
+}
 }
 
 // tooltip design
@@ -143,24 +143,24 @@ right: -50%;
 top: 0;
 display: none;
 &:after {
-  content: '';
-  position: absolute;
-  top: 11px;
-  left: -12px;
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid transparent;
-  border-right: 12px solid ${props.primaryColor};
+content: '';
+position: absolute;
+top: 11px;
+left: -12px;
+border-top: 12px solid transparent;
+border-bottom: 12px solid transparent;
+border-right: 12px solid ${props.primaryColor};
 }
 
 @media only screen and (max-width: 767px) {
-  position: static;
-  margin-bottom: 30px;
-  width: 90%;
-  &:after {
-    content: inherit;
+position: static;
+margin-bottom: 30px;
+width: 90%;
+&:after {
+content: inherit;
 
-  }
-  }
+}
+}
 }
 
 
@@ -198,20 +198,20 @@ color: ${props.primaryColor};
 
 // toggleCountryRegion
 .toggleCountryRegion {
-  display: block;
-  margin-top: 20px;
-  line-height: 1;
-  font-size: 16px;
-  cursor: pointer;
-  color: ${props.primaryColor};
+display: block;
+margin-top: 20px;
+line-height: 1;
+font-size: 16px;
+cursor: pointer;
+color: ${props.primaryColor};
 
-  .icon {
- display: inline-block;
-    position: relative;
-    right: -9px;
-    top: 4px;
+.icon {
+display: inline-block;
+position: relative;
+right: -9px;
+top: 4px;
 
-  }
+}
 }
 `
 );
@@ -222,7 +222,7 @@ display:flex;
 flex-wrap: wrap;
 
 @media only screen and (max-width: 767px) {
-  justify-content: center;
+justify-content: center;
 }
 
 input[type="radio"] {
@@ -246,13 +246,13 @@ margin: 0 10px 10px 0 ;
 padding-top: 30px;
 padding-bottom: 30px;
 @media only screen and (max-width: 1200px) {
-  flex-basis: 13.33%;
+flex-basis: 13.33%;
 }
 @media only screen and (max-width: 767px) {
-  flex-basis: 23%;
+flex-basis: 23%;
 }
 @media only screen and (max-width: 425px) {
-  flex-basis: 50%;
+flex-basis: 50%;
 }
 .input-title {
 color: ${props.blackColor};
@@ -326,74 +326,74 @@ font-weight: 700;
 export const TextInputs = styled.div(
   (props) => `
 .single-text-input {
-  border: 1px solid ${props.primaryColor};
-  border-bottom-width: 4px;
-  height: 56px;
-  line-height: 1;
-  font-weight: bold;
-  padding: 0px 17px;
-  max-width: 100%;
-  width: 54%;
-  border-radius: 3px;
-  color: ${props.primaryColor};
-  outline: none;
-  background: ${props.hoverColor};
-  &:focus {
-    border: 1px solid ${props.primaryColor};
-    border-bottom-width: 4px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
-    background: ${props.whiteColor};
-    
-  }
+border: 1px solid ${props.primaryColor};
+border-bottom-width: 4px;
+height: 56px;
+line-height: 1;
+font-weight: bold;
+padding: 0px 17px;
+max-width: 100%;
+width: 54%;
+border-radius: 3px;
+color: ${props.primaryColor};
+outline: none;
+background: ${props.hoverColor};
+&:focus {
+border: 1px solid ${props.primaryColor};
+border-bottom-width: 4px;
+box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+background: ${props.whiteColor};
+
 }
-  .add-btn {
-  border: 1px solid ${props.primaryColor};
-  height: 62px;
-  line-height: 1;
-  font-weight: bold;
-  padding: 0px 17px;
-  background: ${props.primaryColor};
-  color: ${props.whiteColor};
-  text-transform: capitalize;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  cursor: pointer;
-  }
+}
+.add-btn {
+border: 1px solid ${props.primaryColor};
+height: 62px;
+line-height: 1;
+font-weight: bold;
+padding: 0px 17px;
+background: ${props.primaryColor};
+color: ${props.whiteColor};
+text-transform: capitalize;
+border-top-right-radius: 5px;
+border-bottom-right-radius: 5px;
+cursor: pointer;
+}
 `
 );
 export const ShowCountryList = styled.div(
   (props) => `
-  margin-bottom: 20px;
-  .show-country-list {
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 5px;
+margin-bottom: 20px;
+.show-country-list {
+display:flex;
+justify-content: space-between;
+align-items: center;
+margin: 5px;
 
-    .country-name {
-      color: ${props.primaryColor};
-      text-transform: capitalize;
-      font-weight: 700;
-      font-size: 16px;
-  }
+.country-name {
+color: ${props.primaryColor};
+text-transform: capitalize;
+font-weight: 700;
+font-size: 16px;
+}
 
-      .rmv-btn {
-      color: ${props.primaryColor};
-      text-transform: capitalize;
-      font-weight: 700;
-      font-size: 16px;
-      border: none;
-      outline: none;
-      background: transparent;
-      cursor: pointer;
-      padding: 4px;
+.rmv-btn {
+color: ${props.primaryColor};
+text-transform: capitalize;
+font-weight: 700;
+font-size: 16px;
+border: none;
+outline: none;
+background: transparent;
+cursor: pointer;
+padding: 4px;
 
-      &:hover {
-        background: ${props.primaryColor};
-        border-radius: 5px;
-        color: ${props.whiteColor};
-      }
-    }
+&:hover {
+background: ${props.primaryColor};
+border-radius: 5px;
+color: ${props.whiteColor};
+}
+}
 `
 );
 
@@ -401,53 +401,75 @@ export const ShowCountryList = styled.div(
 export const Checkboxes = styled.div(
   (props) => `
 
-  .termsCondInputWrapper {
- 
+.termsCondInputWrapper {
+margin-top: 20px;
+.form-group {
+display:block;
+cursor: pointer;
+padding: 12px;
+border: 2px solid ${props.primaryColor};
+border-radius: 5px;
+.region-name {
+font-size:  18px;
+color: ${props.primaryColor};
+font-weight: 700;
+margin-left: 10px;
+position: relative;
+top: 3px;
+}
+&.active {
+background: ${props.primaryColor};
+.region-name {
+color: ${props.whiteColor};
+}
+}
+}
+.form-group input {
+padding: 0;
+height: initial;
+width: initial;
+margin-bottom: 0;
+display: none;
+cursor: pointer;
+}
 
-    .form-group input {
-      padding: 0;
-      height: initial;
-      width: initial;
-      margin-bottom: 0;
-      display: none;
-      cursor: pointer;
-    }
-    
-    .form-group label {
-      position: relative;
-      cursor: pointer;
-    }
-    
-    .form-group label:before {
-      content:'';
-      -webkit-appearance: none;
-      border: 2px solid #FF6600;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
-      padding: 15px;
-      display: inline-block;
-      position: relative;
-      vertical-align: middle;
-      cursor: pointer;
-      margin-right: 5px;
-      border-radius: 5px;
-    }
-    .form-group input:checked + label:before {
-      background: #FF6600;
-    }
-    .form-group input:checked + label:after {
-      content: '';
-      display: block;
-      position: absolute;
-      top: 3px;
-      left: 14px;
-      width: 6px;
-      height: 14px;
-      border: solid #FFF;
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-      
-    }
-    
-    }
+.form-group label {
+position: relative;
+cursor: pointer;
+}
+
+.form-group label:before {
+content:'';
+-webkit-appearance: none;
+border: 2px solid #FF6600;
+box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+padding: 15px;
+display: inline-block;
+position: relative;
+vertical-align: middle;
+cursor: pointer;
+margin-right: 5px;
+border-radius: 5px;
+}
+
+.form-group input:checked + label:before {
+background: ${props.whiteColor};
+}
+
+.form-group input:checked + label:after {
+content: '';
+display: block;
+position: absolute;
+top: 0px;
+left: 14px;
+width: 6px;
+height: 14px;
+border: solid ${props.primaryColor};
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+
+}
+
+}
 `
 );

@@ -351,34 +351,124 @@ export default function Travel() {
                     <button onClick={addCountryList} className="add-btn">add</button>
                   </TextInputs>
                 </>
-              ] : []}
+              ] : [
+                <>
+                  <Checkboxes
+                    primaryColor={theme.primaryColor}
+                    whiteColor={theme.whiteColor}
+                    blackColor={theme.blackColor}
+                  >
+                    {/* single item */}
+                    <div className="termsCondInputWrapper">
+                      <label className="form-group" id="checkbox_1" for="forRegion1">
+                        <input
+                          onChange={(e) => {
+                            setTravelInsurance({
+                              ...travelInsurance,
+                              [e.target.name]: !travelInsurance.is_region_united_kingdom,
 
-              <span className="toggleCountryRegion" onClick={() => setshowCountry(!showCountry)}>
+                            });
+                            toggleClassForHover('checkbox_1');
+                          }}
+                          id="forRegion1"
+                          type="checkbox"
+                          name="is_region_united_kingdom"
+                          defaultvalue={travelInsurance.is_region_united_kingdom}
+                        />
+                        <label for="forRegion1"></label>
+                        <span className="region-name">  United kingdom</span>
+                      </label>
+                    </div>
+
+                    {/* single item */}
+                    <div className="termsCondInputWrapper">
+                      <label className="form-group" id="checkbox_2" for="forRegion2">
+                        <input
+                          onChange={(e) => {
+                            setTravelInsurance({
+                              ...travelInsurance,
+                              [e.target.name]: !travelInsurance.is_region_europe,
+
+                            });
+                            toggleClassForHover('checkbox_2');
+                          }}
+                          id="forRegion2"
+                          type="checkbox"
+                          name="is_region_europe"
+                          value={travelInsurance.is_region_europe}
+                        />
+                        <label for="forRegion2"></label>
+                        <span className="region-name">  Europe</span>
+                      </label>
+                    </div>
+
+                    {/* single item */}
+                    <div className="termsCondInputWrapper">
+                      <label className="form-group" id="checkbox_3" for="forRegion_3">
+                        <input
+                          onChange={(e) => {
+                            setTravelInsurance({
+                              ...travelInsurance,
+                              [e.target.name]: !travelInsurance.is_region_worldwide_excl_USA_canada_caribbean_Mexico,
+
+                            });
+                            toggleClassForHover('checkbox_3');
+                          }}
+                          id="forRegion_3"
+                          type="checkbox"
+                          name="is_region_worldwide_excl_USA_canada_caribbean_Mexico"
+                          value={travelInsurance.is_region_worldwide_excl_USA_canada_caribbean_Mexico}
+                        />
+                        <label for="forRegion_3"></label>
+                        <span className="region-name">  Worldwide Excl. USA, Canada, Caribbean, Mexico</span>
+                      </label>
+                    </div>
+
+                    {/* single item */}
+                    <div className="termsCondInputWrapper">
+                      <label className="form-group" id="checkbox_4" for="forRegion_4">
+                        <input
+                          onChange={(e) => {
+                            setTravelInsurance({
+                              ...travelInsurance,
+                              [e.target.name]: !travelInsurance.is_region_worldwide,
+
+                            });
+                            toggleClassForHover('checkbox_4');
+                          }}
+                          id="forRegion_4"
+                          type="checkbox"
+                          name="is_region_worldwide"
+                          value={travelInsurance.is_region_worldwide}
+                        />
+                        <label for="forRegion_4"></label>
+                        <span className="region-name">  Worldwide </span>
+                      </label>
+                    </div>
+
+                  </Checkboxes>
+                </>
+              ]}
+
+              <span className="toggleCountryRegion" onClick={() => {
+                setshowCountry(!showCountry);
+                // reset country and region
+                setTravelInsurance({
+                  ...travelInsurance,
+                  ['countryList']: [],
+                  ['is_region_united_kingdom']: false,
+                  ['is_region_europe']: false,
+                  ['is_region_worldwide_excl_USA_canada_caribbean_Mexico']: false,
+                  ['is_region_worldwide']: false,
+
+                });
+
+              }}>
                 {showCountry == true ? `Let us know which region you'll be visiting` : `Or just tell us the country or countries`}
                 <span className="icon">
                   <IoArrowForwardOutline />
                 </span>
               </span>
-
-              {/* <Checkboxes>
-                <div className="termsCondInputWrapper">
-                  <div className="form-group">
-                    <input
-                      // onChange={(e) => {
-                      //   setyourPolicy({
-                      //     ...yourPolicy,
-                      //     [e.target.name]: !yourPolicy.TermsConditions,
-
-                      //   });
-                      // }}
-                      id="fortermsCondInput"
-                      type="checkbox"
-                      name="TermsConditions"
-                    />
-                    <label for="fortermsCondInput"></label>
-                  </div>
-                </div>
-              </Checkboxes> */}
 
               {/* validation */}
               {valudationError === true ? (
