@@ -118,6 +118,20 @@ position: relative;
 padding: 30px;
 border-bottom: 1px solid #d1e3f4;
 
+// see_cover_details
+.see_cover_details {
+  p {
+    font-size: 14px;
+    line-height: 1.5;
+    strong {
+      color: ${props.primaryColor};
+    }
+  }
+  ul li {
+      font-size: 14px;
+  }
+}
+
 // show_input_status
 .show_input_status {
   position:  absolute;
@@ -139,11 +153,12 @@ font-weight: 700;
 }
 
 .notsure {
-  display: inline-block;
+  display: flex;
+  align-items:center;
   color: ${props.blackColor};
   font-size: 14px;
   font-weight: 700;
-  margin-top: 10px;
+  margin-top: 15px;
   cursor: pointer;
   &.active {
   color: ${props.primaryColor};
@@ -167,7 +182,10 @@ border-radius: 5px;
   }
 }
 .sm-text {
-font-size: 14px;
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.2;
+    margin-top: 10px;
 }
 &:hover {
 background: ${props.hoverColor};
@@ -246,8 +264,6 @@ line-height: 1;
 font-size: 16px;
 cursor: pointer;
 color: ${props.primaryColor};
-
-
 
 .icon {
 display: inline-block;
@@ -457,22 +473,26 @@ export const Checkboxes = styled.div(
 .termsCondInputWrapper {
 margin-top: 20px;
 .form-group {
-display:block;
+display:flex;
+align-items: flex-start;
+
 cursor: pointer;
 padding: 12px;
 border: 2px solid ${props.primaryColor};
 border-radius: 5px;
+.text-content-wrapper {
+  margin-left: 15px;
+}
 .region-name {
 font-size:  18px;
 color: ${props.primaryColor};
 font-weight: 700;
-margin-left: 10px;
 position: relative;
 top: 3px;
 }
 &.active {
 background: ${props.primaryColor};
-.region-name {
+.region-name,.sm-text {
 color: ${props.whiteColor};
 }
 }
@@ -489,12 +509,13 @@ cursor: pointer;
 .form-group label {
 position: relative;
 cursor: pointer;
+display:flex;
 }
 
 .form-group label:before {
 content:'';
 -webkit-appearance: none;
-border: 2px solid #FF6600;
+border: 2px solid ${props.primaryColor};
 box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
 padding: 15px;
 display: inline-block;
@@ -513,7 +534,7 @@ background: ${props.whiteColor};
 content: '';
 display: block;
 position: absolute;
-top: 0px;
+top: 6px;
 left: 14px;
 width: 6px;
 height: 14px;
@@ -522,29 +543,21 @@ border-width: 0 2px 2px 0;
 transform: rotate(45deg);
 
 }
-.text-content {
-  position: absolute;
-  top: 50%;
-  left: 30px;
-  padding: 10px;
-  .sm-text {
-    display: block; 
-    font-size: 16px;
-    margin-top: 10px;
-  }
 }
-}
+
 
 ${props.componentName == "optional_ins_cover_wrapper" ? [
       `
-  display: flex;
+
+  display:flex;
   flex-wrap: wrap;
-  
+  align-items: flex-start;
 .termsCondInputWrapper {
-   width: 48%;
+   width: 47%;
   margin-right: 10px;
-
-
+  @media only screen and (max-width: 992px) {
+ width: 90%;
+}
 }
 
 `

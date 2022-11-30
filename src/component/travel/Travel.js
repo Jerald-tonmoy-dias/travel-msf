@@ -12,6 +12,8 @@ import {
   IoCloseCircle,
   IoAdd,
   IoArrowForwardOutline,
+  IoChevronDown,
+  IoChevronUp,
 } from "react-icons/io5";
 import {
   Checkboxes,
@@ -44,6 +46,7 @@ export default function Travel() {
   const [singleCountry, setsingleCountry] = useState('');
   const [showCountry, setshowCountry] = useState(true);
   const [showInfo, seteShowInfo] = useState(false);
+  const [showCoverDetails, setshowCoverDetails] = useState(false);
   /******************************************
    * FUNCTIONS
    ******************************************/
@@ -414,7 +417,9 @@ export default function Travel() {
                           value={travelInsurance.is_region_united_kingdom}
                         />
                         <label for="forRegion1"></label>
-                        <span className="region-name">  United kingdom</span>
+                        <div className="text-content-wrapper">
+                          <span className="region-name">  United kingdom </span>
+                        </div>
                       </label>
                     </div>
 
@@ -436,7 +441,10 @@ export default function Travel() {
                           value={travelInsurance.is_region_europe}
                         />
                         <label for="forRegion2"></label>
-                        <span className="region-name">  Europe</span>
+
+                        <div className="text-content-wrapper">
+                          <span className="region-name">  Europe</span>
+                        </div>
                       </label>
                     </div>
 
@@ -458,7 +466,10 @@ export default function Travel() {
                           value={travelInsurance.is_region_worldwide_excl_USA_canada_caribbean_Mexico}
                         />
                         <label for="forRegion_3"></label>
-                        <span className="region-name">  Worldwide Excl. USA, Canada, Caribbean, Mexico</span>
+
+                        <div className="text-content-wrapper">
+                          <span className="region-name">  Worldwide Excl. USA, Canada, Caribbean, Mexico</span>
+                        </div>
                       </label>
                     </div>
 
@@ -480,7 +491,10 @@ export default function Travel() {
                           value={travelInsurance.is_region_worldwide}
                         />
                         <label for="forRegion_4"></label>
-                        <span className="region-name">  Worldwide </span>
+
+                        <div className="text-content-wrapper">
+                          <span className="region-name">  Worldwide </span>
+                        </div>
                       </label>
                     </div>
 
@@ -638,25 +652,141 @@ export default function Travel() {
                       value={travelInsurance.is_gadget_cover}
                     />
                     <label for="is_gadget_cover"></label>
-                    <div className="text-content">
-                      <span className="region-name">  Gadget cover</span>
-                      <span className="sm-text">  Smartphones, laptops, cameras, and more…</span>
+
+                    <div className="text-content-wrapper">
+                      <span className="region-name">  Gadget cover </span>
+                      <p className="sm-text">
+                        Smartphones, laptops, cameras, and more…
+                      </p>
                     </div>
                   </label>
                 </div>
 
+                {/* single item */}
+                <div className="termsCondInputWrapper">
+                  <label className="form-group" id="optionalInsCover_2" for="is_winter_sports_cover">
+                    <input
+                      onChange={(e) => {
+                        setTravelInsurance({
+                          ...travelInsurance,
+                          [e.target.name]: !travelInsurance.is_winter_sports_cover,
 
+                        });
+                        toggleClassForHover('optionalInsCover_2');
+                      }}
+                      id="is_winter_sports_cover"
+                      type="checkbox"
+                      name="is_winter_sports_cover"
+                      value={travelInsurance.is_winter_sports_cover}
+                    />
+                    <label for="is_winter_sports_cover"></label>
+
+                    <div className="text-content-wrapper">
+                      <span className="region-name">  Winter sports cover </span>
+                      <p className="sm-text">
+                        Skis, snowboards, ski pass, piste closure, and more…
+                      </p>
+                    </div>
+                  </label>
+                </div>
+
+                {/* single item */}
+                <div className="termsCondInputWrapper">
+                  <label className="form-group" id="optionalInsCover_3" for="is_cruise_cover">
+                    <input
+                      onChange={(e) => {
+                        setTravelInsurance({
+                          ...travelInsurance,
+                          [e.target.name]: !travelInsurance.is_cruise_cover,
+
+                        });
+                        toggleClassForHover('optionalInsCover_3');
+                      }}
+                      id="is_cruise_cover"
+                      type="checkbox"
+                      name="is_cruise_cover"
+                      value={travelInsurance.is_cruise_cover}
+                    />
+                    <label for="is_cruise_cover"></label>
+
+                    <div className="text-content-wrapper">
+                      <span className="region-name">  Cruise cover </span>
+                      <p className="sm-text">
+                        Cabin confinement, missed ports and more…
+                      </p>
+                    </div>
+                  </label>
+                </div>
+
+                {/* single item */}
+                <div className="termsCondInputWrapper">
+                  <label className="form-group" id="optionalInsCover_4" for="is_business_trip_cover">
+                    <input
+                      onChange={(e) => {
+                        setTravelInsurance({
+                          ...travelInsurance,
+                          [e.target.name]: !travelInsurance.is_business_trip_cover,
+
+                        });
+                        toggleClassForHover('optionalInsCover_4');
+                      }}
+                      id="is_business_trip_cover"
+                      type="checkbox"
+                      name="is_business_trip_cover"
+                      value={travelInsurance.is_business_trip_cover}
+                    />
+                    <label for="is_business_trip_cover"></label>
+
+                    <div className="text-content-wrapper">
+                      <span className="region-name"> Business trip cover </span>
+                      <p className="sm-text">
+                        Business equipment, money, and more…
+                      </p>
+                    </div>
+                  </label>
+                </div>
 
               </Checkboxes>
 
 
               {/* click here to show info */}
-              <span onClick={() => seteShowInfo(!showInfo)} className={`notsure ${showInfo === true ? 'active' : ''}`}>see cover details </span>
+              <span onClick={() => setshowCoverDetails(!showCoverDetails)} className={`notsure ${showCoverDetails === true ? 'active' : ''}`}>
+                See cover details {"  "}
+                {showCoverDetails == true ? <IoChevronUp /> : <IoChevronDown />}
+              </span>
 
               {/* info content */}
-              {showInfo === true ? [
-                <div className="notSureInfo">
-                  <p><strong>Coronavirus (COVID-19) </strong></p><p><strong>Please check the <a href="https://www.gov.uk/guidance/travel-abroad-from-england-during-coronavirus-covid-19" target="_blank">latest government travel advice</a> that sets out what you need to do, if anything, before you travel abroad and before you return home. You should also check the latest travel advice and entry requirements for each country you visit or transit through. Travel rules can potentially change at short notice, so it's important to check the<a href="https://www.gov.uk/government/organisations/foreign-commonwealth-development-office" target="_blank">Foreign, Commonwealth &amp; Development Office (FCDO)</a> for the latest information.</strong></p>
+              {showCoverDetails === true ? [
+                <div class="see_cover_details">
+                  <p
+                  ><strong>Gadget cover</strong><p>Covers new, refurbished, and used gadgets* including smartphones, laptops, cameras, and more.</p><strong
+                  >What does gadget cover include?</strong>
+                    <ul
+                    >
+                      <li>Protection against loss, theft, and damage</li>
+                      <li>Claim up to £1,000 per item</li>
+                      <li>Gadget cover for each traveller named on the policy</li>
+                    </ul>
+                    <p>The gadgets you want to insure must not already be covered by another policy (including your home insurance)
+
+                    </p>
+                    <p>*You’ll need a receipt as proof of purchase when making a claim.
+                    </p>
+                  </p>
+                  <p
+                  ><strong>Winter sports cover</strong>
+                    <p>Loss of ski equipment, pass, piste closure, and avalanche delay.
+                    </p>
+                  </p>
+                  <p
+                  ><strong>Cruise cover</strong>
+                    <p>Missed port, unused excursions, emergency airlift and cabin confinement.</p>
+                  </p>
+                  <p
+                  ><strong>Business trip cover</strong>
+                    <p>Business equipment and business money.</p>
+                    <p>Don’t forget to check what each policy covers before you buy.</p>
+                  </p>
                 </div>
               ] : null}
 
