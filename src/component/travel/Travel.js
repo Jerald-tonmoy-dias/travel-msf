@@ -5,8 +5,6 @@ import { Wrapper } from "../../styles/Global.styled";
 import { } from "../form/Form.styled";
 import Navbar from "../navbar/Navbar";
 import { GiHand } from "react-icons/gi";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import {
   IoInformationOutline,
   IoCloseOutline,
@@ -571,7 +569,6 @@ export default function Travel() {
 
             </div>
 
-
             {/* For how many nights? */}
             {travelInsurance.insuranceCover && travelInsurance.insuranceCover == 'single trip' ? [
               <div className="single-card-wrapper" id="travel_id_2">
@@ -602,6 +599,86 @@ export default function Travel() {
 
               </div>
             ] : null}
+
+
+            {/* Would you like to add cover for any of the following? (optional)*/}
+            <div className="single-card-wrapper" >
+              {/* card title wrapper */}
+              <div className="card-title-wrapper">
+                <h4 className="title">Would you like to add cover for any of the following? (optional)
+                </h4>
+
+              </div>
+
+              <p>Select all that apply or leave it blank if none</p>
+
+
+              <Checkboxes
+                primaryColor={theme.primaryColor}
+                whiteColor={theme.whiteColor}
+                blackColor={theme.blackColor}
+                componentName={'optional_ins_cover_wrapper'}
+
+              >
+                {/* single item */}
+                <div className="termsCondInputWrapper">
+                  <label className="form-group" id="optionalInsCover_1" for="is_gadget_cover">
+                    <input
+                      onChange={(e) => {
+                        setTravelInsurance({
+                          ...travelInsurance,
+                          [e.target.name]: !travelInsurance.is_gadget_cover,
+
+                        });
+                        toggleClassForHover('optionalInsCover_1');
+                      }}
+                      id="is_gadget_cover"
+                      type="checkbox"
+                      name="is_gadget_cover"
+                      value={travelInsurance.is_gadget_cover}
+                    />
+                    <label for="is_gadget_cover"></label>
+                    <div className="text-content">
+                      <span className="region-name">  Gadget cover</span>
+                      <span className="sm-text">  Smartphones, laptops, cameras, and more…</span>
+                    </div>
+                  </label>
+                </div>
+
+
+
+              </Checkboxes>
+
+
+              {/* click here to show info */}
+              <span onClick={() => seteShowInfo(!showInfo)} className={`notsure ${showInfo === true ? 'active' : ''}`}>see cover details </span>
+
+              {/* info content */}
+              {showInfo === true ? [
+                <div className="notSureInfo">
+                  <p><strong>Coronavirus (COVID-19) </strong></p><p><strong>Please check the <a href="https://www.gov.uk/guidance/travel-abroad-from-england-during-coronavirus-covid-19" target="_blank">latest government travel advice</a> that sets out what you need to do, if anything, before you travel abroad and before you return home. You should also check the latest travel advice and entry requirements for each country you visit or transit through. Travel rules can potentially change at short notice, so it's important to check the<a href="https://www.gov.uk/government/organisations/foreign-commonwealth-development-office" target="_blank">Foreign, Commonwealth &amp; Development Office (FCDO)</a> for the latest information.</strong></p>
+                </div>
+              ] : null}
+
+
+
+              {/* show status  ::::dev_note:only change the state*/}
+              {
+                travelInsurance.insuranceCover !== "" ? <div className={`show_input_status`}>  <IoCheckmarkCircle /></div> : [
+                  valudationError === true ? (
+                    travelInsurance.insuranceCover == "" ? <div className={`show_input_status warning`}>  <IoCloseCircle /></div> : null
+                  ) : null
+                ]
+              }
+
+              {/* validation */}
+              {valudationError === true ? (
+                travelInsurance.region == "" ? (
+                  <span className="warning-text">{validationText}</span>
+                ) : null
+              ) : null}
+
+            </div>
           </div>
         </ContentWrapper>
       </Wrapper>

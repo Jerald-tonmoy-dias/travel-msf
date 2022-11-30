@@ -522,8 +522,35 @@ border-width: 0 2px 2px 0;
 transform: rotate(45deg);
 
 }
+.text-content {
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  padding: 10px;
+  .sm-text {
+    display: block; 
+    font-size: 16px;
+    margin-top: 10px;
+  }
+}
+}
+
+${props.componentName == "optional_ins_cover_wrapper" ? [
+      `
+  display: flex;
+  flex-wrap: wrap;
+  
+.termsCondInputWrapper {
+   width: 48%;
+  margin-right: 10px;
+
 
 }
+
+`
+    ] : null}
+
+
 `
 );
 

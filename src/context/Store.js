@@ -132,15 +132,21 @@ const StoreProvider = ({ children }) => {
   const [travelInsurance, setTravelInsurance] = useState({
     insuranceCover: "",
     countryList: [],
+    is_gadget_cover: false,
+    is_winter_sports_cover: false,
+    is_cruise_cover: false,
+    is_business_trip_cover: false,
+
+
     is_region_united_kingdom: false,
     is_region_europe: false,
     is_region_worldwide_excl_USA_canada_caribbean_Mexico: false,
     is_region_worldwide: false,
+
     dateOftrip: new Date(),
     monthsToCoverIns: "",
     dateOftrip: "",
     returnDateOftrip: "",
-    optionalInsuCover: "",
     howWantToInsure: "",
     maxExcess: "",
     cancellationCover: "",
