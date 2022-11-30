@@ -21,6 +21,7 @@ import {
   DateInput,
   GreatingSection,
   RadioButtons,
+  SelectorInput,
   ShowCountryList,
   TextInputs,
   ToolTipWrapper,
@@ -1074,6 +1075,34 @@ export default function Travel() {
                     ) : null}
 
                   </div>
+                  {travellerCount == 2 ?
+                    <div className="single-card-wrapper">
+                      {/* card title wrapper */}
+                      <div className="card-title-wrapper">
+                        <h4 className="title">Second traveller (adult) born</h4>
+                      </div>
+                      <DateInput
+                        primaryColor={theme.primaryColor}
+                        warningColor={theme.warningColor}
+                        secondaryColor={theme.secondaryColor}
+                        grayColor={theme.grayColor}
+                        whiteColor={theme.whiteColor}
+                      >
+
+                        <input type="date" name="secondTravellerBorn" onChange={handleOnChange} />
+                      </DateInput>
+
+
+                      {/* validation */}
+                      {valudationError === true ? (
+                        travelInsurance.dateOftrip == "" ? (
+                          <span className="warning-text">{validationText}</span>
+                        ) : null
+                      ) : null}
+
+                    </div>
+                    : null}
+
                 </>
               ] : null
             }
@@ -1088,6 +1117,76 @@ export default function Travel() {
                   <span className="add-another-traveller">add another traveller</span>
                 </div> : null
             }
+          </div>
+        </ContentWrapper>
+
+        {/* Cover details */}
+        <ContentWrapper
+          primaryColor={theme.primaryColor}
+          secondaryColor={theme.secondaryColor}
+          whiteColor={theme.whiteColor}
+          grayColor={theme.grayColor}
+          blackColor={theme.blackColor}
+          liteprimaryColor={theme.liteprimaryColor}
+          liteBlackColor={theme.liteBlackColor}
+          litewhiteColor={theme.litewhiteColor}
+          warningColor={theme.warningColor}
+          hoverColor={theme.hoverColor}
+        >
+          <div className="left-side">
+            <h2 className="section_header_title">Cover details</h2>
+          </div>
+
+          <div className="right-side">
+            {/* What type of cover are you looking for?  ::dev-note:has-tooltip*/}
+            <div className="single-card-wrapper" id="travel_id_1">
+              {/* card title wrapper */}
+
+              <p>What is the <strong>maximum excess</strong> you’d like to pay should you need to make a claim?</p>
+              <p className="sm-text">
+                The excess you pay would be per person, per claim e.g. if you select an excess of £50 and need to claim for 2 people travelling, the total excess you’d pay would be £100.
+              </p>
+
+
+              <SelectorInput>
+                <select
+                  name="whobusinessuseFor"
+                  className="selectClass"
+                // onChange={handleOnchangeVehicleData}
+                >
+                  <option value="" disabled="">
+                    Please select...
+                  </option>
+                  <option value="250">Up to £250</option>
+                  <option value="200">Up to £200</option>
+                  <option value="150">Up to £150</option>
+                  <option value="100">Up to £100</option>
+                  <option value="50">Up to £50</option>
+                  <option value="0">No Excess</option>
+                </select>
+              </SelectorInput>
+
+              {/* show status  ::::dev_note:only change the state*/}
+              {
+                travelInsurance.insuranceCover !== "" ? <div className={`show_input_status`}>  <IoCheckmarkCircle /></div> : [
+                  valudationError === true ? (
+                    travelInsurance.insuranceCover == "" ? <div className={`show_input_status warning`}>  <IoCloseCircle /></div> : null
+                  ) : null
+                ]
+              }
+
+              {/* validation */}
+              {valudationError === true ? (
+                travelInsurance.insuranceCover == "" ? (
+                  <>
+                    <span className="warning-text">{validationText}</span>
+                  </>
+                ) : null
+              ) : null}
+            </div>
+
+
+
           </div>
         </ContentWrapper>
       </Wrapper>
