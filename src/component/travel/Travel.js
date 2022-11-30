@@ -5,6 +5,8 @@ import { Wrapper } from "../../styles/Global.styled";
 import { } from "../form/Form.styled";
 import Navbar from "../navbar/Navbar";
 import { GiHand } from "react-icons/gi";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import {
   IoInformationOutline,
   IoCloseOutline,
@@ -16,6 +18,7 @@ import {
 import {
   Checkboxes,
   ContentWrapper,
+  DateInput,
   GreatingSection,
   RadioButtons,
   ShowCountryList,
@@ -54,9 +57,28 @@ export default function Travel() {
   // handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    /**
+     * if showCountry === true then check  
+          *  if travelInsurance.countryList == [] then  setvaludationError(true) else setvaludationError(false) 
+  
+     * 
+     * else check 
+     *      
+          is_region_united_kingdom !=false
+
+          is_region_europe !=false
+
+          is_region_worldwide_excl_USA_canada_caribbean_Mexico !=false
+
+          is_region_worldwide != false
+
+    */
+
+
     if (
       travelInsurance.insuranceCover == "" ||
-      travelInsurance.region == "" ||
+      // travelInsurance.region == "" ||
       travelInsurance.dateOftrip == "" ||
       travelInsurance.monthsToCoverIns == "" ||
       travelInsurance.optionalInsuCover == "" ||
@@ -72,7 +94,8 @@ export default function Travel() {
     ) {
       // fill up the info to go forward
       setvaludationError(true);
-    } else {
+    }
+    else {
       // go to next step
       setvaludationError(false);
       setCountSteps(2);
@@ -138,7 +161,7 @@ export default function Travel() {
           </div>
 
           <div className="right-side">
-            {/* What type of cover are you looking for? */}
+            {/* What type of cover are you looking for?  ::dev-note:has-tooltip*/}
             <div className="single-card-wrapper" id="travel_id_1">
               {/* card title wrapper */}
               <div className="card-title-wrapper">
@@ -261,15 +284,26 @@ export default function Travel() {
                 </label>
               </RadioButtons>
 
+              {/* show status  ::::dev_note:only change the state*/}
+              {
+                travelInsurance.insuranceCover !== "" ? <div className={`show_input_status`}>  <IoCheckmarkCircle /></div> : [
+                  valudationError === true ? (
+                    travelInsurance.insuranceCover == "" ? <div className={`show_input_status warning`}>  <IoCloseCircle /></div> : null
+                  ) : null
+                ]
+              }
+
               {/* validation */}
               {valudationError === true ? (
                 travelInsurance.insuranceCover == "" ? (
-                  <span className="warning-text">{validationText}</span>
+                  <>
+                    <span className="warning-text">{validationText}</span>
+                  </>
                 ) : null
               ) : null}
             </div>
 
-            {/* Where are you going?  */}
+            {/* Where are you going?  ::dev-note:has-tooltip*/}
             <div className="single-card-wrapper" id="travel_id_2">
               {/* card title wrapper */}
               <div className="card-title-wrapper">
@@ -488,6 +522,17 @@ export default function Travel() {
                 </div>
               ] : null}
 
+
+
+              {/* show status  ::::dev_note:only change the state*/}
+              {
+                travelInsurance.insuranceCover !== "" ? <div className={`show_input_status`}>  <IoCheckmarkCircle /></div> : [
+                  valudationError === true ? (
+                    travelInsurance.insuranceCover == "" ? <div className={`show_input_status warning`}>  <IoCloseCircle /></div> : null
+                  ) : null
+                ]
+              }
+
               {/* validation */}
               {valudationError === true ? (
                 travelInsurance.region == "" ? (
@@ -497,6 +542,66 @@ export default function Travel() {
 
             </div>
 
+            {/* When are you going on your trip? */}
+            <div className="single-card-wrapper" id="travel_id_2">
+              {/* card title wrapper */}
+              <div className="card-title-wrapper">
+                <h4 className="title">When are you going on your trip?</h4>
+
+              </div>
+
+              < DateInput
+                primaryColor={theme.primaryColor}
+                warningColor={theme.warningColor}
+                secondaryColor={theme.secondaryColor}
+                grayColor={theme.grayColor}
+                whiteColor={theme.whiteColor}
+              >
+
+                <input type="date" name="dateOftrip" onChange={handleOnChange} />
+              </DateInput>
+
+
+              {/* validation */}
+              {valudationError === true ? (
+                travelInsurance.dateOftrip == "" ? (
+                  <span className="warning-text">{validationText}</span>
+                ) : null
+              ) : null}
+
+            </div>
+
+
+            {/* For how many nights? */}
+            {travelInsurance.insuranceCover && travelInsurance.insuranceCover == 'single trip' ? [
+              <div className="single-card-wrapper" id="travel_id_2">
+                {/* card title wrapper */}
+                <div className="card-title-wrapper">
+                  <h4 className="title">For how many nights?</h4>
+
+                </div>
+
+                < DateInput
+                  primaryColor={theme.primaryColor}
+                  warningColor={theme.warningColor}
+                  secondaryColor={theme.secondaryColor}
+                  grayColor={theme.grayColor}
+                  whiteColor={theme.whiteColor}
+                >
+
+                  <input type="date" name="returnDateOftrip" onChange={handleOnChange} />
+                </DateInput>
+
+
+                {/* validation */}
+                {valudationError === true ? (
+                  travelInsurance.returnDateOftrip == "" ? (
+                    <span className="warning-text">{validationText}</span>
+                  ) : null
+                ) : null}
+
+              </div>
+            ] : null}
           </div>
         </ContentWrapper>
       </Wrapper>

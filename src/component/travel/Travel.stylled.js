@@ -117,12 +117,27 @@ width: 100%;
 position: relative;
 padding: 30px;
 border-bottom: 1px solid #d1e3f4;
+
+// show_input_status
+.show_input_status {
+  position:  absolute;
+  z-index: 0;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color : ${props.primaryColor};
+  font-size: 20px;
+  .warning {
+    color: ${props.warningColor};
+  }
+}
 // warning text
 .warning-text {
 color: ${props.warningColor};
 font-size: 16px;
 font-weight: 700;
 }
+
 .notsure {
   display: inline-block;
   color: ${props.blackColor};
@@ -330,7 +345,7 @@ fill: ${props.whiteColor};
 export const ToolTipWrapper = styled.div(
   (props) => `
 padding: 20px;
-z-index: 1;
+z-index: 99;
 width: 44%;
 background: ${props.whiteColor};
 box-shadow: rgba(33, 35, 38, 0.1) 0px 0px 10px 2px;
@@ -511,3 +526,33 @@ transform: rotate(45deg);
 }
 `
 );
+
+export const DateInput = styled.div(
+  (props) => `
+input {
+border: 1px solid ${props.primaryColor};
+border-bottom-width: 4px;
+height: 58px;
+line-height: 1;
+font-weight: bold;
+padding: 0px 17px;
+max-width: 100%;
+width: 23%;
+border-radius: 3px;
+color: ${props.primaryColor};
+outline: none;
+background: ${props.hoverColor};
+&:focus {
+border: 1px solid ${props.primaryColor};
+border-bottom-width: 4px;
+box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+background: ${props.whiteColor};
+}
+@media only screen and (max-width: 425px) {
+width: 47%;
+}
+  }
+`
+);
+
+
