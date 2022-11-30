@@ -47,6 +47,8 @@ export default function Travel() {
   const [showCountry, setshowCountry] = useState(true);
   const [showInfo, seteShowInfo] = useState(false);
   const [showCoverDetails, setshowCoverDetails] = useState(false);
+  const [travellerCount, settravellerCount] = useState(2);
+  const maxTravller = 10;
   /******************************************
    * FUNCTIONS
    ******************************************/
@@ -932,6 +934,160 @@ export default function Travel() {
                 ) : null
               ) : null}
             </div>
+
+            {/* show if individual*/}
+            {travelInsurance.howWantToInsure == "An individual" ?
+              <div className="single-card-wrapper">
+                {/* card title wrapper */}
+                <div className="card-title-wrapper">
+                  <h4 className="title">Traveller born</h4>
+                </div>
+                <DateInput
+                  primaryColor={theme.primaryColor}
+                  warningColor={theme.warningColor}
+                  secondaryColor={theme.secondaryColor}
+                  grayColor={theme.grayColor}
+                  whiteColor={theme.whiteColor}
+                >
+
+                  <input type="date" name="firstTravellerBorn" onChange={handleOnChange} />
+                </DateInput>
+
+
+                {/* validation */}
+                {valudationError === true ? (
+                  travelInsurance.dateOftrip == "" ? (
+                    <span className="warning-text">{validationText}</span>
+                  ) : null
+                ) : null}
+
+              </div> : null
+            }
+            {/* show if couple */}
+            {travelInsurance.howWantToInsure == "A couple" ?
+              [
+                <>
+                  <div className="single-card-wrapper">
+                    {/* card title wrapper */}
+                    <div className="card-title-wrapper">
+                      <h4 className="title">First traveller (adult) born</h4>
+                    </div>
+                    <DateInput
+                      primaryColor={theme.primaryColor}
+                      warningColor={theme.warningColor}
+                      secondaryColor={theme.secondaryColor}
+                      grayColor={theme.grayColor}
+                      whiteColor={theme.whiteColor}
+                    >
+
+                      <input type="date" name="firstTravellerBorn" onChange={handleOnChange} />
+                    </DateInput>
+
+
+                    {/* validation */}
+                    {valudationError === true ? (
+                      travelInsurance.dateOftrip == "" ? (
+                        <span className="warning-text">{validationText}</span>
+                      ) : null
+                    ) : null}
+
+                  </div>
+                  <div className="single-card-wrapper">
+                    {/* card title wrapper */}
+                    <div className="card-title-wrapper">
+                      <h4 className="title">Second traveller (adult) born</h4>
+                    </div>
+                    <DateInput
+                      primaryColor={theme.primaryColor}
+                      warningColor={theme.warningColor}
+                      secondaryColor={theme.secondaryColor}
+                      grayColor={theme.grayColor}
+                      whiteColor={theme.whiteColor}
+                    >
+
+                      <input type="date" name="secondTravellerBorn" onChange={handleOnChange} />
+                    </DateInput>
+
+
+                    {/* validation */}
+                    {valudationError === true ? (
+                      travelInsurance.dateOftrip == "" ? (
+                        <span className="warning-text">{validationText}</span>
+                      ) : null
+                    ) : null}
+
+                  </div>
+                </>
+              ] : null
+            }
+            {/* show if couple */}
+            {travelInsurance.howWantToInsure == 'A family' ?
+              [
+                <>
+                  <div className="single-card-wrapper">
+                    {/* card title wrapper */}
+                    <div className="card-title-wrapper">
+                      <h4 className="title">First traveller (adult) born</h4>
+                    </div>
+                    <DateInput
+                      primaryColor={theme.primaryColor}
+                      warningColor={theme.warningColor}
+                      secondaryColor={theme.secondaryColor}
+                      grayColor={theme.grayColor}
+                      whiteColor={theme.whiteColor}
+                    >
+
+                      <input type="date" name="firstTravellerBorn" onChange={handleOnChange} />
+                    </DateInput>
+
+
+                    {/* validation */}
+                    {valudationError === true ? (
+                      travelInsurance.dateOftrip == "" ? (
+                        <span className="warning-text">{validationText}</span>
+                      ) : null
+                    ) : null}
+
+                  </div>
+                  <div className="single-card-wrapper">
+                    {/* card title wrapper */}
+                    <div className="card-title-wrapper">
+                      <h4 className="title">Second traveller (adult) born</h4>
+                    </div>
+                    <DateInput
+                      primaryColor={theme.primaryColor}
+                      warningColor={theme.warningColor}
+                      secondaryColor={theme.secondaryColor}
+                      grayColor={theme.grayColor}
+                      whiteColor={theme.whiteColor}
+                    >
+
+                      <input type="date" name="secondTravellerBorn" onChange={handleOnChange} />
+                    </DateInput>
+
+
+                    {/* validation */}
+                    {valudationError === true ? (
+                      travelInsurance.dateOftrip == "" ? (
+                        <span className="warning-text">{validationText}</span>
+                      ) : null
+                    ) : null}
+
+                  </div>
+                </>
+              ] : null
+            }
+
+
+
+            {/* add another traveller */}
+            {
+              travelInsurance.howWantToInsure == 'A family' ||
+                travelInsurance.howWantToInsure == 'A group' ?
+                <div className="single-card-wrapper">
+                  <span className="add-another-traveller">add another traveller</span>
+                </div> : null
+            }
           </div>
         </ContentWrapper>
       </Wrapper>

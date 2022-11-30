@@ -118,6 +118,20 @@ position: relative;
 padding: 30px;
 border-bottom: 1px solid #d1e3f4;
 
+// add-another-traveller
+.add-another-traveller {
+  color: ${props.primaryColor};
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: capitalize;
+  text-decoration: underline;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+  }
+
+}
+
 // see_cover_details
 .see_cover_details {
 p {

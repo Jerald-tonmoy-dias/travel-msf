@@ -1,5 +1,2 @@
 1.What type of cover are you looking for?
-2.Where are you going? 
-3.When would you like your cover to start?
-4.Would you like to add cover for any of the following? (optional)
-5.Who do you want to insure?
+has some conditional options
