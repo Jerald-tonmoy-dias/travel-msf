@@ -123,7 +123,34 @@ color: ${props.warningColor};
 font-size: 16px;
 font-weight: 700;
 }
+.notsure {
+  display: inline-block;
+  color: ${props.blackColor};
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 10px;
+  cursor: pointer;
+  &.active {
+  color: ${props.primaryColor};
+  }
+  &:hover {
+  color: ${props.primaryColor};
+  }
+}
 
+.notSureInfo {
+  background : ${props.grayColor};
+  padding : 10px 20px;
+  margin-top: 20px;
+border-radius: 5px;
+  p {
+    font-size: 12px; 
+    line-height: 1.7;
+    a {
+    color: ${props.primaryColor};
+    }
+  }
+}
 .sm-text {
 font-size: 14px;
 }
@@ -204,6 +231,8 @@ line-height: 1;
 font-size: 16px;
 cursor: pointer;
 color: ${props.primaryColor};
+
+
 
 .icon {
 display: inline-block;
@@ -343,10 +372,16 @@ border: 1px solid ${props.primaryColor};
 border-bottom-width: 4px;
 box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
 background: ${props.whiteColor};
+}
 
+@media only screen and (max-width: 425px) {
+      height: 43px;
 }
 }
 .add-btn {
+position: relative;
+left: -10px;
+top: 1px;
 border: 1px solid ${props.primaryColor};
 height: 62px;
 line-height: 1;
@@ -358,6 +393,9 @@ text-transform: capitalize;
 border-top-right-radius: 5px;
 border-bottom-right-radius: 5px;
 cursor: pointer;
+@media only screen and (max-width: 425px) {
+      height: 48px;
+}
 }
 `
 );
@@ -369,12 +407,12 @@ display:flex;
 justify-content: space-between;
 align-items: center;
 margin: 5px;
+flex-wrap: wrap;
 
 .country-name {
-color: ${props.primaryColor};
 text-transform: capitalize;
 font-weight: 700;
-font-size: 16px;
+font-size: 14px;
 }
 
 .rmv-btn {

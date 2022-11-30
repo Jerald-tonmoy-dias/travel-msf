@@ -42,6 +42,7 @@ export default function Travel() {
   const [valudationError, setvaludationError] = useState(false);
   const [singleCountry, setsingleCountry] = useState('');
   const [showCountry, setshowCountry] = useState(true);
+  const [showInfo, seteShowInfo] = useState(false);
   /******************************************
    * FUNCTIONS
    ******************************************/
@@ -292,11 +293,16 @@ export default function Travel() {
                 whiteColor={theme.whiteColor}
                 blackColor={theme.blackColor}
               >
-                <p>
-                  Tell us the region or regions you plan on visiting throughout
-                  the period of your cover so we can make sure you get accurate
-                  quotes and the right level of protection.
-                </p>
+                {
+                  showCountry == true ?
+                    <p>
+                      Different countries or regions might need different levels of cover, so it's important to tell us about all the countries you're planning to travel to.
+                    </p> : <p>
+                      Tell us the region or regions you plan on visiting throughout
+                      the period of your cover so we can make sure you get accurate
+                      quotes and the right level of protection.
+                    </p>
+                }
               </ToolTipWrapper>
 
               {showCountry === true ? [
@@ -373,7 +379,7 @@ export default function Travel() {
                           id="forRegion1"
                           type="checkbox"
                           name="is_region_united_kingdom"
-                          defaultvalue={travelInsurance.is_region_united_kingdom}
+                          value={travelInsurance.is_region_united_kingdom}
                         />
                         <label for="forRegion1"></label>
                         <span className="region-name">  United kingdom</span>
@@ -450,6 +456,7 @@ export default function Travel() {
                 </>
               ]}
 
+              {/* swithc between country and region */}
               <span className="toggleCountryRegion" onClick={() => {
                 setshowCountry(!showCountry);
                 // reset country and region
@@ -464,11 +471,22 @@ export default function Travel() {
                 });
 
               }}>
-                {showCountry == true ? `Let us know which region you'll be visiting` : `Or just tell us the country or countries`}
+
+                {showCountry == true ? `Or Let us know which region you'll be visiting` : `Or just tell us the country or countries`}
                 <span className="icon">
                   <IoArrowForwardOutline />
                 </span>
               </span>
+
+              {/* click here to show info */}
+              <span onClick={() => seteShowInfo(!showInfo)} className={`notsure ${showInfo === true ? 'active' : ''}`}>Not sure? </span>
+
+              {/* info content */}
+              {showInfo === true ? [
+                <div className="notSureInfo">
+                  <p><strong>Coronavirus (COVID-19) </strong></p><p><strong>Please check the <a href="https://www.gov.uk/guidance/travel-abroad-from-england-during-coronavirus-covid-19" target="_blank">latest government travel advice</a> that sets out what you need to do, if anything, before you travel abroad and before you return home. You should also check the latest travel advice and entry requirements for each country you visit or transit through. Travel rules can potentially change at short notice, so it's important to check the<a href="https://www.gov.uk/government/organisations/foreign-commonwealth-development-office" target="_blank">Foreign, Commonwealth &amp; Development Office (FCDO)</a> for the latest information.</strong></p>
+                </div>
+              ] : null}
 
               {/* validation */}
               {valudationError === true ? (
