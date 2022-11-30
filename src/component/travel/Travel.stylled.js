@@ -120,31 +120,31 @@ border-bottom: 1px solid #d1e3f4;
 
 // see_cover_details
 .see_cover_details {
-  p {
-    font-size: 14px;
-    line-height: 1.5;
-    strong {
-       font-size: 14px;
-      color: ${props.primaryColor};
-    }
-  }
-  ul li {
-      font-size: 14px;
-  }
+p {
+font-size: 14px;
+line-height: 1.5;
+strong {
+font-size: 14px;
+color: ${props.primaryColor};
+}
+}
+ul li {
+font-size: 14px;
+}
 }
 
 // show_input_status
 .show_input_status {
-  position:  absolute;
-  z-index: 0;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  color : ${props.primaryColor};
-  font-size: 20px;
-  .warning {
-    color: ${props.warningColor};
-  }
+position:  absolute;
+z-index: 0;
+top: 50%;
+right: 10px;
+transform: translateY(-50%);
+color : ${props.primaryColor};
+font-size: 20px;
+.warning {
+color: ${props.warningColor};
+}
 }
 // warning text
 .warning-text {
@@ -154,39 +154,39 @@ font-weight: 700;
 }
 
 .notsure {
-  display: flex;
-  align-items:center;
-  color: ${props.blackColor};
-  font-size: 14px;
-  font-weight: 700;
-  margin-top: 15px;
-  cursor: pointer;
-  &.active {
-  color: ${props.primaryColor};
-  }
-  &:hover {
-  color: ${props.primaryColor};
-  }
+display: flex;
+align-items:center;
+color: ${props.blackColor};
+font-size: 14px;
+font-weight: 700;
+margin-top: 15px;
+cursor: pointer;
+&.active {
+color: ${props.primaryColor};
+}
+&:hover {
+color: ${props.primaryColor};
+}
 }
 
 .notSureInfo {
-  background : ${props.grayColor};
-  padding : 10px 20px;
-  margin-top: 20px;
+background : ${props.grayColor};
+padding : 10px 20px;
+margin-top: 20px;
 border-radius: 5px;
-  p {
-    font-size: 12px; 
-    line-height: 1.7;
-    a {
-    color: ${props.primaryColor};
-    }
-  }
+p {
+font-size: 12px; 
+line-height: 1.7;
+a {
+color: ${props.primaryColor};
+}
+}
 }
 .sm-text {
-    font-size: 14px;
-    margin: 0;
-    line-height: 1.2;
-    margin-top: 10px;
+font-size: 14px;
+margin: 0;
+line-height: 1.2;
+margin-top: 10px;
 }
 &:hover {
 background: ${props.hoverColor};
@@ -282,24 +282,20 @@ export const RadioButtons = styled.div(
 display:flex;
 flex-wrap: wrap;
 
-@media only screen and (max-width: 767px) {
-justify-content: center;
-}
-
 input[type="radio"] {
 display: none;
 }
 
 label {
-flex-basis: 17.33%;
 text-align: center;
 display:inline-block;
 background: ${props.whiteColor};
 color: ${props.blackColor};
 text-transform: capitalize;
-max-width:    380px;
+max-width: 380px;
+width: 18.33%;
 font-weight: 700;
-padding: 15px 40px;
+padding: 15px 35px;
 border-radius: 5px;
 cursor: pointer;
 box-shadow: rgb(33 35 38 / 10%) 0px 1px 20px 0px;
@@ -307,14 +303,15 @@ margin: 0 10px 10px 0 ;
 padding-top: 30px;
 padding-bottom: 30px;
 @media only screen and (max-width: 1200px) {
-flex-basis: 13.33%;
+width: 15.33%;
 }
-@media only screen and (max-width: 767px) {
-flex-basis: 23%;
+@media only screen and (max-width: 992px) {
+width: 31%;
 }
-@media only screen and (max-width: 425px) {
-flex-basis: 50%;
+@media only screen and (max-width: 768px) {
+width: 90%;
 }
+
 .input-title {
 color: ${props.blackColor};
 font-size: 15px;
@@ -407,7 +404,7 @@ background: ${props.whiteColor};
 }
 
 @media only screen and (max-width: 425px) {
-      height: 43px;
+height: 43px;
 }
 }
 .add-btn {
@@ -426,7 +423,7 @@ border-top-right-radius: 5px;
 border-bottom-right-radius: 5px;
 cursor: pointer;
 @media only screen and (max-width: 425px) {
-      height: 48px;
+height: 48px;
 }
 }
 `
@@ -482,7 +479,7 @@ padding: 12px;
 border: 2px solid ${props.primaryColor};
 border-radius: 5px;
 .text-content-wrapper {
-  margin-left: 15px;
+margin-left: 15px;
 }
 .region-name {
 font-size:  18px;
@@ -547,17 +544,16 @@ transform: rotate(45deg);
 }
 
 
-${props.componentName == "optional_ins_cover_wrapper" ? [
+${props.componentName === "optional_ins_cover_wrapper" ? [
       `
-
-  display:flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
+display:flex;
+flex-wrap: wrap;
+align-items: flex-start;
 .termsCondInputWrapper {
-   width: 47%;
-  margin-right: 10px;
-  @media only screen and (max-width: 992px) {
- width: 90%;
+width: 47%;
+margin-right: 10px;
+@media only screen and (max-width: 992px) {
+width: 90%;
 }
 }
 
@@ -592,7 +588,7 @@ background: ${props.whiteColor};
 @media only screen and (max-width: 425px) {
 width: 47%;
 }
-  }
+}
 `
 );
 

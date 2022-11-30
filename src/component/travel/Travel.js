@@ -861,7 +861,7 @@ export default function Travel() {
                   type="radio"
                   id="howWantToInsu_1"
                   name="howWantToInsure"
-                  value="single trip"
+                  value="An individual"
                 />
                 <label htmlFor="howWantToInsu_1">
                   {/* icon */}
@@ -875,7 +875,7 @@ export default function Travel() {
                   type="radio"
                   id="howWantToInsu_2"
                   name="howWantToInsure"
-                  value="single trip"
+                  value="A couple"
                 />
                 <label htmlFor="howWantToInsu_2">
                   {/* icon */}
@@ -888,7 +888,7 @@ export default function Travel() {
                   type="radio"
                   id="howWantToInsu_3"
                   name="howWantToInsure"
-                  value="single trip"
+                  value="A family"
                 />
                 <label htmlFor="howWantToInsu_3">
                   {/* icon */}
@@ -902,7 +902,7 @@ export default function Travel() {
                   type="radio"
                   id="howWantToInsu_4"
                   name="howWantToInsure"
-                  value="single trip"
+                  value="A group"
                 />
                 <label htmlFor="howWantToInsu_4">
                   {/* icon */}
