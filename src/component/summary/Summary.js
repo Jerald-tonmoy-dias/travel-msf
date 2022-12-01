@@ -3,12 +3,9 @@ import { ThemeContext } from "styled-components";
 import { StoreContext } from "../../context/Store";
 import { Wrapper } from "../../styles/Global.styled";
 import Navbar from "../navbar/Navbar";
-
-
-import {
-  ContentWrapper,
-
-} from "../travel/Travel.stylled";
+import Pdf from "react-to-pdf";
+import axios from "axios";
+import { ContentWrapper } from "../travel/Travel.stylled";
 
 export default function Summary() {
   /******************************************
@@ -22,16 +19,41 @@ export default function Summary() {
   /******************************************
    * VARIABLES AND STATES
    ******************************************/
+   const [dataSuccess, setdataSuccess] = useState(false);
+   const [showquoteButton, setshowquoteButton] = useState(false);
 
-
+     // create ref
+  const ref = React.createRef();
   /******************************************
    * FUNCTIONS
    ******************************************/
   // handle submit
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  // };
 
+  const handleGetQuote = () => {
+    const data = {
+      insuranceData: travelInsurance,
+    
+    }
 
+    const url ="https://google.com";
+
+    return axios
+      .post(url, data)
+      .then((res) => {
+        if (res.data === 'success') {
+          setdataSuccess(true)
+          setshowquoteButton(true);
+        } else {
+          setdataSuccess(false)
+          setshowquoteButton(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   // use effexct
@@ -54,6 +76,7 @@ export default function Summary() {
           litewhiteColor={theme.litewhiteColor}
           warningColor={theme.warningColor}
           hoverColor={theme.hoverColor}
+          ref={ref}
         >
           <div className="left-side">
             <h2 className="section_header_title">Your quote summary</h2>
@@ -72,54 +95,66 @@ export default function Summary() {
                 <ul>
                   <li>
                     <span>Cover type</span>
-                    <span>single trip</span>
+                    <span>{travelInsurance.insuranceCover}</span>
                   </li>
-                  <li>
-                    <span>Destination</span>
-                    <span>single trip</span>
-                  </li>
+                  {travelInsurance.countryList && (
+                    <li>
+                      <span>Destination</span>
+                      {travelInsurance.countryList && (
+                        <span>
+                          {travelInsurance.countryList &&
+                            travelInsurance.countryList.map((item) => {
+                              <span>{item}</span>;
+                            })}
+                        </span>
+                      )}
+                      <span>
+                  { travelInsurance.is_region_united_kingdom ==false ? "region united kingdom" : 
+                    travelInsurance.is_region_europe == false ? "europe": 
+                    travelInsurance.is_region_worldwide_excl_USA_canada_caribbean_Mexico == false ? "worldwide excl USA ,canada, caribbean,Mexico": 
+                    travelInsurance.is_region_worldwide == false ? 'is_region_worldwide' : ''}
+                              </span>
+                    </li>
+                  )}
                   <li>
                     <span>Cover start date</span>
-                    <span>single trip</span>
+                    <span>{travelInsurance.dateOftrip}</span>
                   </li>
                   <li>
                     <span>Duration of cover</span>
-                    <span>single trip</span>
+                    <span>{travelInsurance.monthsToCoverIns}</span>
                   </li>
-                  <li>
-                    <span>Additional cover</span>
-                    <span>single trip</span>
-                  </li>
+       
                   <li>
                     <span>Who to insure</span>
-                    <span>single trip</span>
+                    <span>{travelInsurance.howWantToInsure}</span>
                   </li>
                   <li>
                     <span>Maximum Excess</span>
-                    <span>single trip</span>
+                    <span>{travelInsurance.maxExcess}</span>
                   </li>
                   <li>
                     <span>Cancellation Cover Limits</span>
-                    <span>single trip</span>
+                    <span>{travelInsurance.cancellationCover}</span>
+                 
                   </li>
                   <li>
                     <span>Baggage Cover Limit</span>
-                    <span>single trip</span>
+                    <span>{travelInsurance.baggageCover}</span>
                   </li>
                   <li>
                     <span>Medical Cover Limit</span>
-                    <span>single trip</span>
+                    <span>{travelInsurance.medicalCover}</span>
                   </li>
-                  <li>
-                    <span>Declared medical conditions</span>
-                    <span>single trip</span>
-                  </li>
+              
                 </ul>
 
                 <p>
                   If you would like to receive a copy of the above key details
-                  and more information about comparethemarket.com, select 
-                  <a href="#"> download</a> , <a href="#">email</a> or   <a href="#">post</a>.
+                  and more information about comparethemarket.com, select
+
+                  <a href="#"> download</a> , <a href="#">email</a> or{" "}
+                  <a href="#">post</a>.
                 </p>
               </div>
             </div>
@@ -142,14 +177,20 @@ export default function Summary() {
           <div className="left-side"></div>
 
           <div className="next-page-wrappper summary-next-page-wrapper">
-            <button className="backPageBtn" onClick={() => {
-              setCountSteps(1);
-            }}>
+            <button
+              className="backPageBtn"
+              onClick={() => {
+                setCountSteps(1);
+              }}
+            >
               back
             </button>
-            <button className="nextPageBtn" onClick={() => {}}>
+            {showquoteButton === false ? 
+            <button className="nextPageBtn" onClick={handleGetQuote}>
               get quotes
             </button>
+            : null  
+          }
           </div>
         </ContentWrapper>
       </Wrapper>

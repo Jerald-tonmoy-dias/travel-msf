@@ -49,7 +49,6 @@ export default function Travel() {
   const [showCountry, setshowCountry] = useState(true);
   const [showInfo, seteShowInfo] = useState(false);
   const [showCoverDetails, setshowCoverDetails] = useState(false);
-  const [travellerCount, settravellerCount] = useState(2);
   const maxTravller = 10;
   /******************************************
    * FUNCTIONS
@@ -748,7 +747,7 @@ export default function Travel() {
 
                     <div className="single-card-wrapper">
                       {/* card title wrapper */}
-                        <h4 className="title">Length of cover required?</h4>
+                      <h4 className="title">Length of cover required?</h4>
                       <SelectorInput
                         primaryColor={theme.primaryColor}
                         secondaryColor={theme.secondaryColor}
@@ -766,11 +765,7 @@ export default function Travel() {
                           className="selectClass"
                           onChange={handleOnChange}
                         >
-                          <option
-                            disabled=""
-                            hidden=""
-                            value=""
-                          >
+                          <option disabled="" hidden="" value="">
                             Please select...
                           </option>
                           <option value="1">1 month</option>
@@ -1095,6 +1090,7 @@ export default function Travel() {
               >
                 <input
                   onChange={handleOnChange}
+                  
                   type="radio"
                   id="howWantToInsu_1"
                   name="howWantToInsure"
@@ -1190,75 +1186,20 @@ export default function Travel() {
                   <span className="input-title">A group</span>
                 </label>
               </RadioButtons>
-
-              {/* show status  ::::dev_note:only change the state*/}
-              {/* {travelInsurance.insuranceCover !== "" ? (
-                <div className={`show_input_status`}>
-                  {" "}
-                  <IoCheckmarkCircle />
-                </div>
-              ) : (
-                [
-                  valudationError === true ? (
-                    travelInsurance.insuranceCover == "" ? (
-                      <div className={`show_input_status warning`}>
-                        {" "}
-                        <IoCloseCircle />
-                      </div>
-                    ) : null
-                  ) : null,
-                ]
-              )} */}
-
-              {/* validation */}
-              {/* {valudationError === true ? (
-                travelInsurance.insuranceCover == "" ? (
-                  <>
-                    <span className="warning-text">{validationText}</span>
-                  </>
-                ) : null
-              ) : null} */}
             </div>
 
-            {/* show if individual*/}
-            {travelInsurance.howWantToInsure == "An individual" ? (
-              <div className="single-card-wrapper">
-                {/* card title wrapper */}
-                <div className="card-title-wrapper">
-                  <h4 className="title">Traveller born</h4>
-                </div>
-                <DateInput
-                  primaryColor={theme.primaryColor}
-                  warningColor={theme.warningColor}
-                  secondaryColor={theme.secondaryColor}
-                  grayColor={theme.grayColor}
-                  whiteColor={theme.whiteColor}
-                >
-                  <input
-                    type="date"
-                    name="firstTravellerBorn"
-                    onChange={handleOnChange}
-                  />
-                </DateInput>
-
-                {/* validation */}
-                {/* {valudationError === true ? (
-                  travelInsurance.dateOftrip == "" ? (
-                    <span className="warning-text">{validationText}</span>
-                  ) : null
-                ) : null} */}
-              </div>
-            ) : null}
             {/* show if couple */}
-            {travelInsurance.howWantToInsure == "A couple"
+            {travelInsurance.howWantToInsure == "A family" ||
+            travelInsurance.howWantToInsure == "A group"
               ? [
                   <>
                     <div className="single-card-wrapper">
                       {/* card title wrapper */}
                       <div className="card-title-wrapper">
-                        <h4 className="title">First traveller (adult) born</h4>
+                        <h4 className="title">Total traveller</h4>
                       </div>
-                      <DateInput
+                      {/* input wrapper */}
+                      <TextInputs
                         primaryColor={theme.primaryColor}
                         warningColor={theme.warningColor}
                         secondaryColor={theme.secondaryColor}
@@ -1266,149 +1207,17 @@ export default function Travel() {
                         whiteColor={theme.whiteColor}
                       >
                         <input
-                          type="date"
-                          name="firstTravellerBorn"
+                          className="single-text-input"
+                          placeholder="Total number of travellers"
+                          name="totalTraveller"
+                          type="number"
                           onChange={handleOnChange}
                         />
-                      </DateInput>
-
-                      {/* validation */}
-                      {/* {valudationError === true ? (
-                        travelInsurance.dateOftrip == "" ? (
-                          <span className="warning-text">{validationText}</span>
-                        ) : null
-                      ) : null} */}
-                    </div>
-                    <div className="single-card-wrapper">
-                      {/* card title wrapper */}
-                      <div className="card-title-wrapper">
-                        <h4 className="title">Second traveller (adult) born</h4>
-                      </div>
-                      <DateInput
-                        primaryColor={theme.primaryColor}
-                        warningColor={theme.warningColor}
-                        secondaryColor={theme.secondaryColor}
-                        grayColor={theme.grayColor}
-                        whiteColor={theme.whiteColor}
-                      >
-                        <input
-                          type="date"
-                          name="secondTravellerBorn"
-                          onChange={handleOnChange}
-                        />
-                      </DateInput>
-
-                      {/* validation */}
-                      {/* {valudationError === true ? (
-                        travelInsurance.dateOftrip == "" ? (
-                          <span className="warning-text">{validationText}</span>
-                        ) : null
-                      ) : null} */}
+                      </TextInputs>
                     </div>
                   </>,
                 ]
               : null}
-            {/* show if couple */}
-            {travelInsurance.howWantToInsure == "A family"
-              ? [
-                  <>
-                    <div className="single-card-wrapper">
-                      {/* card title wrapper */}
-                      <div className="card-title-wrapper">
-                        <h4 className="title">First traveller (adult) born</h4>
-                      </div>
-                      <DateInput
-                        primaryColor={theme.primaryColor}
-                        warningColor={theme.warningColor}
-                        secondaryColor={theme.secondaryColor}
-                        grayColor={theme.grayColor}
-                        whiteColor={theme.whiteColor}
-                      >
-                        <input
-                          type="date"
-                          name="firstTravellerBorn"
-                          onChange={handleOnChange}
-                        />
-                      </DateInput>
-
-                      {/* validation */}
-                      {/* {valudationError === true ? (
-                        travelInsurance.dateOftrip == "" ? (
-                          <span className="warning-text">{validationText}</span>
-                        ) : null
-                      ) : null} */}
-                    </div>
-                    <div className="single-card-wrapper">
-                      {/* card title wrapper */}
-                      <div className="card-title-wrapper">
-                        <h4 className="title">Second traveller (adult) born</h4>
-                      </div>
-                      <DateInput
-                        primaryColor={theme.primaryColor}
-                        warningColor={theme.warningColor}
-                        secondaryColor={theme.secondaryColor}
-                        grayColor={theme.grayColor}
-                        whiteColor={theme.whiteColor}
-                      >
-                        <input
-                          type="date"
-                          name="secondTravellerBorn"
-                          onChange={handleOnChange}
-                        />
-                      </DateInput>
-
-                      {/* validation */}
-                      {/* {valudationError === true ? (
-                        travelInsurance.dateOftrip == "" ? (
-                          <span className="warning-text">{validationText}</span>
-                        ) : null
-                      ) : null} */}
-                    </div>
-                    {travellerCount == 2 ? (
-                      <div className="single-card-wrapper">
-                        {/* card title wrapper */}
-                        <div className="card-title-wrapper">
-                          <h4 className="title">
-                            Second traveller (adult) born
-                          </h4>
-                        </div>
-                        <DateInput
-                          primaryColor={theme.primaryColor}
-                          warningColor={theme.warningColor}
-                          secondaryColor={theme.secondaryColor}
-                          grayColor={theme.grayColor}
-                          whiteColor={theme.whiteColor}
-                        >
-                          <input
-                            type="date"
-                            name="secondTravellerBorn"
-                            onChange={handleOnChange}
-                          />
-                        </DateInput>
-
-                        {/* validation */}
-                        {/* {valudationError === true ? (
-                          travelInsurance.dateOftrip == "" ? (
-                            <span className="warning-text">
-                              {validationText}
-                            </span>
-                          ) : null
-                        ) : null} */}
-                      </div>
-                    ) : null}
-                  </>,
-                ]
-              : null}
-
-            {/* add another traveller */}
-            {/* {travelInsurance.howWantToInsure == "A family" ||
-            travelInsurance.howWantToInsure == "A group" ? (
-              <div className="single-card-wrapper">
-                <span className="add-another-traveller">
-                  add another traveller
-                </span>
-              </div>
-            ) : null} */}
           </div>
         </ContentWrapper>
 
@@ -1918,7 +1727,8 @@ export default function Travel() {
 
               {/* validation */}
               {valudationError === true ? (
-                travelInsurance.firstName == "" || travelInsurance.lastName == "" ? (
+                travelInsurance.firstName == "" ||
+                travelInsurance.lastName == "" ? (
                   <>
                     <span className="warning-text">{validationText}</span>
                   </>
@@ -2089,7 +1899,6 @@ export default function Travel() {
                         setTravelInsurance({
                           ...travelInsurance,
                           [e.target.name]: !travelInsurance.dontContact,
-            
                         });
                         toggleClassForHover("contactwith_5");
                       }}
@@ -2286,14 +2095,14 @@ export default function Travel() {
                   </div>
                 </Checkboxes>
 
-                   {/* validation */}
-              {valudationError === true ? (
-                travelInsurance.termsAgree == false? (
-                  <>
-                    <span className="warning-text">{validationText}</span>
-                  </>
-                ) : null
-              ) : null}
+                {/* validation */}
+                {valudationError === true ? (
+                  travelInsurance.termsAgree == false ? (
+                    <>
+                      <span className="warning-text">{validationText}</span>
+                    </>
+                  ) : null
+                ) : null}
               </div>
             </div>
           </div>
@@ -2315,10 +2124,7 @@ export default function Travel() {
           <div className="left-side"></div>
 
           <div className="next-page-wrappper">
-            <button
-              className="nextPageBtn"
-              onClick={handlenextpage}
-            >
+            <button className="nextPageBtn" onClick={handlenextpage}>
               next
             </button>
           </div>

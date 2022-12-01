@@ -36,6 +36,7 @@ const StoreProvider = ({ children }) => {
     returnDateOftrip: "",
     monthLengthsTocover: "",
     howWantToInsure: "",//has validation
+    totalTraveller: "",
     firstTravellerBorn: "",
     secondTravellerBorn: "",
     thirdTravellerBorn: "",
