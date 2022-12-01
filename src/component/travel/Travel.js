@@ -27,7 +27,7 @@ import {
   TextInputs,
   ToolTipWrapper,
 } from "./Travel.stylled";
-import { toggleClassForHover } from "../../helper/helper";
+import { handleContactCheckBox, handleDonNotContact, toggleClassForHover } from "../../helper/helper";
 export default function Travel() {
   /******************************************
    * GETTING CONTEXT VALUE
@@ -104,6 +104,7 @@ export default function Travel() {
       setCountSteps(2);
     }
   };
+  
 
   // add country list to array
   const addCountryList = () => {
@@ -113,6 +114,12 @@ export default function Travel() {
     });
   };
 
+
+  // use effexct
+  useEffect(() => {
+
+  }, [])
+  
   return (
     <>
       <Navbar navItem={1} />
@@ -1885,7 +1892,7 @@ export default function Travel() {
                         setTravelInsurance({
                           ...travelInsurance,
                           [e.target.name]: !travelInsurance.contactWithEmail,
-                          ['dontContact']: false,
+                          // ['dontContact']: false,
                         });
                         toggleClassForHover("contactwith_1");
                       }}
@@ -1914,7 +1921,7 @@ export default function Travel() {
                         setTravelInsurance({
                           ...travelInsurance,
                           [e.target.name]: !travelInsurance.contactWithPhone,
-                          ['dontContact']: false,
+                          // ['dontContact']: false,
                         });
                         toggleClassForHover("contactwith_2");
                       }}
@@ -1943,7 +1950,7 @@ export default function Travel() {
                         setTravelInsurance({
                           ...travelInsurance,
                           [e.target.name]: !travelInsurance.contactWithText,
-                          ['dontContact']: false,
+                          // ['dontContact']: false,
                         });
                         toggleClassForHover("contactwith_3");
                       }}
@@ -1972,7 +1979,7 @@ export default function Travel() {
                         setTravelInsurance({
                           ...travelInsurance,
                           [e.target.name]: !travelInsurance.contactWithPost,
-                          ['dontContact']: false,
+                          // ['dontContact']: false,
                         });
                         toggleClassForHover("contactwith_4");
                       }}
@@ -2001,12 +2008,13 @@ export default function Travel() {
                         setTravelInsurance({
                           ...travelInsurance,
                           [e.target.name]: !travelInsurance.dontContact,
-                          ['contactWithEmail']: false,
-                          ['contactWithPhone']: false,
-                          ['contactWithText']: false,
-                          ['contactWithPost']: false
+                          // ['contactWithEmail']: false,
+                          // ['contactWithPhone']: false,
+                          // ['contactWithText']: false,
+                          // ['contactWithPost']: false
                         });
-                        toggleClassForHover("contactwith_5");
+                        // handleDonNotContact();
+                        toggleClassForHover('contactwith_5');
                       }}
                       id="dontContact"
                       type="checkbox"

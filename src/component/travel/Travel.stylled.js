@@ -576,7 +576,18 @@ height: 14px;
 border: solid ${props.primaryColor};
 border-width: 0 2px 2px 0;
 transform: rotate(45deg);
-
+}
+.form-group.active input:checked + label:after {
+content: '';
+display: block;
+position: absolute;
+top: 6px;
+left: 14px;
+width: 6px;
+height: 14px;
+border: solid ${props.primaryColor};
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
 }
 }
 
