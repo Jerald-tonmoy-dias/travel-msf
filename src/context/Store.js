@@ -17,7 +17,7 @@ const StoreProvider = ({ children }) => {
   // all nav list
 
   // count steps
-  const [countSteps, setCountSteps] = useState(1);
+  const [countSteps, setCountSteps] = useState(2);
   // check value passed
   const [checkVehicle, setcheckVehicle] = useState(false);
 

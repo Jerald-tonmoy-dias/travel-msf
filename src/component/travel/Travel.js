@@ -2231,7 +2231,9 @@ export default function Travel() {
           </div>
 
           <div className="next-page-wrappper">
-                <button className="nextPageBtn" onClick={()=>{}}>next</button>
+                <button className="nextPageBtn" onClick={()=>{
+                  setCountSteps(2);
+                }}>next</button>
           </div>
         </ContentWrapper>
       </Wrapper>

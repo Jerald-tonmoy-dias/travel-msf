@@ -40,14 +40,10 @@ export const HeaderOne = styled.header(
     @media only screen and (max-width: 768px) {
       font-size: 18px;
       &:before {
-        
-    top: -15px;
-
+      top: -15px;
       }
       }
   }
-
-
   `
 );
 export const FooterOne = styled.header(
@@ -70,9 +66,10 @@ export const FooterOne = styled.header(
       font-size: 14px;
       line-height: 1.7;
     }
-    li::marker {
+    li,li::marker {
       color: ${props.whiteColor};
     }
+ 
   }
   `
 );

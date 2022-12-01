@@ -50,6 +50,27 @@
   flex-direction: column;
   flex-wrap: wrap;
   }
+
+  // see_your_quote_summary
+
+  .see_your_quote_summary {
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+          display: flex;
+        
+          span {
+            text-transform: capitalize;
+            &:last-child {
+              font-weight: 700;
+          }
+            flex: 1 1;
+          }
+      }
+    }
+  }
   // *************component global styles*********** //
   .small-icon-btn {
   height: 24px;
@@ -108,6 +129,7 @@
     justify-content: flex-end;
     width: 100%;
     margin-bottom: 60px;
+
     @media (max-width: 992px) {
       max-width: calc(9 / 12 * 100% - 60px);
       }
@@ -115,7 +137,7 @@
       max-width: 100%;
       width: 100%;
       }
-    .nextPageBtn {
+    .nextPageBtn,.backPageBtn {
       background: ${props.primaryColor};
       padding: 12px 40px;
       border-radius: 30px;
@@ -131,6 +153,14 @@
         background: ${props.blackColor};
       }
     }
+    .backPageBtn {
+      background: ${props.blackColor};
+      margin-right: 10px;
+      &:hover {
+        background: ${props.primaryColor};
+      }
+    }
+
   }
   .right-side {
   max-width: calc(9 / 12 * 100% - 200px);

@@ -3,3 +3,5 @@ has some conditional options
 
 2. date concept 
 onclick increase and show conditionally
+
+termsCondInputWrapper .form-group.active
