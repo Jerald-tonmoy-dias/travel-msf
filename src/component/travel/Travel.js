@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { ThemeContext } from "styled-components";
 import { StoreContext } from "../../context/Store";
 import { Wrapper } from "../../styles/Global.styled";
-import { } from "../form/Form.styled";
+import {} from "../form/Form.styled";
 import Navbar from "../navbar/Navbar";
 import { GiHand } from "react-icons/gi";
 import {
@@ -14,6 +14,7 @@ import {
   IoArrowForwardOutline,
   IoChevronDown,
   IoChevronUp,
+  IoCaretDownCircleOutline,
 } from "react-icons/io5";
 import {
   Checkboxes,
@@ -44,7 +45,7 @@ export default function Travel() {
     "Please answer this question in order to proceed."
   );
   const [valudationError, setvaludationError] = useState(false);
-  const [singleCountry, setsingleCountry] = useState('');
+  const [singleCountry, setsingleCountry] = useState("");
   const [showCountry, setshowCountry] = useState(true);
   const [showInfo, seteShowInfo] = useState(false);
   const [showCoverDetails, setshowCoverDetails] = useState(false);
@@ -53,7 +54,7 @@ export default function Travel() {
   /******************************************
    * FUNCTIONS
    ******************************************/
-  // handle onchange 
+  // handle onchange
   const handleOnChange = (e) => {
     setTravelInsurance({ ...travelInsurance, [e.target.name]: e.target.value });
   };
@@ -79,7 +80,6 @@ export default function Travel() {
 
     */
 
-
     if (
       travelInsurance.insuranceCover == "" ||
       // travelInsurance.region == "" ||
@@ -98,8 +98,7 @@ export default function Travel() {
     ) {
       // fill up the info to go forward
       setvaludationError(true);
-    }
-    else {
+    } else {
       // go to next step
       setvaludationError(false);
       setCountSteps(2);
@@ -110,11 +109,9 @@ export default function Travel() {
   const addCountryList = () => {
     setTravelInsurance({
       ...travelInsurance,
-      ['countryList']: [...travelInsurance.countryList, singleCountry]
-    }
-    );
-  }
-
+      ["countryList"]: [...travelInsurance.countryList, singleCountry],
+    });
+  };
 
   return (
     <>
@@ -289,13 +286,23 @@ export default function Travel() {
               </RadioButtons>
 
               {/* show status  ::::dev_note:only change the state*/}
-              {
-                travelInsurance.insuranceCover !== "" ? <div className={`show_input_status`}>  <IoCheckmarkCircle /></div> : [
+              {travelInsurance.insuranceCover !== "" ? (
+                <div className={`show_input_status`}>
+                  {" "}
+                  <IoCheckmarkCircle />
+                </div>
+              ) : (
+                [
                   valudationError === true ? (
-                    travelInsurance.insuranceCover == "" ? <div className={`show_input_status warning`}>  <IoCloseCircle /></div> : null
-                  ) : null
+                    travelInsurance.insuranceCover == "" ? (
+                      <div className={`show_input_status warning`}>
+                        {" "}
+                        <IoCloseCircle />
+                      </div>
+                    ) : null
+                  ) : null,
                 ]
-              }
+              )}
 
               {/* validation */}
               {valudationError === true ? (
@@ -331,222 +338,305 @@ export default function Travel() {
                 whiteColor={theme.whiteColor}
                 blackColor={theme.blackColor}
               >
-                {
-                  showCountry == true ?
-                    <p>
-                      Different countries or regions might need different levels of cover, so it's important to tell us about all the countries you're planning to travel to.
-                    </p> : <p>
-                      Tell us the region or regions you plan on visiting throughout
-                      the period of your cover so we can make sure you get accurate
-                      quotes and the right level of protection.
-                    </p>
-                }
+                {showCountry == true ? (
+                  <p>
+                    Different countries or regions might need different levels
+                    of cover, so it's important to tell us about all the
+                    countries you're planning to travel to.
+                  </p>
+                ) : (
+                  <p>
+                    Tell us the region or regions you plan on visiting
+                    throughout the period of your cover so we can make sure you
+                    get accurate quotes and the right level of protection.
+                  </p>
+                )}
               </ToolTipWrapper>
 
-              {showCountry === true ? [
-                <>
-                  {/* country list */}
-                  {
-                    travelInsurance.countryList && travelInsurance.countryList.map((countryName, index) => (
-                      <ShowCountryList
+              {showCountry === true
+                ? [
+                    <>
+                      {/* country list */}
+                      {travelInsurance.countryList &&
+                        travelInsurance.countryList.map(
+                          (countryName, index) => (
+                            <ShowCountryList
+                              primaryColor={theme.primaryColor}
+                              warningColor={theme.warningColor}
+                              secondaryColor={theme.secondaryColor}
+                              grayColor={theme.grayColor}
+                              whiteColor={theme.whiteColor}
+                            >
+                              <div className="show-country-list" key={index}>
+                                <span className="country-name">
+                                  {countryName}
+                                </span>
+
+                                <button
+                                  onClick={() => {
+                                    //  filter country list
+                                    let filteredCountry =
+                                      travelInsurance.countryList &&
+                                      travelInsurance.countryList.filter(
+                                        (item) => item !== countryName
+                                      );
+                                    console.log(filteredCountry);
+
+                                    // set country list
+                                    setTravelInsurance({
+                                      ...travelInsurance,
+                                      ["countryList"]: filteredCountry,
+                                    });
+                                  }}
+                                  className="rmv-btn"
+                                >
+                                  remove
+                                </button>
+                              </div>
+                            </ShowCountryList>
+                          )
+                        )}
+
+                      {/* input wrapper */}
+                      <TextInputs
                         primaryColor={theme.primaryColor}
                         warningColor={theme.warningColor}
                         secondaryColor={theme.secondaryColor}
                         grayColor={theme.grayColor}
                         whiteColor={theme.whiteColor}
                       >
-                        <div className="show-country-list" key={index}>
-                          <span className="country-name">{countryName}</span>
-
-                          <button onClick={() => {
-                            //  filter country list
-                            let filteredCountry = travelInsurance.countryList && travelInsurance.countryList.filter(item => item !== countryName);
-                            console.log(filteredCountry);
-
-                            // set country list
-                            setTravelInsurance({
-                              ...travelInsurance,
-                              ['countryList']: filteredCountry
-                            }
-                            );
-
-                          }}
-                            className="rmv-btn">remove</button>
-                        </div>
-                      </ShowCountryList>
-                    ))
-                  }
-
-                  {/* input wrapper */}
-                  < TextInputs
-                    primaryColor={theme.primaryColor}
-                    warningColor={theme.warningColor}
-                    secondaryColor={theme.secondaryColor}
-                    grayColor={theme.grayColor}
-                    whiteColor={theme.whiteColor}
-                  >
-                    <input
-                      className="single-text-input"
-                      placeholder="Enter the frist few letters"
-                      onChange={(e) => {
-                        setsingleCountry(e.target.value);
-                      }}
-                    />
-                    <button onClick={addCountryList} className="add-btn">add</button>
-                  </TextInputs>
-                </>
-              ] : [
-                <>
-                  <Checkboxes
-                    primaryColor={theme.primaryColor}
-                    whiteColor={theme.whiteColor}
-                    blackColor={theme.blackColor}
-                  >
-                    {/* single item */}
-                    <div className="termsCondInputWrapper">
-                      <label className="form-group" id="checkbox_1" for="forRegion1">
                         <input
+                          className="single-text-input"
+                          placeholder="Enter the frist few letters"
                           onChange={(e) => {
-                            setTravelInsurance({
-                              ...travelInsurance,
-                              [e.target.name]: !travelInsurance.is_region_united_kingdom,
-
-                            });
-                            toggleClassForHover('checkbox_1');
+                            setsingleCountry(e.target.value);
                           }}
-                          id="forRegion1"
-                          type="checkbox"
-                          name="is_region_united_kingdom"
-                          value={travelInsurance.is_region_united_kingdom}
                         />
-                        <label for="forRegion1"></label>
-                        <div className="text-content-wrapper">
-                          <span className="region-name">  United kingdom </span>
+                        <button onClick={addCountryList} className="add-btn">
+                          add
+                        </button>
+                      </TextInputs>
+                    </>,
+                  ]
+                : [
+                    <>
+                      <Checkboxes
+                        primaryColor={theme.primaryColor}
+                        whiteColor={theme.whiteColor}
+                        blackColor={theme.blackColor}
+                      >
+                        {/* single item */}
+                        <div className="termsCondInputWrapper">
+                          <label
+                            className="form-group"
+                            id="checkbox_1"
+                            for="forRegion1"
+                          >
+                            <input
+                              onChange={(e) => {
+                                setTravelInsurance({
+                                  ...travelInsurance,
+                                  [e.target.name]:
+                                    !travelInsurance.is_region_united_kingdom,
+                                });
+                                toggleClassForHover("checkbox_1");
+                              }}
+                              id="forRegion1"
+                              type="checkbox"
+                              name="is_region_united_kingdom"
+                              value={travelInsurance.is_region_united_kingdom}
+                            />
+                            <label for="forRegion1"></label>
+                            <div className="text-content-wrapper">
+                              <span className="region-name">
+                                {" "}
+                                United kingdom{" "}
+                              </span>
+                            </div>
+                          </label>
                         </div>
-                      </label>
-                    </div>
 
-                    {/* single item */}
-                    <div className="termsCondInputWrapper">
-                      <label className="form-group" id="checkbox_2" for="forRegion2">
-                        <input
-                          onChange={(e) => {
-                            setTravelInsurance({
-                              ...travelInsurance,
-                              [e.target.name]: !travelInsurance.is_region_europe,
+                        {/* single item */}
+                        <div className="termsCondInputWrapper">
+                          <label
+                            className="form-group"
+                            id="checkbox_2"
+                            for="forRegion2"
+                          >
+                            <input
+                              onChange={(e) => {
+                                setTravelInsurance({
+                                  ...travelInsurance,
+                                  [e.target.name]:
+                                    !travelInsurance.is_region_europe,
+                                });
+                                toggleClassForHover("checkbox_2");
+                              }}
+                              id="forRegion2"
+                              type="checkbox"
+                              name="is_region_europe"
+                              value={travelInsurance.is_region_europe}
+                            />
+                            <label for="forRegion2"></label>
 
-                            });
-                            toggleClassForHover('checkbox_2');
-                          }}
-                          id="forRegion2"
-                          type="checkbox"
-                          name="is_region_europe"
-                          value={travelInsurance.is_region_europe}
-                        />
-                        <label for="forRegion2"></label>
-
-                        <div className="text-content-wrapper">
-                          <span className="region-name">  Europe</span>
+                            <div className="text-content-wrapper">
+                              <span className="region-name"> Europe</span>
+                            </div>
+                          </label>
                         </div>
-                      </label>
-                    </div>
 
-                    {/* single item */}
-                    <div className="termsCondInputWrapper">
-                      <label className="form-group" id="checkbox_3" for="forRegion_3">
-                        <input
-                          onChange={(e) => {
-                            setTravelInsurance({
-                              ...travelInsurance,
-                              [e.target.name]: !travelInsurance.is_region_worldwide_excl_USA_canada_caribbean_Mexico,
+                        {/* single item */}
+                        <div className="termsCondInputWrapper">
+                          <label
+                            className="form-group"
+                            id="checkbox_3"
+                            for="forRegion_3"
+                          >
+                            <input
+                              onChange={(e) => {
+                                setTravelInsurance({
+                                  ...travelInsurance,
+                                  [e.target.name]:
+                                    !travelInsurance.is_region_worldwide_excl_USA_canada_caribbean_Mexico,
+                                });
+                                toggleClassForHover("checkbox_3");
+                              }}
+                              id="forRegion_3"
+                              type="checkbox"
+                              name="is_region_worldwide_excl_USA_canada_caribbean_Mexico"
+                              value={
+                                travelInsurance.is_region_worldwide_excl_USA_canada_caribbean_Mexico
+                              }
+                            />
+                            <label for="forRegion_3"></label>
 
-                            });
-                            toggleClassForHover('checkbox_3');
-                          }}
-                          id="forRegion_3"
-                          type="checkbox"
-                          name="is_region_worldwide_excl_USA_canada_caribbean_Mexico"
-                          value={travelInsurance.is_region_worldwide_excl_USA_canada_caribbean_Mexico}
-                        />
-                        <label for="forRegion_3"></label>
-
-                        <div className="text-content-wrapper">
-                          <span className="region-name">  Worldwide Excl. USA, Canada, Caribbean, Mexico</span>
+                            <div className="text-content-wrapper">
+                              <span className="region-name">
+                                {" "}
+                                Worldwide Excl. USA, Canada, Caribbean, Mexico
+                              </span>
+                            </div>
+                          </label>
                         </div>
-                      </label>
-                    </div>
 
-                    {/* single item */}
-                    <div className="termsCondInputWrapper">
-                      <label className="form-group" id="checkbox_4" for="forRegion_4">
-                        <input
-                          onChange={(e) => {
-                            setTravelInsurance({
-                              ...travelInsurance,
-                              [e.target.name]: !travelInsurance.is_region_worldwide,
+                        {/* single item */}
+                        <div className="termsCondInputWrapper">
+                          <label
+                            className="form-group"
+                            id="checkbox_4"
+                            for="forRegion_4"
+                          >
+                            <input
+                              onChange={(e) => {
+                                setTravelInsurance({
+                                  ...travelInsurance,
+                                  [e.target.name]:
+                                    !travelInsurance.is_region_worldwide,
+                                });
+                                toggleClassForHover("checkbox_4");
+                              }}
+                              id="forRegion_4"
+                              type="checkbox"
+                              name="is_region_worldwide"
+                              value={travelInsurance.is_region_worldwide}
+                            />
+                            <label for="forRegion_4"></label>
 
-                            });
-                            toggleClassForHover('checkbox_4');
-                          }}
-                          id="forRegion_4"
-                          type="checkbox"
-                          name="is_region_worldwide"
-                          value={travelInsurance.is_region_worldwide}
-                        />
-                        <label for="forRegion_4"></label>
-
-                        <div className="text-content-wrapper">
-                          <span className="region-name">  Worldwide </span>
+                            <div className="text-content-wrapper">
+                              <span className="region-name"> Worldwide </span>
+                            </div>
+                          </label>
                         </div>
-                      </label>
-                    </div>
-
-                  </Checkboxes>
-                </>
-              ]}
+                      </Checkboxes>
+                    </>,
+                  ]}
 
               {/* swithc between country and region */}
-              <span className="toggleCountryRegion" onClick={() => {
-                setshowCountry(!showCountry);
-                // reset country and region
-                setTravelInsurance({
-                  ...travelInsurance,
-                  ['countryList']: [],
-                  ['is_region_united_kingdom']: false,
-                  ['is_region_europe']: false,
-                  ['is_region_worldwide_excl_USA_canada_caribbean_Mexico']: false,
-                  ['is_region_worldwide']: false,
-
-                });
-
-              }}>
-
-                {showCountry == true ? `Or Let us know which region you'll be visiting` : `Or just tell us the country or countries`}
+              <span
+                className="toggleCountryRegion"
+                onClick={() => {
+                  setshowCountry(!showCountry);
+                  // reset country and region
+                  setTravelInsurance({
+                    ...travelInsurance,
+                    ["countryList"]: [],
+                    ["is_region_united_kingdom"]: false,
+                    ["is_region_europe"]: false,
+                    ["is_region_worldwide_excl_USA_canada_caribbean_Mexico"]: false,
+                    ["is_region_worldwide"]: false,
+                  });
+                }}
+              >
+                {showCountry == true
+                  ? `Or Let us know which region you'll be visiting`
+                  : `Or just tell us the country or countries`}
                 <span className="icon">
                   <IoArrowForwardOutline />
                 </span>
               </span>
 
               {/* click here to show info */}
-              <span onClick={() => seteShowInfo(!showInfo)} className={`notsure ${showInfo === true ? 'active' : ''}`}>Not sure? </span>
+              <span
+                onClick={() => seteShowInfo(!showInfo)}
+                className={`notsure ${showInfo === true ? "active" : ""}`}
+              >
+                Not sure?{" "}
+              </span>
 
               {/* info content */}
-              {showInfo === true ? [
-                <div className="notSureInfo">
-                  <p><strong>Coronavirus (COVID-19) </strong></p><p><strong>Please check the <a href="https://www.gov.uk/guidance/travel-abroad-from-england-during-coronavirus-covid-19" target="_blank">latest government travel advice</a> that sets out what you need to do, if anything, before you travel abroad and before you return home. You should also check the latest travel advice and entry requirements for each country you visit or transit through. Travel rules can potentially change at short notice, so it's important to check the<a href="https://www.gov.uk/government/organisations/foreign-commonwealth-development-office" target="_blank">Foreign, Commonwealth &amp; Development Office (FCDO)</a> for the latest information.</strong></p>
-                </div>
-              ] : null}
-
-
+              {showInfo === true
+                ? [
+                    <div className="notSureInfo">
+                      <p>
+                        <strong>Coronavirus (COVID-19) </strong>
+                      </p>
+                      <p>
+                        <strong>
+                          Please check the{" "}
+                          <a
+                            href="https://www.gov.uk/guidance/travel-abroad-from-england-during-coronavirus-covid-19"
+                            target="_blank"
+                          >
+                            latest government travel advice
+                          </a>{" "}
+                          that sets out what you need to do, if anything, before
+                          you travel abroad and before you return home. You
+                          should also check the latest travel advice and entry
+                          requirements for each country you visit or transit
+                          through. Travel rules can potentially change at short
+                          notice, so it's important to check the
+                          <a
+                            href="https://www.gov.uk/government/organisations/foreign-commonwealth-development-office"
+                            target="_blank"
+                          >
+                            Foreign, Commonwealth &amp; Development Office
+                            (FCDO)
+                          </a>{" "}
+                          for the latest information.
+                        </strong>
+                      </p>
+                    </div>,
+                  ]
+                : null}
 
               {/* show status  ::::dev_note:only change the state*/}
-              {
-                travelInsurance.insuranceCover !== "" ? <div className={`show_input_status`}>  <IoCheckmarkCircle /></div> : [
+              {travelInsurance.insuranceCover !== "" ? (
+                <div className={`show_input_status`}>
+                  {" "}
+                  <IoCheckmarkCircle />
+                </div>
+              ) : (
+                [
                   valudationError === true ? (
-                    travelInsurance.insuranceCover == "" ? <div className={`show_input_status warning`}>  <IoCloseCircle /></div> : null
-                  ) : null
+                    travelInsurance.insuranceCover == "" ? (
+                      <div className={`show_input_status warning`}>
+                        {" "}
+                        <IoCloseCircle />
+                      </div>
+                    ) : null
+                  ) : null,
                 ]
-              }
+              )}
 
               {/* validation */}
               {valudationError === true ? (
@@ -554,7 +644,6 @@ export default function Travel() {
                   <span className="warning-text">{validationText}</span>
                 ) : null
               ) : null}
-
             </div>
 
             {/* When are you going on your trip? */}
@@ -562,20 +651,21 @@ export default function Travel() {
               {/* card title wrapper */}
               <div className="card-title-wrapper">
                 <h4 className="title">When are you going on your trip?</h4>
-
               </div>
 
-              < DateInput
+              <DateInput
                 primaryColor={theme.primaryColor}
                 warningColor={theme.warningColor}
                 secondaryColor={theme.secondaryColor}
                 grayColor={theme.grayColor}
                 whiteColor={theme.whiteColor}
               >
-
-                <input type="date" name="dateOftrip" onChange={handleOnChange} />
+                <input
+                  type="date"
+                  name="dateOftrip"
+                  onChange={handleOnChange}
+                />
               </DateInput>
-
 
               {/* validation */}
               {valudationError === true ? (
@@ -583,47 +673,50 @@ export default function Travel() {
                   <span className="warning-text">{validationText}</span>
                 ) : null
               ) : null}
-
             </div>
 
             {/* For how many nights? */}
-            {travelInsurance.insuranceCover && travelInsurance.insuranceCover == 'single trip' ? [
-              <div className="single-card-wrapper" id="travel_id_2">
-                {/* card title wrapper */}
-                <div className="card-title-wrapper">
-                  <h4 className="title">For how many nights?</h4>
+            {travelInsurance.insuranceCover &&
+            travelInsurance.insuranceCover == "single trip"
+              ? [
+                  <div className="single-card-wrapper" id="travel_id_2">
+                    {/* card title wrapper */}
+                    <div className="card-title-wrapper">
+                      <h4 className="title">For how many nights?</h4>
+                    </div>
 
-                </div>
+                    <DateInput
+                      primaryColor={theme.primaryColor}
+                      warningColor={theme.warningColor}
+                      secondaryColor={theme.secondaryColor}
+                      grayColor={theme.grayColor}
+                      whiteColor={theme.whiteColor}
+                    >
+                      <input
+                        type="date"
+                        name="returnDateOftrip"
+                        onChange={handleOnChange}
+                      />
+                    </DateInput>
 
-                < DateInput
-                  primaryColor={theme.primaryColor}
-                  warningColor={theme.warningColor}
-                  secondaryColor={theme.secondaryColor}
-                  grayColor={theme.grayColor}
-                  whiteColor={theme.whiteColor}
-                >
-
-                  <input type="date" name="returnDateOftrip" onChange={handleOnChange} />
-                </DateInput>
-
-
-                {/* validation */}
-                {valudationError === true ? (
-                  travelInsurance.returnDateOftrip == "" ? (
-                    <span className="warning-text">{validationText}</span>
-                  ) : null
-                ) : null}
-
-              </div>
-            ] : null}
+                    {/* validation */}
+                    {valudationError === true ? (
+                      travelInsurance.returnDateOftrip == "" ? (
+                        <span className="warning-text">{validationText}</span>
+                      ) : null
+                    ) : null}
+                  </div>,
+                ]
+              : null}
 
             {/* Would you like to add cover for any of the following? (optional)*/}
-            <div className="single-card-wrapper" >
+            <div className="single-card-wrapper">
               {/* card title wrapper */}
               <div className="card-title-wrapper">
-                <h4 className="title">Would you like to add cover for any of the following? (optional)
+                <h4 className="title">
+                  Would you like to add cover for any of the following?
+                  (optional)
                 </h4>
-
               </div>
 
               <p>Select all that apply or leave it blank if none</p>
@@ -632,20 +725,22 @@ export default function Travel() {
                 primaryColor={theme.primaryColor}
                 whiteColor={theme.whiteColor}
                 blackColor={theme.blackColor}
-                componentName={'optional_ins_cover_wrapper'}
-
+                componentName={"optional_ins_cover_wrapper"}
               >
                 {/* single item */}
                 <div className="termsCondInputWrapper">
-                  <label className="form-group" id="optionalInsCover_1" for="is_gadget_cover">
+                  <label
+                    className="form-group"
+                    id="optionalInsCover_1"
+                    for="is_gadget_cover"
+                  >
                     <input
                       onChange={(e) => {
                         setTravelInsurance({
                           ...travelInsurance,
                           [e.target.name]: !travelInsurance.is_gadget_cover,
-
                         });
-                        toggleClassForHover('optionalInsCover_1');
+                        toggleClassForHover("optionalInsCover_1");
                       }}
                       id="is_gadget_cover"
                       type="checkbox"
@@ -655,7 +750,7 @@ export default function Travel() {
                     <label for="is_gadget_cover"></label>
 
                     <div className="text-content-wrapper">
-                      <span className="region-name">  Gadget cover </span>
+                      <span className="region-name"> Gadget cover </span>
                       <p className="sm-text">
                         Smartphones, laptops, cameras, and more…
                       </p>
@@ -665,15 +760,19 @@ export default function Travel() {
 
                 {/* single item */}
                 <div className="termsCondInputWrapper">
-                  <label className="form-group" id="optionalInsCover_2" for="is_winter_sports_cover">
+                  <label
+                    className="form-group"
+                    id="optionalInsCover_2"
+                    for="is_winter_sports_cover"
+                  >
                     <input
                       onChange={(e) => {
                         setTravelInsurance({
                           ...travelInsurance,
-                          [e.target.name]: !travelInsurance.is_winter_sports_cover,
-
+                          [e.target.name]:
+                            !travelInsurance.is_winter_sports_cover,
                         });
-                        toggleClassForHover('optionalInsCover_2');
+                        toggleClassForHover("optionalInsCover_2");
                       }}
                       id="is_winter_sports_cover"
                       type="checkbox"
@@ -683,7 +782,7 @@ export default function Travel() {
                     <label for="is_winter_sports_cover"></label>
 
                     <div className="text-content-wrapper">
-                      <span className="region-name">  Winter sports cover </span>
+                      <span className="region-name"> Winter sports cover </span>
                       <p className="sm-text">
                         Skis, snowboards, ski pass, piste closure, and more…
                       </p>
@@ -693,15 +792,18 @@ export default function Travel() {
 
                 {/* single item */}
                 <div className="termsCondInputWrapper">
-                  <label className="form-group" id="optionalInsCover_3" for="is_cruise_cover">
+                  <label
+                    className="form-group"
+                    id="optionalInsCover_3"
+                    for="is_cruise_cover"
+                  >
                     <input
                       onChange={(e) => {
                         setTravelInsurance({
                           ...travelInsurance,
                           [e.target.name]: !travelInsurance.is_cruise_cover,
-
                         });
-                        toggleClassForHover('optionalInsCover_3');
+                        toggleClassForHover("optionalInsCover_3");
                       }}
                       id="is_cruise_cover"
                       type="checkbox"
@@ -711,7 +813,7 @@ export default function Travel() {
                     <label for="is_cruise_cover"></label>
 
                     <div className="text-content-wrapper">
-                      <span className="region-name">  Cruise cover </span>
+                      <span className="region-name"> Cruise cover </span>
                       <p className="sm-text">
                         Cabin confinement, missed ports and more…
                       </p>
@@ -721,15 +823,19 @@ export default function Travel() {
 
                 {/* single item */}
                 <div className="termsCondInputWrapper">
-                  <label className="form-group" id="optionalInsCover_4" for="is_business_trip_cover">
+                  <label
+                    className="form-group"
+                    id="optionalInsCover_4"
+                    for="is_business_trip_cover"
+                  >
                     <input
                       onChange={(e) => {
                         setTravelInsurance({
                           ...travelInsurance,
-                          [e.target.name]: !travelInsurance.is_business_trip_cover,
-
+                          [e.target.name]:
+                            !travelInsurance.is_business_trip_cover,
                         });
-                        toggleClassForHover('optionalInsCover_4');
+                        toggleClassForHover("optionalInsCover_4");
                       }}
                       id="is_business_trip_cover"
                       type="checkbox"
@@ -746,61 +852,91 @@ export default function Travel() {
                     </div>
                   </label>
                 </div>
-
               </Checkboxes>
 
-
               {/* click here to show info */}
-              <span onClick={() => setshowCoverDetails(!showCoverDetails)} className={`notsure ${showCoverDetails === true ? 'active' : ''}`}>
+              <span
+                onClick={() => setshowCoverDetails(!showCoverDetails)}
+                className={`notsure ${
+                  showCoverDetails === true ? "active" : ""
+                }`}
+              >
                 See cover details {"  "}
                 {showCoverDetails == true ? <IoChevronUp /> : <IoChevronDown />}
               </span>
 
               {/* info content */}
-              {showCoverDetails === true ? [
-                <div class="see_cover_details">
-                  <p
-                  ><strong>Gadget cover</strong><p>Covers new, refurbished, and used gadgets* including smartphones, laptops, cameras, and more.</p><strong
-                  >What does gadget cover include?</strong>
-                    <ul
-                    >
-                      <li>Protection against loss, theft, and damage</li>
-                      <li>Claim up to £1,000 per item</li>
-                      <li>Gadget cover for each traveller named on the policy</li>
-                    </ul>
-                    <p>The gadgets you want to insure must not already be covered by another policy (including your home insurance)
-
-                    </p>
-                    <p>*You’ll need a receipt as proof of purchase when making a claim.
-                    </p>
-                  </p>
-                  <p
-                  ><strong>Winter sports cover</strong>
-                    <p>Loss of ski equipment, pass, piste closure, and avalanche delay.
-                    </p>
-                  </p>
-                  <p
-                  ><strong>Cruise cover</strong>
-                    <p>Missed port, unused excursions, emergency airlift and cabin confinement.</p>
-                  </p>
-                  <p
-                  ><strong>Business trip cover</strong>
-                    <p>Business equipment and business money.</p>
-                    <p>Don’t forget to check what each policy covers before you buy.</p>
-                  </p>
-                </div>
-              ] : null}
-
-
+              {showCoverDetails === true
+                ? [
+                    <div class="see_cover_details">
+                      <p>
+                        <strong>Gadget cover</strong>
+                        <p>
+                          Covers new, refurbished, and used gadgets* including
+                          smartphones, laptops, cameras, and more.
+                        </p>
+                        <strong>What does gadget cover include?</strong>
+                        <ul>
+                          <li>Protection against loss, theft, and damage</li>
+                          <li>Claim up to £1,000 per item</li>
+                          <li>
+                            Gadget cover for each traveller named on the policy
+                          </li>
+                        </ul>
+                        <p>
+                          The gadgets you want to insure must not already be
+                          covered by another policy (including your home
+                          insurance)
+                        </p>
+                        <p>
+                          *You’ll need a receipt as proof of purchase when
+                          making a claim.
+                        </p>
+                      </p>
+                      <p>
+                        <strong>Winter sports cover</strong>
+                        <p>
+                          Loss of ski equipment, pass, piste closure, and
+                          avalanche delay.
+                        </p>
+                      </p>
+                      <p>
+                        <strong>Cruise cover</strong>
+                        <p>
+                          Missed port, unused excursions, emergency airlift and
+                          cabin confinement.
+                        </p>
+                      </p>
+                      <p>
+                        <strong>Business trip cover</strong>
+                        <p>Business equipment and business money.</p>
+                        <p>
+                          Don’t forget to check what each policy covers before
+                          you buy.
+                        </p>
+                      </p>
+                    </div>,
+                  ]
+                : null}
 
               {/* show status  ::::dev_note:only change the state*/}
-              {
-                travelInsurance.insuranceCover !== "" ? <div className={`show_input_status`}>  <IoCheckmarkCircle /></div> : [
+              {travelInsurance.insuranceCover !== "" ? (
+                <div className={`show_input_status`}>
+                  {" "}
+                  <IoCheckmarkCircle />
+                </div>
+              ) : (
+                [
                   valudationError === true ? (
-                    travelInsurance.insuranceCover == "" ? <div className={`show_input_status warning`}>  <IoCloseCircle /></div> : null
-                  ) : null
+                    travelInsurance.insuranceCover == "" ? (
+                      <div className={`show_input_status warning`}>
+                        {" "}
+                        <IoCloseCircle />
+                      </div>
+                    ) : null
+                  ) : null,
                 ]
-              }
+              )}
 
               {/* validation */}
               {valudationError === true ? (
@@ -808,16 +944,13 @@ export default function Travel() {
                   <span className="warning-text">{validationText}</span>
                 ) : null
               ) : null}
-
             </div>
 
             {/* Who do you want to insure? ::dev-note:has-tooltip*/}
             <div className="single-card-wrapper" id="travel_id_3">
               {/* card title wrapper */}
               <div className="card-title-wrapper">
-                <h4 className="title">
-                  Who do you want to insure?
-                </h4>
+                <h4 className="title">Who do you want to insure?</h4>
                 <button
                   onClick={() => toggleClassForHover("travel_id_3")}
                   className="tooltop-trigger-btn small-icon-btn"
@@ -837,19 +970,24 @@ export default function Travel() {
                   <strong>A couple</strong>
                 </p>
                 <p>
-                  Two adults aged 18 or over who live at the same address and are in a relationship.
+                  Two adults aged 18 or over who live at the same address and
+                  are in a relationship.
                 </p>
                 <p>
                   <strong>A family</strong>
                 </p>
                 <p>
-                  One or two adults living at the same address plus at least one child (up to a maximum of 9 if one adult is travelling). If two adults are travelling under a family policy, they must be a spouse/partner, and up to eight children can be added.
+                  One or two adults living at the same address plus at least one
+                  child (up to a maximum of 9 if one adult is travelling). If
+                  two adults are travelling under a family policy, they must be
+                  a spouse/partner, and up to eight children can be added.
                 </p>
                 <p>
                   <strong>A group</strong>
                 </p>
                 <p>
-                  Is a collection of individuals covered under a single policy who are travelling together.
+                  Is a collection of individuals covered under a single policy
+                  who are travelling together.
                 </p>
               </ToolTipWrapper>
 
@@ -868,7 +1006,15 @@ export default function Travel() {
                 />
                 <label htmlFor="howWantToInsu_1">
                   {/* icon */}
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 60"><rect width="100%" height="100%" fill="none"></rect><g class="Single_svg__currentLayer"><path class="Single_svg__st0" d="M33.386 13.043c0 5.8 5.1 10.9 11.1 10.9 6.1 0 11.1-4.8 11.1-10.9 0-5.8-5.1-10.9-11.1-10.9-6.1 0-11.1 4.8-11.1 10.9zm-6.4 46.3v-13.4s2.5 1 2.5 5.1v9.1h29.9v-9.1c0-4 2.5-5.1 2.5-5.1v13.4h4.3v-20c-5.8-13.4-21.8-12.4-21.8-12.4s-15.7-.8-21.8 12.4v20h4.4z"></path></g></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 60">
+                    <rect width="100%" height="100%" fill="none"></rect>
+                    <g class="Single_svg__currentLayer">
+                      <path
+                        class="Single_svg__st0"
+                        d="M33.386 13.043c0 5.8 5.1 10.9 11.1 10.9 6.1 0 11.1-4.8 11.1-10.9 0-5.8-5.1-10.9-11.1-10.9-6.1 0-11.1 4.8-11.1 10.9zm-6.4 46.3v-13.4s2.5 1 2.5 5.1v9.1h29.9v-9.1c0-4 2.5-5.1 2.5-5.1v13.4h4.3v-20c-5.8-13.4-21.8-12.4-21.8-12.4s-15.7-.8-21.8 12.4v20h4.4z"
+                      ></path>
+                    </g>
+                  </svg>
                   {/* title */}
                   <span className="input-title">An individual</span>
                 </label>
@@ -882,7 +1028,17 @@ export default function Travel() {
                 />
                 <label htmlFor="howWantToInsu_2">
                   {/* icon */}
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 60"><rect width="100%" height="100%" fill="none"></rect><g class="Couple_svg__currentLayer"><g><path class="Couple_svg__st0" d="M26.2 22.8c6.1 0 11.1-4.8 11.1-10.9C37.3 6.1 32.2 1 26.2 1c-6.1 0-11.1 4.8-11.1 10.9 0 5.8 5 10.9 11.1 10.9zM58.2 22.8c6.1 0 11.1-4.8 11.1-10.9C69.3 6.1 64.2 1 58.2 1c-6.1 0-11.1 4.8-11.1 10.9 0 5.8 5 10.9 11.1 10.9zM58.3 25.8s-8.9-.4-15.9 5c-7-5.5-16.3-5-16.3-5S10.2 25 4.2 38.2V58h5V44.8s2 1 2 5.1V59h30v-9.1c0-1.8.4-3 1-3.8.6.8 1 2 1 3.8V59h30v-9.1c0-4 2-5.1 2-5.1V58h5V38.2c-6-13.4-21.9-12.4-21.9-12.4z"></path></g></g></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 60">
+                    <rect width="100%" height="100%" fill="none"></rect>
+                    <g class="Couple_svg__currentLayer">
+                      <g>
+                        <path
+                          class="Couple_svg__st0"
+                          d="M26.2 22.8c6.1 0 11.1-4.8 11.1-10.9C37.3 6.1 32.2 1 26.2 1c-6.1 0-11.1 4.8-11.1 10.9 0 5.8 5 10.9 11.1 10.9zM58.2 22.8c6.1 0 11.1-4.8 11.1-10.9C69.3 6.1 64.2 1 58.2 1c-6.1 0-11.1 4.8-11.1 10.9 0 5.8 5 10.9 11.1 10.9zM58.3 25.8s-8.9-.4-15.9 5c-7-5.5-16.3-5-16.3-5S10.2 25 4.2 38.2V58h5V44.8s2 1 2 5.1V59h30v-9.1c0-1.8.4-3 1-3.8.6.8 1 2 1 3.8V59h30v-9.1c0-4 2-5.1 2-5.1V58h5V38.2c-6-13.4-21.9-12.4-21.9-12.4z"
+                        ></path>
+                      </g>
+                    </g>
+                  </svg>
                   {/* title */}
                   <span className="input-title">A couple</span>
                 </label>
@@ -895,7 +1051,21 @@ export default function Travel() {
                 />
                 <label htmlFor="howWantToInsu_3">
                   {/* icon */}
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 60"><rect width="100%" height="100%" fill="none"></rect><g class="Family_svg__currentLayer"><g><path class="Family_svg__st0" d="M32.271 22.229c6.1 0 11.1-4.8 11.1-10.9 0-5.8-5.1-10.9-11.1-10.9-6.1 0-11.1 4.8-11.1 10.9-.1 5.8 5 10.9 11.1 10.9zM59.871 34.329s-3.3-.2-6.9 1.1c-6.5-11.1-20.6-10.3-20.6-10.3s-15.6-.8-21.6 12.4v19.9h4v-13.2s3 1 3 5.1v9.1h29v-9.1c0-.4.1-.8.2-1.1.4.2 1.8 1.1 1.8 3.6v6.6h22v-6.6c0-2.9 2-3.7 2-3.7v9.3h3v-14.1c-4-9.7-15.9-9-15.9-9z"></path><path class="Family_svg__st0" d="M59.871 32.129c4.4 0 8.1-3.5 8.1-7.9 0-4.2-3.7-7.9-8.1-7.9s-8.1 3.5-8.1 7.9c0 4.3 3.7 7.9 8.1 7.9z"></path></g></g></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 60">
+                    <rect width="100%" height="100%" fill="none"></rect>
+                    <g class="Family_svg__currentLayer">
+                      <g>
+                        <path
+                          class="Family_svg__st0"
+                          d="M32.271 22.229c6.1 0 11.1-4.8 11.1-10.9 0-5.8-5.1-10.9-11.1-10.9-6.1 0-11.1 4.8-11.1 10.9-.1 5.8 5 10.9 11.1 10.9zM59.871 34.329s-3.3-.2-6.9 1.1c-6.5-11.1-20.6-10.3-20.6-10.3s-15.6-.8-21.6 12.4v19.9h4v-13.2s3 1 3 5.1v9.1h29v-9.1c0-.4.1-.8.2-1.1.4.2 1.8 1.1 1.8 3.6v6.6h22v-6.6c0-2.9 2-3.7 2-3.7v9.3h3v-14.1c-4-9.7-15.9-9-15.9-9z"
+                        ></path>
+                        <path
+                          class="Family_svg__st0"
+                          d="M59.871 32.129c4.4 0 8.1-3.5 8.1-7.9 0-4.2-3.7-7.9-8.1-7.9s-8.1 3.5-8.1 7.9c0 4.3 3.7 7.9 8.1 7.9z"
+                        ></path>
+                      </g>
+                    </g>
+                  </svg>
                   {/* title */}
                   <span className="input-title">A family</span>
                 </label>
@@ -909,22 +1079,40 @@ export default function Travel() {
                 />
                 <label htmlFor="howWantToInsu_4">
                   {/* icon */}
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 60"><rect width="100%" height="100%" fill="none"></rect><g class="Group_svg__currentLayer"><g><path class="Group_svg__st0" d="M19.667 25.478c4.4 0 8.1-3.5 8.1-7.9 0-4.2-3.7-7.9-8.1-7.9s-8.1 3.5-8.1 7.9c0 4.3 3.7 7.9 8.1 7.9zM42.867 25.478c4.4 0 8.1-3.5 8.1-7.9 0-4.2-3.7-7.9-8.1-7.9s-8.1 3.5-8.1 7.9c0 4.3 3.7 7.9 8.1 7.9zM66.067 27.678s-6.4-.3-11.5 3.6c-5.1-4-11.7-3.6-11.7-3.6s-6.4-.3-11.5 3.6c-5-4-11.7-3.6-11.7-3.6s-11.4-.6-15.8 9v14.1h3v-9.3s2 .7 2 3.7v6.6h22v-6.6c0-1.3.1-2.2.5-2.7.4.6.5 1.4.5 2.7v6.6h22v-6.6c0-1.3.1-2.2.5-2.7.4.6.5 1.4.5 2.7v6.6h22v-6.6c0-3 2-3.7 2-3.7v9.3h3v-14.1c-4.2-9.7-15.8-9-15.8-9zM66.067 25.478c4.4 0 8.1-3.5 8.1-7.9 0-4.2-3.7-7.9-8.1-7.9s-8.1 3.5-8.1 7.9c0 4.3 3.7 7.9 8.1 7.9z"></path></g></g></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 60">
+                    <rect width="100%" height="100%" fill="none"></rect>
+                    <g class="Group_svg__currentLayer">
+                      <g>
+                        <path
+                          class="Group_svg__st0"
+                          d="M19.667 25.478c4.4 0 8.1-3.5 8.1-7.9 0-4.2-3.7-7.9-8.1-7.9s-8.1 3.5-8.1 7.9c0 4.3 3.7 7.9 8.1 7.9zM42.867 25.478c4.4 0 8.1-3.5 8.1-7.9 0-4.2-3.7-7.9-8.1-7.9s-8.1 3.5-8.1 7.9c0 4.3 3.7 7.9 8.1 7.9zM66.067 27.678s-6.4-.3-11.5 3.6c-5.1-4-11.7-3.6-11.7-3.6s-6.4-.3-11.5 3.6c-5-4-11.7-3.6-11.7-3.6s-11.4-.6-15.8 9v14.1h3v-9.3s2 .7 2 3.7v6.6h22v-6.6c0-1.3.1-2.2.5-2.7.4.6.5 1.4.5 2.7v6.6h22v-6.6c0-1.3.1-2.2.5-2.7.4.6.5 1.4.5 2.7v6.6h22v-6.6c0-3 2-3.7 2-3.7v9.3h3v-14.1c-4.2-9.7-15.8-9-15.8-9zM66.067 25.478c4.4 0 8.1-3.5 8.1-7.9 0-4.2-3.7-7.9-8.1-7.9s-8.1 3.5-8.1 7.9c0 4.3 3.7 7.9 8.1 7.9z"
+                        ></path>
+                      </g>
+                    </g>
+                  </svg>
                   {/* title */}
                   <span className="input-title">A group</span>
-
                 </label>
-
               </RadioButtons>
 
               {/* show status  ::::dev_note:only change the state*/}
-              {
-                travelInsurance.insuranceCover !== "" ? <div className={`show_input_status`}>  <IoCheckmarkCircle /></div> : [
+              {travelInsurance.insuranceCover !== "" ? (
+                <div className={`show_input_status`}>
+                  {" "}
+                  <IoCheckmarkCircle />
+                </div>
+              ) : (
+                [
                   valudationError === true ? (
-                    travelInsurance.insuranceCover == "" ? <div className={`show_input_status warning`}>  <IoCloseCircle /></div> : null
-                  ) : null
+                    travelInsurance.insuranceCover == "" ? (
+                      <div className={`show_input_status warning`}>
+                        {" "}
+                        <IoCloseCircle />
+                      </div>
+                    ) : null
+                  ) : null,
                 ]
-              }
+              )}
 
               {/* validation */}
               {valudationError === true ? (
@@ -937,7 +1125,7 @@ export default function Travel() {
             </div>
 
             {/* show if individual*/}
-            {travelInsurance.howWantToInsure == "An individual" ?
+            {travelInsurance.howWantToInsure == "An individual" ? (
               <div className="single-card-wrapper">
                 {/* card title wrapper */}
                 <div className="card-title-wrapper">
@@ -950,10 +1138,12 @@ export default function Travel() {
                   grayColor={theme.grayColor}
                   whiteColor={theme.whiteColor}
                 >
-
-                  <input type="date" name="firstTravellerBorn" onChange={handleOnChange} />
+                  <input
+                    type="date"
+                    name="firstTravellerBorn"
+                    onChange={handleOnChange}
+                  />
                 </DateInput>
-
 
                 {/* validation */}
                 {valudationError === true ? (
@@ -961,121 +1151,38 @@ export default function Travel() {
                     <span className="warning-text">{validationText}</span>
                   ) : null
                 ) : null}
-
-              </div> : null
-            }
+              </div>
+            ) : null}
             {/* show if couple */}
-            {travelInsurance.howWantToInsure == "A couple" ?
-              [
-                <>
-                  <div className="single-card-wrapper">
-                    {/* card title wrapper */}
-                    <div className="card-title-wrapper">
-                      <h4 className="title">First traveller (adult) born</h4>
+            {travelInsurance.howWantToInsure == "A couple"
+              ? [
+                  <>
+                    <div className="single-card-wrapper">
+                      {/* card title wrapper */}
+                      <div className="card-title-wrapper">
+                        <h4 className="title">First traveller (adult) born</h4>
+                      </div>
+                      <DateInput
+                        primaryColor={theme.primaryColor}
+                        warningColor={theme.warningColor}
+                        secondaryColor={theme.secondaryColor}
+                        grayColor={theme.grayColor}
+                        whiteColor={theme.whiteColor}
+                      >
+                        <input
+                          type="date"
+                          name="firstTravellerBorn"
+                          onChange={handleOnChange}
+                        />
+                      </DateInput>
+
+                      {/* validation */}
+                      {valudationError === true ? (
+                        travelInsurance.dateOftrip == "" ? (
+                          <span className="warning-text">{validationText}</span>
+                        ) : null
+                      ) : null}
                     </div>
-                    <DateInput
-                      primaryColor={theme.primaryColor}
-                      warningColor={theme.warningColor}
-                      secondaryColor={theme.secondaryColor}
-                      grayColor={theme.grayColor}
-                      whiteColor={theme.whiteColor}
-                    >
-
-                      <input type="date" name="firstTravellerBorn" onChange={handleOnChange} />
-                    </DateInput>
-
-
-                    {/* validation */}
-                    {valudationError === true ? (
-                      travelInsurance.dateOftrip == "" ? (
-                        <span className="warning-text">{validationText}</span>
-                      ) : null
-                    ) : null}
-
-                  </div>
-                  <div className="single-card-wrapper">
-                    {/* card title wrapper */}
-                    <div className="card-title-wrapper">
-                      <h4 className="title">Second traveller (adult) born</h4>
-                    </div>
-                    <DateInput
-                      primaryColor={theme.primaryColor}
-                      warningColor={theme.warningColor}
-                      secondaryColor={theme.secondaryColor}
-                      grayColor={theme.grayColor}
-                      whiteColor={theme.whiteColor}
-                    >
-
-                      <input type="date" name="secondTravellerBorn" onChange={handleOnChange} />
-                    </DateInput>
-
-
-                    {/* validation */}
-                    {valudationError === true ? (
-                      travelInsurance.dateOftrip == "" ? (
-                        <span className="warning-text">{validationText}</span>
-                      ) : null
-                    ) : null}
-
-                  </div>
-                </>
-              ] : null
-            }
-            {/* show if couple */}
-            {travelInsurance.howWantToInsure == 'A family' ?
-              [
-                <>
-                  <div className="single-card-wrapper">
-                    {/* card title wrapper */}
-                    <div className="card-title-wrapper">
-                      <h4 className="title">First traveller (adult) born</h4>
-                    </div>
-                    <DateInput
-                      primaryColor={theme.primaryColor}
-                      warningColor={theme.warningColor}
-                      secondaryColor={theme.secondaryColor}
-                      grayColor={theme.grayColor}
-                      whiteColor={theme.whiteColor}
-                    >
-
-                      <input type="date" name="firstTravellerBorn" onChange={handleOnChange} />
-                    </DateInput>
-
-
-                    {/* validation */}
-                    {valudationError === true ? (
-                      travelInsurance.dateOftrip == "" ? (
-                        <span className="warning-text">{validationText}</span>
-                      ) : null
-                    ) : null}
-
-                  </div>
-                  <div className="single-card-wrapper">
-                    {/* card title wrapper */}
-                    <div className="card-title-wrapper">
-                      <h4 className="title">Second traveller (adult) born</h4>
-                    </div>
-                    <DateInput
-                      primaryColor={theme.primaryColor}
-                      warningColor={theme.warningColor}
-                      secondaryColor={theme.secondaryColor}
-                      grayColor={theme.grayColor}
-                      whiteColor={theme.whiteColor}
-                    >
-
-                      <input type="date" name="secondTravellerBorn" onChange={handleOnChange} />
-                    </DateInput>
-
-
-                    {/* validation */}
-                    {valudationError === true ? (
-                      travelInsurance.dateOftrip == "" ? (
-                        <span className="warning-text">{validationText}</span>
-                      ) : null
-                    ) : null}
-
-                  </div>
-                  {travellerCount == 2 ?
                     <div className="single-card-wrapper">
                       {/* card title wrapper */}
                       <div className="card-title-wrapper">
@@ -1088,10 +1195,12 @@ export default function Travel() {
                         grayColor={theme.grayColor}
                         whiteColor={theme.whiteColor}
                       >
-
-                        <input type="date" name="secondTravellerBorn" onChange={handleOnChange} />
+                        <input
+                          type="date"
+                          name="secondTravellerBorn"
+                          onChange={handleOnChange}
+                        />
                       </DateInput>
-
 
                       {/* validation */}
                       {valudationError === true ? (
@@ -1099,24 +1208,111 @@ export default function Travel() {
                           <span className="warning-text">{validationText}</span>
                         ) : null
                       ) : null}
-
                     </div>
-                    : null}
+                  </>,
+                ]
+              : null}
+            {/* show if couple */}
+            {travelInsurance.howWantToInsure == "A family"
+              ? [
+                  <>
+                    <div className="single-card-wrapper">
+                      {/* card title wrapper */}
+                      <div className="card-title-wrapper">
+                        <h4 className="title">First traveller (adult) born</h4>
+                      </div>
+                      <DateInput
+                        primaryColor={theme.primaryColor}
+                        warningColor={theme.warningColor}
+                        secondaryColor={theme.secondaryColor}
+                        grayColor={theme.grayColor}
+                        whiteColor={theme.whiteColor}
+                      >
+                        <input
+                          type="date"
+                          name="firstTravellerBorn"
+                          onChange={handleOnChange}
+                        />
+                      </DateInput>
 
-                </>
-              ] : null
-            }
+                      {/* validation */}
+                      {valudationError === true ? (
+                        travelInsurance.dateOftrip == "" ? (
+                          <span className="warning-text">{validationText}</span>
+                        ) : null
+                      ) : null}
+                    </div>
+                    <div className="single-card-wrapper">
+                      {/* card title wrapper */}
+                      <div className="card-title-wrapper">
+                        <h4 className="title">Second traveller (adult) born</h4>
+                      </div>
+                      <DateInput
+                        primaryColor={theme.primaryColor}
+                        warningColor={theme.warningColor}
+                        secondaryColor={theme.secondaryColor}
+                        grayColor={theme.grayColor}
+                        whiteColor={theme.whiteColor}
+                      >
+                        <input
+                          type="date"
+                          name="secondTravellerBorn"
+                          onChange={handleOnChange}
+                        />
+                      </DateInput>
 
+                      {/* validation */}
+                      {valudationError === true ? (
+                        travelInsurance.dateOftrip == "" ? (
+                          <span className="warning-text">{validationText}</span>
+                        ) : null
+                      ) : null}
+                    </div>
+                    {travellerCount == 2 ? (
+                      <div className="single-card-wrapper">
+                        {/* card title wrapper */}
+                        <div className="card-title-wrapper">
+                          <h4 className="title">
+                            Second traveller (adult) born
+                          </h4>
+                        </div>
+                        <DateInput
+                          primaryColor={theme.primaryColor}
+                          warningColor={theme.warningColor}
+                          secondaryColor={theme.secondaryColor}
+                          grayColor={theme.grayColor}
+                          whiteColor={theme.whiteColor}
+                        >
+                          <input
+                            type="date"
+                            name="secondTravellerBorn"
+                            onChange={handleOnChange}
+                          />
+                        </DateInput>
 
+                        {/* validation */}
+                        {valudationError === true ? (
+                          travelInsurance.dateOftrip == "" ? (
+                            <span className="warning-text">
+                              {validationText}
+                            </span>
+                          ) : null
+                        ) : null}
+                      </div>
+                    ) : null}
+                  </>,
+                ]
+              : null}
 
             {/* add another traveller */}
-            {
-              travelInsurance.howWantToInsure == 'A family' ||
-                travelInsurance.howWantToInsure == 'A group' ?
-                <div className="single-card-wrapper">
-                  <span className="add-another-traveller">add another traveller</span>
-                </div> : null
-            }
+            {travelInsurance.howWantToInsure == "A family" ||
+            travelInsurance.howWantToInsure == "A group" ? (
+              <div className="single-card-wrapper">
+                <span className="add-another-traveller">
+                  add another traveller
+                </span>
+              </div>
+            ) : null}
           </div>
         </ContentWrapper>
 
@@ -1138,21 +1334,37 @@ export default function Travel() {
           </div>
 
           <div className="right-side">
-            {/* What type of cover are you looking for?  ::dev-note:has-tooltip*/}
-            <div className="single-card-wrapper" id="travel_id_1">
+            {/* What is the maximum excess you’d like to pay should you need to make a claim? */}
+            <div className="single-card-wrapper">
               {/* card title wrapper */}
+              <div className="text-content-wrapper-para">
+                <p>
+                  What is the <strong>maximum excess</strong> you’d like to pay
+                  should you need to make a claim?
+                </p>
+                <p className="sm-text">
+                  The excess you pay would be per person, per claim e.g. if you
+                  select an excess of £50 and need to claim for 2 people
+                  travelling, the total excess you’d pay would be £100.
+                </p>
+              </div>
 
-              <p>What is the <strong>maximum excess</strong> you’d like to pay should you need to make a claim?</p>
-              <p className="sm-text">
-                The excess you pay would be per person, per claim e.g. if you select an excess of £50 and need to claim for 2 people travelling, the total excess you’d pay would be £100.
-              </p>
-
-
-              <SelectorInput>
+              <SelectorInput
+                primaryColor={theme.primaryColor}
+                secondaryColor={theme.secondaryColor}
+                whiteColor={theme.whiteColor}
+                grayColor={theme.grayColor}
+                blackColor={theme.blackColor}
+                liteprimaryColor={theme.liteprimaryColor}
+                liteBlackColor={theme.liteBlackColor}
+                litewhiteColor={theme.litewhiteColor}
+                warningColor={theme.warningColor}
+                hoverColor={theme.hoverColor}
+              >
                 <select
-                  name="whobusinessuseFor"
+                  name="maxExcess"
                   className="selectClass"
-                // onChange={handleOnchangeVehicleData}
+                  onChange={handleOnChange}
                 >
                   <option value="" disabled="">
                     Please select...
@@ -1167,13 +1379,23 @@ export default function Travel() {
               </SelectorInput>
 
               {/* show status  ::::dev_note:only change the state*/}
-              {
-                travelInsurance.insuranceCover !== "" ? <div className={`show_input_status`}>  <IoCheckmarkCircle /></div> : [
+              {travelInsurance.insuranceCover !== "" ? (
+                <div className={`show_input_status`}>
+                  {" "}
+                  <IoCheckmarkCircle />
+                </div>
+              ) : (
+                [
                   valudationError === true ? (
-                    travelInsurance.insuranceCover == "" ? <div className={`show_input_status warning`}>  <IoCloseCircle /></div> : null
-                  ) : null
+                    travelInsurance.insuranceCover == "" ? (
+                      <div className={`show_input_status warning`}>
+                        {" "}
+                        <IoCloseCircle />
+                      </div>
+                    ) : null
+                  ) : null,
                 ]
-              }
+              )}
 
               {/* validation */}
               {valudationError === true ? (
@@ -1185,8 +1407,220 @@ export default function Travel() {
               ) : null}
             </div>
 
+            {/* How much cancellation cover do you need per person travelling? */}
+            <div className="single-card-wrapper">
+              {/* card title wrapper */}
+              <div className="text-content-wrapper-para">
+                <p>
+                  How much <strong>cancellation cover</strong> do you need per
+                  person travelling?
+                </p>
+                <p className="sm-text">
+                  How much cancellation cover do you need per person
+                  travelling?.
+                </p>
+              </div>
 
+              {/* selectorInput */}
+              <SelectorInput
+                primaryColor={theme.primaryColor}
+                secondaryColor={theme.secondaryColor}
+                whiteColor={theme.whiteColor}
+                grayColor={theme.grayColor}
+                blackColor={theme.blackColor}
+                liteprimaryColor={theme.liteprimaryColor}
+                liteBlackColor={theme.liteBlackColor}
+                litewhiteColor={theme.litewhiteColor}
+                warningColor={theme.warningColor}
+                hoverColor={theme.hoverColor}
+              >
+                <select
+                  name="cancellationCover"
+                  className="selectClass"
+                  onChange={handleOnChange}
+                >
+                  <option value="" disabled="">
+                    Please select...
+                  </option>
+                  <option value="750">At least £750</option>
+                  <option value="1500">At least £1500</option>
+                  <option value="3000">At least £3000</option>
+                  <option value="4500">At least £4500</option>
+                  <option value="6000">At least £6000</option>
+                  <option value="7500">At least £7500</option>
+                </select>
+              </SelectorInput>
 
+              {/* show status  ::::dev_note:only change the state*/}
+              {travelInsurance.insuranceCover !== "" ? (
+                <div className={`show_input_status`}>
+                  {" "}
+                  <IoCheckmarkCircle />
+                </div>
+              ) : (
+                [
+                  valudationError === true ? (
+                    travelInsurance.insuranceCover == "" ? (
+                      <div className={`show_input_status warning`}>
+                        {" "}
+                        <IoCloseCircle />
+                      </div>
+                    ) : null
+                  ) : null,
+                ]
+              )}
+
+              {/* validation */}
+              {valudationError === true ? (
+                travelInsurance.insuranceCover == "" ? (
+                  <>
+                    <span className="warning-text">{validationText}</span>
+                  </>
+                ) : null
+              ) : null}
+            </div>
+
+            {/* What is the value of cover you require for your baggage? */}
+            <div className="single-card-wrapper">
+              {/* card title wrapper */}
+              <div className="text-content-wrapper-para">
+                <p>
+                  What is the value of cover you require for your{" "}
+                  <strong>baggage</strong>?
+                </p>
+                <p className="sm-text">
+                  This is the amount you can claim, per person, should your
+                  baggage be lost or stolen or damaged.
+                </p>
+              </div>
+
+              {/* selectorInput */}
+              <SelectorInput
+                primaryColor={theme.primaryColor}
+                secondaryColor={theme.secondaryColor}
+                whiteColor={theme.whiteColor}
+                grayColor={theme.grayColor}
+                blackColor={theme.blackColor}
+                liteprimaryColor={theme.liteprimaryColor}
+                liteBlackColor={theme.liteBlackColor}
+                litewhiteColor={theme.litewhiteColor}
+                warningColor={theme.warningColor}
+                hoverColor={theme.hoverColor}
+              >
+                <select
+                  name="baggageCover"
+                  className="selectClass"
+                  onChange={handleOnChange}
+                >
+                  <option value="" disabled="">
+                    Please select...
+                  </option>
+                  <option value="400">At least £400</option>
+                  <option value="800">At least £800</option>
+                  <option value="1600">At least £1600</option>
+                  <option value="2400">At least £2400</option>
+                  <option value="3200">At least £3200</option>
+                  <option value="4000">At least £4000</option>
+                </select>
+              </SelectorInput>
+
+              {/* show status  ::::dev_note:only change the state*/}
+              {travelInsurance.insuranceCover !== "" ? (
+                <div className={`show_input_status`}>
+                  {" "}
+                  <IoCheckmarkCircle />
+                </div>
+              ) : (
+                [
+                  valudationError === true ? (
+                    travelInsurance.insuranceCover == "" ? (
+                      <div className={`show_input_status warning`}>
+                        {" "}
+                        <IoCloseCircle />
+                      </div>
+                    ) : null
+                  ) : null,
+                ]
+              )}
+
+              {/* validation */}
+              {valudationError === true ? (
+                travelInsurance.insuranceCover == "" ? (
+                  <>
+                    <span className="warning-text">{validationText}</span>
+                  </>
+                ) : null
+              ) : null}
+            </div>
+            {/* What is the maximum value of medical cover you need? */}
+            <div className="single-card-wrapper">
+              {/* card title wrapper */}
+              <div className="text-content-wrapper-para">
+                <p>
+                  What is the maximum value of <strong>maximum value</strong>{" "}
+                  you need?
+                </p>
+                <p className="sm-text">
+                  Medical cover is the maximum you could claim for your medical
+                  bills, should you require medical treatment whilst abroad.
+                </p>
+              </div>
+
+              {/* selectorInput */}
+              <SelectorInput
+                primaryColor={theme.primaryColor}
+                secondaryColor={theme.secondaryColor}
+                whiteColor={theme.whiteColor}
+                grayColor={theme.grayColor}
+                blackColor={theme.blackColor}
+                liteprimaryColor={theme.liteprimaryColor}
+                liteBlackColor={theme.liteBlackColor}
+                litewhiteColor={theme.litewhiteColor}
+                warningColor={theme.warningColor}
+                hoverColor={theme.hoverColor}
+              >
+                <select
+                  name="medicalCover"
+                  className="selectClass"
+                  onChange={handleOnChange}
+                >
+                  <option value="Any">Any</option>
+                  <option value="4">£4 million</option>
+                  <option value="8">£8 million</option>
+                  <option value="12">£12 million</option>
+                  <option value="16">£16 million</option>
+                  <option value="20">£20 million</option>
+                </select>
+              </SelectorInput>
+
+              {/* show status  ::::dev_note:only change the state*/}
+              {travelInsurance.insuranceCover !== "" ? (
+                <div className={`show_input_status`}>
+                  {" "}
+                  <IoCheckmarkCircle />
+                </div>
+              ) : (
+                [
+                  valudationError === true ? (
+                    travelInsurance.insuranceCover == "" ? (
+                      <div className={`show_input_status warning`}>
+                        {" "}
+                        <IoCloseCircle />
+                      </div>
+                    ) : null
+                  ) : null,
+                ]
+              )}
+
+              {/* validation */}
+              {valudationError === true ? (
+                travelInsurance.insuranceCover == "" ? (
+                  <>
+                    <span className="warning-text">{validationText}</span>
+                  </>
+                ) : null
+              ) : null}
+            </div>
           </div>
         </ContentWrapper>
       </Wrapper>

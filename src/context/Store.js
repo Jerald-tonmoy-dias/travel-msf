@@ -157,6 +157,7 @@ const StoreProvider = ({ children }) => {
     tenthTravellerBorn: "",
     maxExcess: "",
     cancellationCover: "",
+    baggageCover: "",
     dateOfBirthTraveller: [],
     valueBaggage: "",
     medicalCover: "",

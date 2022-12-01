@@ -20,6 +20,7 @@ const theme = {
   litewhiteColor: '#ffffff9c',
 }
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
