@@ -158,7 +158,7 @@ font-size: 14px;
 color: ${props.primaryColor};
 }
 }
-ul li {
+ul,ol li {
 font-size: 14px;
 line-height: 1.8;
 a {

@@ -2041,6 +2041,7 @@ export default function Travel() {
             </div>
           </div>
         </ContentWrapper>
+
         {/* Your Data */}
         <ContentWrapper
           primaryColor={theme.primaryColor}
@@ -2062,13 +2063,118 @@ export default function Travel() {
             {/* Your email address */}
             <div className="single-card-wrapper">
               <div class="see_cover_details">
-               <p>What you need to know about how your data will be used:</p>
-    
-                  <ul>
-                    <li>You can find full details of how your data will be used by quotemeeasy.co.uk  including information about your rights in our <a href="#"><strong> Privacy Policy</strong></a> and  <a href="#"><strong>Cookie Policy</strong></a> which you should read before progressing.</li>
-                    <li>Some insurance providers may use data they already hold about you (for example, data from existing products, loyalty scheme or transactional data) to assess and rate your cover and determine your premium</li>
-                    <li>If you are providing information about someone else you must make sure they are aware of our <a href="#"><strong>Privacy Policy</strong></a> .</li>
-                  </ul>
+                <p>What you need to know about how your data will be used:</p>
+
+                <ul>
+                  <li>
+                    You can find full details of how your data will be used by
+                    quotemeeasy.co.uk including information about your rights in
+                    our{" "}
+                    <a href="#">
+                      <strong> Privacy Policy</strong>
+                    </a>{" "}
+                    and{" "}
+                    <a href="#">
+                      <strong>Cookie Policy</strong>
+                    </a>{" "}
+                    which you should read before progressing.
+                  </li>
+                  <li>
+                    Some insurance providers may use data they already hold
+                    about you (for example, data from existing products, loyalty
+                    scheme or transactional data) to assess and rate your cover
+                    and determine your premium
+                  </li>
+                  <li>
+                    If you are providing information about someone else you must
+                    make sure they are aware of our{" "}
+                    <a href="#">
+                      <strong>Privacy Policy</strong>
+                    </a>{" "}
+                    .
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </ContentWrapper>
+
+        {/* In order for us to provide you a quote */}
+        <ContentWrapper
+          primaryColor={theme.primaryColor}
+          secondaryColor={theme.secondaryColor}
+          whiteColor={theme.whiteColor}
+          grayColor={theme.grayColor}
+          blackColor={theme.blackColor}
+          liteprimaryColor={theme.liteprimaryColor}
+          liteBlackColor={theme.liteBlackColor}
+          litewhiteColor={theme.litewhiteColor}
+          warningColor={theme.warningColor}
+          hoverColor={theme.hoverColor}
+        >
+          <div className="left-side">
+            <h2 className="section_header_title">
+              In order for us to provide you a quote
+            </h2>
+          </div>
+
+          <div className="right-side">
+            <div className="single-card-wrapper">
+              <div class="see_cover_details">
+                <p>
+                  You must confirm the following is true for your cover to be
+                  valid:
+                </p>
+
+                <ol>
+                  <li>
+                    All travellers are
+                    <ul>
+                      <li>
+                        a permanent resident of, and is travelling from and
+                        returning to, the United Kingdom.
+                      </li>
+                      <li>not travelling against government or FCDO advice.</li>
+                      <li>
+                        registered with a Medical Practitioner in the United
+                        Kingdom.
+                      </li>
+                      <li>
+                        unaware of any reason why the trip would be cancelled or
+                        cut short.
+                      </li>
+                      <li>
+                        not travelling against medical advice or to obtain
+                        medical treatment abroad.
+                      </li>
+                      <li>
+                        not attempting to cover a trip that has already started.
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <strong>About us </strong>
+                    </a>
+                    , our{" "}
+                    <a href="#">
+                      <strong>Terms and Conditions </strong>
+                    </a>{" "}
+                    and the{" "}
+                    <a href="#">
+                      <strong>Rewards Terms and Conditions</strong>
+                    </a>
+                    . If you do not understand any items please contact us.
+                  </li>
+                </ol>
+                <p>
+                  If you are providing information about someone else you must
+                  make sure they are aware of our{" "}
+                  <a href="#">
+                    <strong>Privacy Policy</strong>
+                  </a>{" "}
+                  .
+                </p>
               </div>
             </div>
           </div>
