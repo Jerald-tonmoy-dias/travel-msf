@@ -37,5 +37,30 @@ export const HeaderOne = styled.header(
       margin-right: 10px;
     }
   }
+
+
+  `
+);
+export const FooterOne = styled.header(
+  (props) => `
+  background: ${props.secondaryColor};
+  padding: 20px 0;
+  text-align: left;
+
+  .footer_section {
+    p {
+      color: ${props.whiteColor};
+      font-size: 14px;
+      line-height: 1.7;
+      strong  {
+        font-weight: 700;
+        color: ${props.blackColor};
+      }
+     a  {
+        font-weight: 700;
+        color: ${props.blackColor};
+      }
+    }
+  }
   `
 );

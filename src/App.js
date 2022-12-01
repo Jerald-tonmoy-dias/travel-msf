@@ -5,17 +5,17 @@ import Summary from "./component/summary/Summary";
 import Header from "./component/layout/Header";
 import Travel from "./component/travel/Travel";
 import { StoreContext } from "./context/Store";
+import Footer from "./component/layout/Footer";
 
 function App() {
   // get context value
-  let {  countSteps } =
-    useContext(StoreContext);
+  let { countSteps } = useContext(StoreContext);
 
   // display content
   const displayComponent = () => {
     switch (countSteps) {
       case 1:
-        return <Travel/>;
+        return <Travel />;
       case 2:
         return <Summary />;
       default:
@@ -26,7 +26,8 @@ function App() {
   return (
     <>
       <Header />
-   {displayComponent()}
+      {displayComponent()}
+      <Footer />
     </>
   );
 }

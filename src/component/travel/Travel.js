@@ -32,6 +32,7 @@ import {
   handleDonNotContact,
   toggleClassForHover,
 } from "../../helper/helper";
+import Footer from "../layout/Footer";
 export default function Travel() {
   /******************************************
    * GETTING CONTEXT VALUE
@@ -2237,3 +2238,4 @@ export default function Travel() {
     </>
   );
 }
+
