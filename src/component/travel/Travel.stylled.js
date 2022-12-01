@@ -94,6 +94,9 @@
   width: 70px;
   border-bottom: 2px solid;
   margin-top: 18px;
+  @media only screen and (max-width: 768px) {
+    font-size:24px;
+    }
   }
   }
   }

@@ -6,9 +6,7 @@ export const HeaderOne = styled.header(
   padding: 20px 0;
   text-align: left;
 
-  .travel-header-wrapper {
 
-  }
 
   .logo {
     font-size: 30px;
@@ -17,6 +15,9 @@ export const HeaderOne = styled.header(
     color: ${props.whiteColor};
     text-transform: capitalize;
     line-height: 1;
+    @media only screen and (max-width: 768px) {
+      font-size: 22px;
+      }
   }
 
   .header-title {
@@ -36,6 +37,14 @@ export const HeaderOne = styled.header(
       height: 52px;
       margin-right: 10px;
     }
+    @media only screen and (max-width: 768px) {
+      font-size: 18px;
+      &:before {
+        
+    top: -15px;
+
+      }
+      }
   }
 
 
@@ -43,23 +52,26 @@ export const HeaderOne = styled.header(
 );
 export const FooterOne = styled.header(
   (props) => `
-  background: ${props.secondaryColor};
+  background: ${props.blackColor};
   padding: 20px 0;
   text-align: left;
 
   .footer_section {
+    strong  {
+      font-weight: 700;
+      color: ${props.whiteColor};
+    }
+    a  {
+      font-weight: 700;
+      color: ${props.primaryColor};
+    }
     p {
       color: ${props.whiteColor};
       font-size: 14px;
       line-height: 1.7;
-      strong  {
-        font-weight: 700;
-        color: ${props.blackColor};
-      }
-     a  {
-        font-weight: 700;
-        color: ${props.blackColor};
-      }
+    }
+    li::marker {
+      color: ${props.whiteColor};
     }
   }
   `

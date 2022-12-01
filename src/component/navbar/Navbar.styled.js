@@ -20,7 +20,6 @@ export const Nav = styled.nav(
         }
         .menu-no {
             background: ${props.liteprimaryColor};
-     
             font-size: 20px;
             line-height: 35px;
             width: 35px;
@@ -39,6 +38,12 @@ export const Nav = styled.nav(
                 font-weight: 700;
                 color: ${props.whiteColor};
             }
+            @media only screen and (max-width: 768px) {
+                font-size: 14px;
+                line-height: 30px;
+                width: 30px;
+                height: 30px;
+                }
         }
 
         .menu-name {
@@ -48,7 +53,10 @@ export const Nav = styled.nav(
             &.active {
                 font-weight: 700;
                 color: ${props.whiteColor};
-            }
+            }    @media only screen and (max-width: 768px) {
+                font-size: 14px;
+          
+                }
         }
     }
     `
