@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import { ThemeContext } from "styled-components";
 import { StoreContext } from "../../context/Store";
 import { Wrapper } from "../../styles/Global.styled";
-import {} from "../form/Form.styled";
 import Navbar from "../navbar/Navbar";
 import { GiHand } from "react-icons/gi";
 import {
@@ -27,12 +26,8 @@ import {
   TextInputs,
   ToolTipWrapper,
 } from "./Travel.stylled";
-import {
-  handleContactCheckBox,
-  handleDonNotContact,
-  toggleClassForHover,
-} from "../../helper/helper";
-import Footer from "../layout/Footer";
+import { toggleClassForHover } from "../../helper/helper";
+
 export default function Travel() {
   /******************************************
    * GETTING CONTEXT VALUE
@@ -654,44 +649,90 @@ export default function Travel() {
               ) : null}
             </div>
 
-            {/* When are you going on your trip? */}
-            <div className="single-card-wrapper">
-              {/* card title wrapper */}
-              <div className="card-title-wrapper">
-                <h4 className="title">When are you going on your trip?</h4>
-              </div>
-
-              <DateInput
-                primaryColor={theme.primaryColor}
-                warningColor={theme.warningColor}
-                secondaryColor={theme.secondaryColor}
-                grayColor={theme.grayColor}
-                whiteColor={theme.whiteColor}
-              >
-                <input
-                  type="date"
-                  name="dateOftrip"
-                  onChange={handleOnChange}
-                />
-              </DateInput>
-
-              {/* validation */}
-              {valudationError === true ? (
-                travelInsurance.dateOftrip == "" ? (
-                  <span className="warning-text">{validationText}</span>
-                ) : null
-              ) : null}
-            </div>
-
             {/* For how many nights? */}
             {travelInsurance.insuranceCover &&
             travelInsurance.insuranceCover == "single trip"
               ? [
-                  <div className="single-card-wrapper" id="travel_id_2">
+                  <>
+                    {/* When are you going on your trip? */}
+                    <div className="single-card-wrapper">
+                      {/* card title wrapper */}
+                      <div className="card-title-wrapper">
+                        <h4 className="title">
+                          When are you going on your trip?
+                        </h4>
+                      </div>
+
+                      <DateInput
+                        primaryColor={theme.primaryColor}
+                        warningColor={theme.warningColor}
+                        secondaryColor={theme.secondaryColor}
+                        grayColor={theme.grayColor}
+                        whiteColor={theme.whiteColor}
+                      >
+                        <input
+                          type="date"
+                          name="dateOftrip"
+                          onChange={handleOnChange}
+                        />
+                      </DateInput>
+
+                      {/* validation */}
+                      {valudationError === true ? (
+                        travelInsurance.dateOftrip == "" ? (
+                          <span className="warning-text">{validationText}</span>
+                        ) : null
+                      ) : null}
+                    </div>
+
+                    <div className="single-card-wrapper" id="travel_id_2">
+                      {/* card title wrapper */}
+                      <div className="card-title-wrapper">
+                        <h4 className="title">For how many nights?</h4>
+                      </div>
+
+                      <DateInput
+                        primaryColor={theme.primaryColor}
+                        warningColor={theme.warningColor}
+                        secondaryColor={theme.secondaryColor}
+                        grayColor={theme.grayColor}
+                        whiteColor={theme.whiteColor}
+                      >
+                        <input
+                          type="date"
+                          name="returnDateOftrip"
+                          onChange={handleOnChange}
+                        />
+                      </DateInput>
+
+                      {/* validation */}
+                      {valudationError === true ? (
+                        travelInsurance.returnDateOftrip == "" ? (
+                          <span className="warning-text">{validationText}</span>
+                        ) : null
+                      ) : null}
+                    </div>
+                  </>,
+                ]
+              : null}
+
+            {/* When would you like your cover to start? */}
+            {travelInsurance.insuranceCover &&
+            travelInsurance.insuranceCover == "annual multi trip"
+              ? [
+                  <div className="single-card-wrapper">
                     {/* card title wrapper */}
                     <div className="card-title-wrapper">
-                      <h4 className="title">For how many nights?</h4>
+                      <h4 className="title">
+                        When would you like your cover to start?
+                      </h4>
                     </div>
+
+                    <p>
+                      Annual Multi Trip policies must begin in the next 30 days,
+                      and you won’t have cancellation cover until your chosen
+                      start date
+                    </p>
 
                     <DateInput
                       primaryColor={theme.primaryColor}
@@ -702,18 +743,112 @@ export default function Travel() {
                     >
                       <input
                         type="date"
-                        name="returnDateOftrip"
+                        name="dateOftrip"
                         onChange={handleOnChange}
                       />
                     </DateInput>
 
                     {/* validation */}
                     {valudationError === true ? (
-                      travelInsurance.returnDateOftrip == "" ? (
+                      travelInsurance.dateOftrip == "" ? (
                         <span className="warning-text">{validationText}</span>
                       ) : null
                     ) : null}
                   </div>,
+                ]
+              : null}
+
+            {/* When are you going on your trip? */}
+            {travelInsurance.insuranceCover &&
+            travelInsurance.insuranceCover == "long stay trip"
+              ? [
+                  <>
+                    <div className="single-card-wrapper">
+                      {/* card title wrapper */}
+                      <div className="card-title-wrapper">
+                        <h4 className="title">
+                          When are you going on your trip?
+                        </h4>
+                      </div>
+
+                      <DateInput
+                        primaryColor={theme.primaryColor}
+                        warningColor={theme.warningColor}
+                        secondaryColor={theme.secondaryColor}
+                        grayColor={theme.grayColor}
+                        whiteColor={theme.whiteColor}
+                      >
+                        <input
+                          type="date"
+                          name="dateOftrip"
+                          onChange={handleOnChange}
+                        />
+                      </DateInput>
+
+                      {/* validation */}
+                      {valudationError === true ? (
+                        travelInsurance.dateOftrip == "" ? (
+                          <span className="warning-text">{validationText}</span>
+                        ) : null
+                      ) : null}
+                    </div>
+
+                    <div className="single-card-wrapper">
+                      {/* card title wrapper */}
+                        <h4 className="title">Length of cover required?</h4>
+                      <SelectorInput
+                        primaryColor={theme.primaryColor}
+                        secondaryColor={theme.secondaryColor}
+                        whiteColor={theme.whiteColor}
+                        grayColor={theme.grayColor}
+                        blackColor={theme.blackColor}
+                        liteprimaryColor={theme.liteprimaryColor}
+                        liteBlackColor={theme.liteBlackColor}
+                        litewhiteColor={theme.litewhiteColor}
+                        warningColor={theme.warningColor}
+                        hoverColor={theme.hoverColor}
+                      >
+                        <select
+                          name="monthLengthsTocover"
+                          className="selectClass"
+                          onChange={handleOnChange}
+                        >
+                          <option
+                            disabled=""
+                            hidden=""
+                            value=""
+                          >
+                            Please select...
+                          </option>
+                          <option value="1">1 month</option>
+                          <option value="2">2 months</option>
+                          <option value="3">3 months</option>
+                          <option value="4">4 months</option>
+                          <option value="5">5 months</option>
+                          <option value="6">6 months</option>
+                          <option value="7">7 months</option>
+                          <option value="8">8 months</option>
+                          <option value="9">9 months</option>
+                          <option value="10">10 months</option>
+                          <option value="11">11 months</option>
+                          <option value="12">12 months</option>
+                          <option value="13">13 months</option>
+                          <option value="14">14 months</option>
+                          <option value="15">15 months</option>
+                          <option value="16">16 months</option>
+                          <option value="17">17 months</option>
+                          <option value="18">18 months</option>
+                        </select>
+                      </SelectorInput>
+
+                      {/* validation */}
+                      {valudationError === true ? (
+                        travelInsurance.dateOftrip == "" ? (
+                          <span className="warning-text">{validationText}</span>
+                        ) : null
+                      ) : null}
+                    </div>
+                  </>,
                 ]
               : null}
 
@@ -1374,15 +1509,12 @@ export default function Travel() {
                   className="selectClass"
                   onChange={handleOnChange}
                 >
-                  <option value="" disabled="">
-                    Please select...
-                  </option>
-                  <option value="250">Up to £250</option>
-                  <option value="200">Up to £200</option>
-                  <option value="150">Up to £150</option>
-                  <option value="100">Up to £100</option>
-                  <option value="50">Up to £50</option>
-                  <option value="0">No Excess</option>
+                  <option value="£250">Up to £250</option>
+                  <option value="£200">Up to £200</option>
+                  <option value="£150">Up to £150</option>
+                  <option value="£100">Up to £100</option>
+                  <option value="£50">Up to £50</option>
+                  <option value="£0">No Excess</option>
                 </select>
               </SelectorInput>
 
@@ -1447,15 +1579,12 @@ export default function Travel() {
                   className="selectClass"
                   onChange={handleOnChange}
                 >
-                  <option value="" disabled="">
-                    Please select...
-                  </option>
-                  <option value="750">At least £750</option>
-                  <option value="1500">At least £1500</option>
-                  <option value="3000">At least £3000</option>
-                  <option value="4500">At least £4500</option>
-                  <option value="6000">At least £6000</option>
-                  <option value="7500">At least £7500</option>
+                  <option value="£750">At least £750</option>
+                  <option value="£1500">At least £1500</option>
+                  <option value="£3000">At least £3000</option>
+                  <option value="£4500">At least £4500</option>
+                  <option value="£6000">At least £6000</option>
+                  <option value="£7500">At least £7500</option>
                 </select>
               </SelectorInput>
 
@@ -1520,15 +1649,12 @@ export default function Travel() {
                   className="selectClass"
                   onChange={handleOnChange}
                 >
-                  <option value="" disabled="">
-                    Please select...
-                  </option>
-                  <option value="400">At least £400</option>
-                  <option value="800">At least £800</option>
-                  <option value="1600">At least £1600</option>
-                  <option value="2400">At least £2400</option>
-                  <option value="3200">At least £3200</option>
-                  <option value="4000">At least £4000</option>
+                  <option value="£400">At least £400</option>
+                  <option value="£800">At least £800</option>
+                  <option value="£1600">At least £1600</option>
+                  <option value="£2400">At least £2400</option>
+                  <option value="£3200">At least £3200</option>
+                  <option value="£4000">At least £4000</option>
                 </select>
               </SelectorInput>
 
@@ -1565,7 +1691,7 @@ export default function Travel() {
               {/* card title wrapper */}
               <div className="text-content-wrapper-para">
                 <p>
-                  What is the maximum value of <strong>maximum value</strong>{" "}
+                  What is the maximum value of <strong>medical cover</strong>{" "}
                   you need?
                 </p>
                 <p className="sm-text">
@@ -1593,11 +1719,11 @@ export default function Travel() {
                   onChange={handleOnChange}
                 >
                   <option value="Any">Any</option>
-                  <option value="4">£4 million</option>
-                  <option value="8">£8 million</option>
-                  <option value="12">£12 million</option>
-                  <option value="16">£16 million</option>
-                  <option value="20">£20 million</option>
+                  <option value="£4 million">£4 million</option>
+                  <option value="£8 million">£8 million</option>
+                  <option value="£12 million">£12 million</option>
+                  <option value="£16 million">£16 million</option>
+                  <option value="£20 million">£20 million</option>
                 </select>
               </SelectorInput>
 
@@ -2227,17 +2353,20 @@ export default function Travel() {
           warningColor={theme.warningColor}
           hoverColor={theme.hoverColor}
         >
-          <div className="left-side">        
-          </div>
+          <div className="left-side"></div>
 
           <div className="next-page-wrappper">
-                <button className="nextPageBtn" onClick={()=>{
-                  setCountSteps(2);
-                }}>next</button>
+            <button
+              className="nextPageBtn"
+              onClick={() => {
+                setCountSteps(2);
+              }}
+            >
+              next
+            </button>
           </div>
         </ContentWrapper>
       </Wrapper>
     </>
   );
 }
-

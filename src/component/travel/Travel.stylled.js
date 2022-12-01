@@ -301,7 +301,7 @@
   // tooltip design
   ${ToolTipWrapper} {
   position: absolute;
-  right: -50%;
+  right: -39%;
   top: 0;
   display: none;
   &:after {
@@ -494,7 +494,7 @@
   .single-text-input {
   border: 1px solid ${props.primaryColor};
   border-bottom-width: 4px;
-  height: 56px;
+  height: 57px;
   line-height: 1;
   font-weight: bold;
   padding: 0px 17px;
