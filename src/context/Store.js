@@ -11,7 +11,7 @@ const StoreProvider = ({ children }) => {
    *
    **********************************/
   // count steps
-  const [countSteps, setCountSteps] = useState(2);
+  const [countSteps, setCountSteps] = useState(1);
 
 
   /**********************************
@@ -20,7 +20,7 @@ const StoreProvider = ({ children }) => {
    *
    **********************************/
   const [travelInsurance, setTravelInsurance] = useState({
-    insuranceCover: "",
+    insuranceCover: "",//has validation
     countryList: [],
     is_gadget_cover: false,
     is_winter_sports_cover: false,
@@ -30,12 +30,12 @@ const StoreProvider = ({ children }) => {
     is_region_europe: false,
     is_region_worldwide_excl_USA_canada_caribbean_Mexico: false,
     is_region_worldwide: false,
-    dateOftrip: new Date(),
+    dateOftrip: '',//has validation
     monthsToCoverIns: "",
     dateOftrip: "",
     returnDateOftrip: "",
     monthLengthsTocover: "",
-    howWantToInsure: "",
+    howWantToInsure: "",//has validation
     firstTravellerBorn: "",
     secondTravellerBorn: "",
     thirdTravellerBorn: "",
@@ -46,23 +46,22 @@ const StoreProvider = ({ children }) => {
     eightTravellerBorn: "",
     ninthTravellerBorn: "",
     tenthTravellerBorn: "",
-    maxExcess: "£0",
-    cancellationCover: "£750",
-    baggageCover: "£400",
+    maxExcess: "",//has validation
+    cancellationCover: "",//has validation
+    baggageCover: "",//has validation
     dateOfBirthTraveller: [],
-    valueBaggage: "",// no need
-    medicalCover: "Any",
+    medicalCover: "",//has validation
     preMedicalCondition: "",
     thirdPartyMedicalCondition: "",
-    email: "",
-    firstName: "",
-    lastName: "",
+    email: "",//has validation
+    firstName: "",//has validation
+    lastName: "",//has validation
     contactWithEmail: false,
     contactWithPhone: false,
     contactWithText: false,
     contactWithPost: false,
     dontContact: false,
-    termsAgree: false
+    termsAgree: false//has validation
 
   });
   return (

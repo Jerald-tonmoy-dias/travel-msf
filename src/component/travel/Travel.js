@@ -60,37 +60,17 @@ export default function Travel() {
   };
 
   // handle submit
-  const handleSubmit = (e) => {
+  const handlenextpage = (e) => {
     e.preventDefault();
-
-    /**
-     * if showCountry === true then check  
-          *  if travelInsurance.countryList == [] then  setvaludationError(true) else setvaludationError(false) 
-  
-     * 
-     * else check 
-     *      
-          is_region_united_kingdom !=false
-
-          is_region_europe !=false
-
-          is_region_worldwide_excl_USA_canada_caribbean_Mexico !=false
-
-          is_region_worldwide != false
-
-    */
 
     if (
       travelInsurance.insuranceCover == "" ||
-      // travelInsurance.region == "" ||
       travelInsurance.dateOftrip == "" ||
-      travelInsurance.monthsToCoverIns == "" ||
-      travelInsurance.optionalInsuCover == "" ||
       travelInsurance.howWantToInsure == "" ||
       travelInsurance.maxExcess == "" ||
       travelInsurance.cancellationCover == "" ||
-      travelInsurance.thirdPartyMedicalCondition == "" ||
-      travelInsurance.valueBaggage == "" ||
+      travelInsurance.baggageCover == "" ||
+      travelInsurance.medicalCover == "" ||
       travelInsurance.email == "" ||
       travelInsurance.firstName == "" ||
       travelInsurance.lastName == "" ||
@@ -147,6 +127,7 @@ export default function Travel() {
             </div>
           </div>
         </GreatingSection>
+
         {/* Travel Insurance */}
         <ContentWrapper
           primaryColor={theme.primaryColor}
@@ -331,8 +312,6 @@ export default function Travel() {
                 </button>
               </div>
 
-              {/* if region  */}
-              {/* <p>Select the region you wish to be covered for</p> */}
               <p>Please tell us the country or resort below</p>
 
               {/* tooltip */}
@@ -554,7 +533,7 @@ export default function Travel() {
                     </>,
                   ]}
 
-              {/* swithc between country and region */}
+              {/* switch between country and region */}
               <span
                 className="toggleCountryRegion"
                 onClick={() => {
@@ -621,32 +600,6 @@ export default function Travel() {
                     </div>,
                   ]
                 : null}
-
-              {/* show status  ::::dev_note:only change the state*/}
-              {travelInsurance.insuranceCover !== "" ? (
-                <div className={`show_input_status`}>
-                  {" "}
-                  <IoCheckmarkCircle />
-                </div>
-              ) : (
-                [
-                  valudationError === true ? (
-                    travelInsurance.insuranceCover == "" ? (
-                      <div className={`show_input_status warning`}>
-                        {" "}
-                        <IoCloseCircle />
-                      </div>
-                    ) : null
-                  ) : null,
-                ]
-              )}
-
-              {/* validation */}
-              {valudationError === true ? (
-                travelInsurance.region == "" ? (
-                  <span className="warning-text">{validationText}</span>
-                ) : null
-              ) : null}
             </div>
 
             {/* For how many nights? */}
@@ -706,11 +659,11 @@ export default function Travel() {
                       </DateInput>
 
                       {/* validation */}
-                      {valudationError === true ? (
+                      {/* {valudationError === true ? (
                         travelInsurance.returnDateOftrip == "" ? (
                           <span className="warning-text">{validationText}</span>
                         ) : null
-                      ) : null}
+                      ) : null} */}
                     </div>
                   </>,
                 ]
@@ -842,11 +795,11 @@ export default function Travel() {
                       </SelectorInput>
 
                       {/* validation */}
-                      {valudationError === true ? (
+                      {/* {valudationError === true ? (
                         travelInsurance.dateOftrip == "" ? (
                           <span className="warning-text">{validationText}</span>
                         ) : null
-                      ) : null}
+                      ) : null} */}
                     </div>
                   </>,
                 ]
@@ -1063,7 +1016,7 @@ export default function Travel() {
                 : null}
 
               {/* show status  ::::dev_note:only change the state*/}
-              {travelInsurance.insuranceCover !== "" ? (
+              {travelInsurance.howWantToInsure !== "" ? (
                 <div className={`show_input_status`}>
                   {" "}
                   <IoCheckmarkCircle />
@@ -1071,7 +1024,7 @@ export default function Travel() {
               ) : (
                 [
                   valudationError === true ? (
-                    travelInsurance.insuranceCover == "" ? (
+                    travelInsurance.howWantToInsure == "" ? (
                       <div className={`show_input_status warning`}>
                         {" "}
                         <IoCloseCircle />
@@ -1083,7 +1036,7 @@ export default function Travel() {
 
               {/* validation */}
               {valudationError === true ? (
-                travelInsurance.region == "" ? (
+                travelInsurance.howWantToInsure == "" ? (
                   <span className="warning-text">{validationText}</span>
                 ) : null
               ) : null}
@@ -1239,7 +1192,7 @@ export default function Travel() {
               </RadioButtons>
 
               {/* show status  ::::dev_note:only change the state*/}
-              {travelInsurance.insuranceCover !== "" ? (
+              {/* {travelInsurance.insuranceCover !== "" ? (
                 <div className={`show_input_status`}>
                   {" "}
                   <IoCheckmarkCircle />
@@ -1255,16 +1208,16 @@ export default function Travel() {
                     ) : null
                   ) : null,
                 ]
-              )}
+              )} */}
 
               {/* validation */}
-              {valudationError === true ? (
+              {/* {valudationError === true ? (
                 travelInsurance.insuranceCover == "" ? (
                   <>
                     <span className="warning-text">{validationText}</span>
                   </>
                 ) : null
-              ) : null}
+              ) : null} */}
             </div>
 
             {/* show if individual*/}
@@ -1289,11 +1242,11 @@ export default function Travel() {
                 </DateInput>
 
                 {/* validation */}
-                {valudationError === true ? (
+                {/* {valudationError === true ? (
                   travelInsurance.dateOftrip == "" ? (
                     <span className="warning-text">{validationText}</span>
                   ) : null
-                ) : null}
+                ) : null} */}
               </div>
             ) : null}
             {/* show if couple */}
@@ -1320,11 +1273,11 @@ export default function Travel() {
                       </DateInput>
 
                       {/* validation */}
-                      {valudationError === true ? (
+                      {/* {valudationError === true ? (
                         travelInsurance.dateOftrip == "" ? (
                           <span className="warning-text">{validationText}</span>
                         ) : null
-                      ) : null}
+                      ) : null} */}
                     </div>
                     <div className="single-card-wrapper">
                       {/* card title wrapper */}
@@ -1346,11 +1299,11 @@ export default function Travel() {
                       </DateInput>
 
                       {/* validation */}
-                      {valudationError === true ? (
+                      {/* {valudationError === true ? (
                         travelInsurance.dateOftrip == "" ? (
                           <span className="warning-text">{validationText}</span>
                         ) : null
-                      ) : null}
+                      ) : null} */}
                     </div>
                   </>,
                 ]
@@ -1379,11 +1332,11 @@ export default function Travel() {
                       </DateInput>
 
                       {/* validation */}
-                      {valudationError === true ? (
+                      {/* {valudationError === true ? (
                         travelInsurance.dateOftrip == "" ? (
                           <span className="warning-text">{validationText}</span>
                         ) : null
-                      ) : null}
+                      ) : null} */}
                     </div>
                     <div className="single-card-wrapper">
                       {/* card title wrapper */}
@@ -1405,11 +1358,11 @@ export default function Travel() {
                       </DateInput>
 
                       {/* validation */}
-                      {valudationError === true ? (
+                      {/* {valudationError === true ? (
                         travelInsurance.dateOftrip == "" ? (
                           <span className="warning-text">{validationText}</span>
                         ) : null
-                      ) : null}
+                      ) : null} */}
                     </div>
                     {travellerCount == 2 ? (
                       <div className="single-card-wrapper">
@@ -1434,13 +1387,13 @@ export default function Travel() {
                         </DateInput>
 
                         {/* validation */}
-                        {valudationError === true ? (
+                        {/* {valudationError === true ? (
                           travelInsurance.dateOftrip == "" ? (
                             <span className="warning-text">
                               {validationText}
                             </span>
                           ) : null
-                        ) : null}
+                        ) : null} */}
                       </div>
                     ) : null}
                   </>,
@@ -1448,14 +1401,14 @@ export default function Travel() {
               : null}
 
             {/* add another traveller */}
-            {travelInsurance.howWantToInsure == "A family" ||
+            {/* {travelInsurance.howWantToInsure == "A family" ||
             travelInsurance.howWantToInsure == "A group" ? (
               <div className="single-card-wrapper">
                 <span className="add-another-traveller">
                   add another traveller
                 </span>
               </div>
-            ) : null}
+            ) : null} */}
           </div>
         </ContentWrapper>
 
@@ -1519,7 +1472,7 @@ export default function Travel() {
               </SelectorInput>
 
               {/* show status  ::::dev_note:only change the state*/}
-              {travelInsurance.insuranceCover !== "" ? (
+              {travelInsurance.maxExcess !== "" ? (
                 <div className={`show_input_status`}>
                   {" "}
                   <IoCheckmarkCircle />
@@ -1527,7 +1480,7 @@ export default function Travel() {
               ) : (
                 [
                   valudationError === true ? (
-                    travelInsurance.insuranceCover == "" ? (
+                    travelInsurance.maxExcess == "" ? (
                       <div className={`show_input_status warning`}>
                         {" "}
                         <IoCloseCircle />
@@ -1539,7 +1492,7 @@ export default function Travel() {
 
               {/* validation */}
               {valudationError === true ? (
-                travelInsurance.insuranceCover == "" ? (
+                travelInsurance.maxExcess == "" ? (
                   <>
                     <span className="warning-text">{validationText}</span>
                   </>
@@ -1589,7 +1542,7 @@ export default function Travel() {
               </SelectorInput>
 
               {/* show status  ::::dev_note:only change the state*/}
-              {travelInsurance.insuranceCover !== "" ? (
+              {travelInsurance.cancellationCover !== "" ? (
                 <div className={`show_input_status`}>
                   {" "}
                   <IoCheckmarkCircle />
@@ -1597,7 +1550,7 @@ export default function Travel() {
               ) : (
                 [
                   valudationError === true ? (
-                    travelInsurance.insuranceCover == "" ? (
+                    travelInsurance.cancellationCover == "" ? (
                       <div className={`show_input_status warning`}>
                         {" "}
                         <IoCloseCircle />
@@ -1609,7 +1562,7 @@ export default function Travel() {
 
               {/* validation */}
               {valudationError === true ? (
-                travelInsurance.insuranceCover == "" ? (
+                travelInsurance.cancellationCover == "" ? (
                   <>
                     <span className="warning-text">{validationText}</span>
                   </>
@@ -1659,7 +1612,7 @@ export default function Travel() {
               </SelectorInput>
 
               {/* show status  ::::dev_note:only change the state*/}
-              {travelInsurance.insuranceCover !== "" ? (
+              {travelInsurance.baggageCover !== "" ? (
                 <div className={`show_input_status`}>
                   {" "}
                   <IoCheckmarkCircle />
@@ -1667,7 +1620,7 @@ export default function Travel() {
               ) : (
                 [
                   valudationError === true ? (
-                    travelInsurance.insuranceCover == "" ? (
+                    travelInsurance.baggageCover == "" ? (
                       <div className={`show_input_status warning`}>
                         {" "}
                         <IoCloseCircle />
@@ -1679,7 +1632,7 @@ export default function Travel() {
 
               {/* validation */}
               {valudationError === true ? (
-                travelInsurance.insuranceCover == "" ? (
+                travelInsurance.baggageCover == "" ? (
                   <>
                     <span className="warning-text">{validationText}</span>
                   </>
@@ -1728,7 +1681,7 @@ export default function Travel() {
               </SelectorInput>
 
               {/* show status  ::::dev_note:only change the state*/}
-              {travelInsurance.insuranceCover !== "" ? (
+              {travelInsurance.medicalCover !== "" ? (
                 <div className={`show_input_status`}>
                   {" "}
                   <IoCheckmarkCircle />
@@ -1736,7 +1689,7 @@ export default function Travel() {
               ) : (
                 [
                   valudationError === true ? (
-                    travelInsurance.insuranceCover == "" ? (
+                    travelInsurance.medicalCover == "" ? (
                       <div className={`show_input_status warning`}>
                         {" "}
                         <IoCloseCircle />
@@ -1748,7 +1701,7 @@ export default function Travel() {
 
               {/* validation */}
               {valudationError === true ? (
-                travelInsurance.insuranceCover == "" ? (
+                travelInsurance.medicalCover == "" ? (
                   <>
                     <span className="warning-text">{validationText}</span>
                   </>
@@ -1829,7 +1782,7 @@ export default function Travel() {
               </RadioButtons>
 
               {/* show status  ::::dev_note:only change the state*/}
-              {travelInsurance.insuranceCover !== "" ? (
+              {/* {travelInsurance.preMedicalCondition !== "" ? (
                 <div className={`show_input_status`}>
                   {" "}
                   <IoCheckmarkCircle />
@@ -1837,7 +1790,7 @@ export default function Travel() {
               ) : (
                 [
                   valudationError === true ? (
-                    travelInsurance.insuranceCover == "" ? (
+                    travelInsurance.preMedicalCondition == "" ? (
                       <div className={`show_input_status warning`}>
                         {" "}
                         <IoCloseCircle />
@@ -1845,16 +1798,16 @@ export default function Travel() {
                     ) : null
                   ) : null,
                 ]
-              )}
+              )} */}
 
               {/* validation */}
-              {valudationError === true ? (
-                travelInsurance.insuranceCover == "" ? (
+              {/* {valudationError === true ? (
+                travelInsurance.preMedicalCondition == "" ? (
                   <>
                     <span className="warning-text">{validationText}</span>
                   </>
                 ) : null
-              ) : null}
+              ) : null} */}
             </div>
           </div>
         </ContentWrapper>
@@ -1910,7 +1863,7 @@ export default function Travel() {
 
               {/* validation */}
               {valudationError === true ? (
-                travelInsurance.insuranceCover == "" ? (
+                travelInsurance.email == "" ? (
                   <>
                     <span className="warning-text">{validationText}</span>
                   </>
@@ -1965,7 +1918,7 @@ export default function Travel() {
 
               {/* validation */}
               {valudationError === true ? (
-                travelInsurance.insuranceCover == "" ? (
+                travelInsurance.firstName == "" || travelInsurance.lastName == "" ? (
                   <>
                     <span className="warning-text">{validationText}</span>
                   </>
@@ -2136,12 +2089,8 @@ export default function Travel() {
                         setTravelInsurance({
                           ...travelInsurance,
                           [e.target.name]: !travelInsurance.dontContact,
-                          // ['contactWithEmail']: false,
-                          // ['contactWithPhone']: false,
-                          // ['contactWithText']: false,
-                          // ['contactWithPost']: false
+            
                         });
-                        // handleDonNotContact();
                         toggleClassForHover("contactwith_5");
                       }}
                       id="dontContact"
@@ -2314,7 +2263,7 @@ export default function Travel() {
                     <label
                       className="form-group"
                       id="termsAgree_1"
-                      for="forRegion1"
+                      for="fortermsCond1"
                     >
                       <input
                         onChange={(e) => {
@@ -2324,22 +2273,32 @@ export default function Travel() {
                           });
                           toggleClassForHover("termsAgree_1");
                         }}
-                        id="forRegion1"
+                        id="fortermsCond1"
                         type="checkbox"
                         name="termsAgree"
                         value={travelInsurance.termsAgree}
                       />
-                      <label for="forRegion1"></label>
+                      <label for="fortermsCond1"></label>
                       <div className="text-content-wrapper">
                         <span className="region-name">I agree </span>
                       </div>
                     </label>
                   </div>
                 </Checkboxes>
+
+                   {/* validation */}
+              {valudationError === true ? (
+                travelInsurance.termsAgree == false? (
+                  <>
+                    <span className="warning-text">{validationText}</span>
+                  </>
+                ) : null
+              ) : null}
               </div>
             </div>
           </div>
         </ContentWrapper>
+
         {/* next page */}
         <ContentWrapper
           primaryColor={theme.primaryColor}
@@ -2358,9 +2317,7 @@ export default function Travel() {
           <div className="next-page-wrappper">
             <button
               className="nextPageBtn"
-              onClick={() => {
-                setCountSteps(2);
-              }}
+              onClick={handlenextpage}
             >
               next
             </button>
