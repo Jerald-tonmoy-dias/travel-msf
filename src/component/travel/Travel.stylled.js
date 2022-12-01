@@ -325,15 +325,22 @@ text-transform: capitalize;
 max-width: 380px;
 width: 18.33%;
 font-weight: 700;
-padding: 15px 35px;
+padding: 30px 35px;
 border-radius: 5px;
 cursor: pointer;
 box-shadow: rgb(33 35 38 / 10%) 0px 1px 20px 0px;
 margin: 0 10px 10px 0 ;
-padding-top: 30px;
-padding-bottom: 30px;
+&.only-text-label {
+  padding: 20px 35px;
+
+  .input-title {
+    margin-top: 0px;
+  } 
+}
+
 @media only screen and (max-width: 1200px) {
 width: 15.33%;
+
 }
 @media only screen and (max-width: 992px) {
 width: 31%;
@@ -587,8 +594,29 @@ width: 90%;
 }
 }
 
+`] : ''}
+
+${props.componentName === "contact_with_wrapper" ? [
+      `
+display:flex;
+flex-wrap: wrap;
+align-items: flex-start;
+.form-group .text-content-wrapper {
+  margin-left: 6px!important;
+}
+.termsCondInputWrapper {
+  width: 31.33%;
+margin-right: 10px;
+@media only screen and (max-width: 1250px) {
+width: 47%;
+}
+@media only screen and (max-width: 768px) {
+width: 97%;
+}
+}
+
 `
-    ] : null}
+    ] : ''}
 
 
 `

@@ -161,6 +161,7 @@ const StoreProvider = ({ children }) => {
     dateOfBirthTraveller: [],
     valueBaggage: "",
     medicalCover: "",
+    preMedicalCondition: "",
     thirdPartyMedicalCondition: "",
     email: "",
     firstName: "",

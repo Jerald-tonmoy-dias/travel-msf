@@ -1623,6 +1623,416 @@ export default function Travel() {
             </div>
           </div>
         </ContentWrapper>
+
+        {/* Your cover needs */}
+        <ContentWrapper
+          primaryColor={theme.primaryColor}
+          secondaryColor={theme.secondaryColor}
+          whiteColor={theme.whiteColor}
+          grayColor={theme.grayColor}
+          blackColor={theme.blackColor}
+          liteprimaryColor={theme.liteprimaryColor}
+          liteBlackColor={theme.liteBlackColor}
+          litewhiteColor={theme.litewhiteColor}
+          warningColor={theme.warningColor}
+          hoverColor={theme.hoverColor}
+        >
+          <div className="left-side">
+            <h2 className="section_header_title">Your cover needs</h2>
+          </div>
+
+          <div className="right-side">
+            {/* What is the maximum excess you’d like to pay should you need to make a claim? */}
+            <div className="single-card-wrapper">
+              {/* card title wrapper */}
+              <div className="card-title-wrapper">
+                <h4 className="title">
+                  Does anyone in your party have a pre-existing medical
+                  condition, or is anyone on a waiting list for treatment or
+                  investigation?
+                </h4>
+              </div>
+
+              <p>
+                You do not need to declare pregnancy, however if you've
+                experienced complications during your pregnancy we recommend you
+                contact your provider before purchasing so this can be noted.
+              </p>
+
+              {/* input wrapper */}
+              <RadioButtons
+                primaryColor={theme.primaryColor}
+                blackColor={theme.blackColor}
+                whiteColor={theme.whiteColor}
+              >
+                <input
+                  onChange={handleOnChange}
+                  type="radio"
+                  id="preMedicalCondition1"
+                  name="preMedicalCondition"
+                  value="Yes"
+                />
+                <label
+                  className="only-text-label"
+                  htmlFor="preMedicalCondition1"
+                >
+                  <span className="input-title">Yes</span>
+                </label>
+
+                <input
+                  onChange={handleOnChange}
+                  type="radio"
+                  id="preMedicalCondition2"
+                  name="preMedicalCondition"
+                  value="NO"
+                />
+                <label
+                  className="only-text-label"
+                  htmlFor="preMedicalCondition2"
+                >
+                  <span className="input-title">No</span>
+                </label>
+              </RadioButtons>
+
+              {/* show status  ::::dev_note:only change the state*/}
+              {travelInsurance.insuranceCover !== "" ? (
+                <div className={`show_input_status`}>
+                  {" "}
+                  <IoCheckmarkCircle />
+                </div>
+              ) : (
+                [
+                  valudationError === true ? (
+                    travelInsurance.insuranceCover == "" ? (
+                      <div className={`show_input_status warning`}>
+                        {" "}
+                        <IoCloseCircle />
+                      </div>
+                    ) : null
+                  ) : null,
+                ]
+              )}
+
+              {/* validation */}
+              {valudationError === true ? (
+                travelInsurance.insuranceCover == "" ? (
+                  <>
+                    <span className="warning-text">{validationText}</span>
+                  </>
+                ) : null
+              ) : null}
+            </div>
+          </div>
+        </ContentWrapper>
+
+        {/* Account details */}
+        <ContentWrapper
+          primaryColor={theme.primaryColor}
+          secondaryColor={theme.secondaryColor}
+          whiteColor={theme.whiteColor}
+          grayColor={theme.grayColor}
+          blackColor={theme.blackColor}
+          liteprimaryColor={theme.liteprimaryColor}
+          liteBlackColor={theme.liteBlackColor}
+          litewhiteColor={theme.litewhiteColor}
+          warningColor={theme.warningColor}
+          hoverColor={theme.hoverColor}
+        >
+          <div className="left-side">
+            <h2 className="section_header_title">Account details</h2>
+          </div>
+
+          <div className="right-side">
+            {/* Your email address */}
+            <div className="single-card-wrapper">
+              {/* card title wrapper */}
+              <div className="card-title-wrapper">
+                <h4 className="title">Your email address</h4>
+              </div>
+
+              <p>
+                We will send you an email confirming your quotes and another to
+                invite you to join or to let you know that you’ve automatically
+                been given Meerkat Meals and Meerkat Movies once you have made a
+                qualifying purchase.
+              </p>
+
+              {/* input wrapper */}
+              <TextInputs
+                primaryColor={theme.primaryColor}
+                warningColor={theme.warningColor}
+                secondaryColor={theme.secondaryColor}
+                grayColor={theme.grayColor}
+                whiteColor={theme.whiteColor}
+              >
+                <input
+                  className="single-text-input"
+                  placeholder="email@mail.com"
+                  name="email"
+                  type="email"
+                  onChange={handleOnChange}
+                />
+              </TextInputs>
+
+              {/* validation */}
+              {valudationError === true ? (
+                travelInsurance.insuranceCover == "" ? (
+                  <>
+                    <span className="warning-text">{validationText}</span>
+                  </>
+                ) : null
+              ) : null}
+            </div>
+
+            {/* What is your name? */}
+            <div className="single-card-wrapper">
+              {/* card title wrapper */}
+              <div className="card-title-wrapper">
+                <h4 className="title">What is your name?</h4>
+              </div>
+
+              <p>Your first name</p>
+
+              {/* input wrapper */}
+              <TextInputs
+                primaryColor={theme.primaryColor}
+                warningColor={theme.warningColor}
+                secondaryColor={theme.secondaryColor}
+                grayColor={theme.grayColor}
+                whiteColor={theme.whiteColor}
+              >
+                <input
+                  className="single-text-input"
+                  placeholder="First name"
+                  name="firstName"
+                  type="text"
+                  onChange={handleOnChange}
+                />
+              </TextInputs>
+
+              <p>Your surname</p>
+
+              {/* input wrapper */}
+              <TextInputs
+                primaryColor={theme.primaryColor}
+                warningColor={theme.warningColor}
+                secondaryColor={theme.secondaryColor}
+                grayColor={theme.grayColor}
+                whiteColor={theme.whiteColor}
+              >
+                <input
+                  className="single-text-input"
+                  placeholder="Surename"
+                  name="lastName"
+                  type="text"
+                  onChange={handleOnChange}
+                />
+              </TextInputs>
+
+              {/* validation */}
+              {valudationError === true ? (
+                travelInsurance.insuranceCover == "" ? (
+                  <>
+                    <span className="warning-text">{validationText}</span>
+                  </>
+                ) : null
+              ) : null}
+            </div>
+
+            {/* We’ll do the work for you */}
+            <div className="single-card-wrapper">
+              {/* card title wrapper */}
+              <div className="card-title-wrapper">
+                <h4 className="title">We’ll do the work for you</h4>
+              </div>
+
+              <p>
+                <strong>Make life simples</strong>
+              </p>
+
+              <p>
+                We’ll send you renewal reminders to help you stay on top of your
+                bills, the latest deals, and more ways to save you money.
+              </p>
+
+              <p>
+                <strong>We’ll also send you</strong>
+              </p>
+
+              <p>
+              The latest on how to claim Meerkat Rewards* such as restaurant discounts, and 2 for 1 cinema tickets.
+              </p>
+
+              <p>
+                <strong>Choose how we contact you</strong>
+              </p>
+
+              <Checkboxes
+                primaryColor={theme.primaryColor}
+                whiteColor={theme.whiteColor}
+                blackColor={theme.blackColor}
+                componentName={"contact_with_wrapper"}
+              >
+                {/* single item */}
+                <div className="termsCondInputWrapper">
+                  <label
+                    className="form-group"
+                    id="contactwith_1"
+                    for="contactWithEmail"
+                  >
+                    <input
+                      onChange={(e) => {
+                        setTravelInsurance({
+                          ...travelInsurance,
+                          [e.target.name]: !travelInsurance.contactWithEmail,
+                          ['dontContact']: false,
+                        });
+                        toggleClassForHover("contactwith_1");
+                      }}
+                      id="contactWithEmail"
+                      type="checkbox"
+                      name="contactWithEmail"
+                      value={travelInsurance.contactWithEmail}
+                    />
+                    <label for="contactWithEmail"></label>
+
+                    <div className="text-content-wrapper">
+                      <span className="region-name"> Email </span>
+                    </div>
+                  </label>
+                </div>
+
+                {/* single item */}
+                <div className="termsCondInputWrapper">
+                  <label
+                    className="form-group"
+                    id="contactwith_2"
+                    for="contactWithPhone"
+                  >
+                    <input
+                      onChange={(e) => {
+                        setTravelInsurance({
+                          ...travelInsurance,
+                          [e.target.name]: !travelInsurance.contactWithPhone,
+                          ['dontContact']: false,
+                        });
+                        toggleClassForHover("contactwith_2");
+                      }}
+                      id="contactWithPhone"
+                      type="checkbox"
+                      name="contactWithPhone"
+                      value={travelInsurance.contactWithPhone}
+                    />
+                    <label for="contactWithPhone"></label>
+
+                    <div className="text-content-wrapper">
+                      <span className="region-name"> Phone </span>
+                    </div>
+                  </label>
+                </div>
+
+                {/* single item */}
+                <div className="termsCondInputWrapper">
+                  <label
+                    className="form-group"
+                    id="contactwith_3"
+                    for="contactWithText"
+                  >
+                    <input
+                      onChange={(e) => {
+                        setTravelInsurance({
+                          ...travelInsurance,
+                          [e.target.name]: !travelInsurance.contactWithText,
+                          ['dontContact']: false,
+                        });
+                        toggleClassForHover("contactwith_3");
+                      }}
+                      id="contactWithText"
+                      type="checkbox"
+                      name="contactWithText"
+                      value={travelInsurance.contactWithPhone}
+                    />
+                    <label for="contactWithText"></label>
+
+                    <div className="text-content-wrapper">
+                      <span className="region-name"> Text </span>
+                    </div>
+                  </label>
+                </div>
+
+                {/* single item */}
+                <div className="termsCondInputWrapper">
+                  <label
+                    className="form-group"
+                    id="contactwith_4"
+                    for="contactWithPost"
+                  >
+                    <input
+                      onChange={(e) => {
+                        setTravelInsurance({
+                          ...travelInsurance,
+                          [e.target.name]: !travelInsurance.contactWithPost,
+                          ['dontContact']: false,
+                        });
+                        toggleClassForHover("contactwith_4");
+                      }}
+                      id="contactWithPost"
+                      type="checkbox"
+                      name="contactWithPost"
+                      value={travelInsurance.contactWithPhone}
+                    />
+                    <label for="contactWithPost"></label>
+
+                    <div className="text-content-wrapper">
+                      <span className="region-name"> Post </span>
+                    </div>
+                  </label>
+                </div>
+
+                {/* single item */}
+                <div className="termsCondInputWrapper">
+                  <label
+                    className="form-group"
+                    id="contactwith_5"
+                    for="dontContact"
+                  >
+                    <input
+                      onChange={(e) => {
+                        setTravelInsurance({
+                          ...travelInsurance,
+                          [e.target.name]: !travelInsurance.dontContact,
+                          ['contactWithEmail']: false,
+                          ['contactWithPhone']: false,
+                          ['contactWithText']: false,
+                          ['contactWithPost']: false
+                        });
+                        toggleClassForHover("contactwith_5");
+                      }}
+                      id="dontContact"
+                      type="checkbox"
+                      name="dontContact"
+                      value={travelInsurance.contactWithPhone}
+                    />
+                    <label for="dontContact"></label>
+
+                    <div className="text-content-wrapper">
+                      <span className="region-name"> Do not contact </span>
+                    </div>
+                  </label>
+                </div>
+
+              </Checkboxes>
+              {/* validation */}
+              {valudationError === true ? (
+                travelInsurance.insuranceCover == "" ? (
+                  <>
+                    <span className="warning-text">{validationText}</span>
+                  </>
+                ) : null
+              ) : null}
+            </div>
+          </div>
+        </ContentWrapper>
       </Wrapper>
     </>
   );
