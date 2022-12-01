@@ -2171,10 +2171,44 @@ export default function Travel() {
                   If you are providing information about someone else you must
                   make sure they are aware of our{" "}
                   <a href="#">
-                    <strong>Privacy Policy</strong>
-                  </a>{" "}
-                  .
+                    <strong>Privacy Policy</strong>.
+                  </a>
                 </p>
+
+                <Checkboxes
+                  primaryColor={theme.primaryColor}
+                  whiteColor={theme.whiteColor}
+                  blackColor={theme.blackColor}
+                  componentName={"accept_terms_and_conditon_wrapper"}
+                >
+                  {/* single item */}
+                  <div className="termsCondInputWrapper">
+                    <label
+                      className="form-group"
+                      id="termsAgree_1"
+                      for="forRegion1"
+                    >
+                      <input
+                        onChange={(e) => {
+                          setTravelInsurance({
+                            ...travelInsurance,
+                            [e.target.name]:
+                              !travelInsurance.termsAgree,
+                          });
+                          toggleClassForHover("termsAgree_1");
+                        }}
+                        id="forRegion1"
+                        type="checkbox"
+                        name="termsAgree"
+                        value={travelInsurance.termsAgree}
+                      />
+                      <label for="forRegion1"></label>
+                      <div className="text-content-wrapper">
+                        <span className="region-name">I agree </span>
+                      </div>
+                    </label>
+                  </div>
+                </Checkboxes>
               </div>
             </div>
           </div>

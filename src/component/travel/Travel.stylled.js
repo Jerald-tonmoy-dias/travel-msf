@@ -632,6 +632,27 @@ width: 97%;
 
 `
     ] : ''}
+${props.componentName === "accept_terms_and_conditon_wrapper" ? [
+      `
+display:flex;
+flex-wrap: wrap;
+align-items: flex-start;
+.form-group .text-content-wrapper {
+  margin-left: 6px!important;
+}
+.termsCondInputWrapper {
+  width: 31.33%;
+margin-right: 10px;
+@media only screen and (max-width: 1250px) {
+width: 47%;
+}
+@media only screen and (max-width: 768px) {
+width: 97%;
+}
+}
+
+`
+    ] : ''}
 
 
 `
