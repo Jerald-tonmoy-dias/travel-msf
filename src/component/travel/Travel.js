@@ -2171,8 +2171,9 @@ export default function Travel() {
                   If you are providing information about someone else you must
                   make sure they are aware of our{" "}
                   <a href="#">
-                    <strong>Privacy Policy</strong>.
+                    <strong>Privacy Policy</strong>
                   </a>
+                  .
                 </p>
 
                 <Checkboxes
@@ -2192,8 +2193,7 @@ export default function Travel() {
                         onChange={(e) => {
                           setTravelInsurance({
                             ...travelInsurance,
-                            [e.target.name]:
-                              !travelInsurance.termsAgree,
+                            [e.target.name]: !travelInsurance.termsAgree,
                           });
                           toggleClassForHover("termsAgree_1");
                         }}
@@ -2211,6 +2211,26 @@ export default function Travel() {
                 </Checkboxes>
               </div>
             </div>
+          </div>
+        </ContentWrapper>
+        {/* next page */}
+        <ContentWrapper
+          primaryColor={theme.primaryColor}
+          secondaryColor={theme.secondaryColor}
+          whiteColor={theme.whiteColor}
+          grayColor={theme.grayColor}
+          blackColor={theme.blackColor}
+          liteprimaryColor={theme.liteprimaryColor}
+          liteBlackColor={theme.liteBlackColor}
+          litewhiteColor={theme.litewhiteColor}
+          warningColor={theme.warningColor}
+          hoverColor={theme.hoverColor}
+        >
+          <div className="left-side">        
+          </div>
+
+          <div className="next-page-wrappper">
+                <button className="nextPageBtn" onClick={()=>{}}>next</button>
           </div>
         </ContentWrapper>
       </Wrapper>
