@@ -160,6 +160,10 @@ color: ${props.primaryColor};
 }
 ul li {
 font-size: 14px;
+line-height: 1.8;
+a {
+  color : ${props.primaryColor};
+}
 }
 }
 

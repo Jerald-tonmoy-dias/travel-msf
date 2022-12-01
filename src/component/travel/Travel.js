@@ -27,7 +27,11 @@ import {
   TextInputs,
   ToolTipWrapper,
 } from "./Travel.stylled";
-import { handleContactCheckBox, handleDonNotContact, toggleClassForHover } from "../../helper/helper";
+import {
+  handleContactCheckBox,
+  handleDonNotContact,
+  toggleClassForHover,
+} from "../../helper/helper";
 export default function Travel() {
   /******************************************
    * GETTING CONTEXT VALUE
@@ -104,7 +108,6 @@ export default function Travel() {
       setCountSteps(2);
     }
   };
-  
 
   // add country list to array
   const addCountryList = () => {
@@ -114,12 +117,9 @@ export default function Travel() {
     });
   };
 
-
   // use effexct
-  useEffect(() => {
+  useEffect(() => {}, []);
 
-  }, [])
-  
   return (
     <>
       <Navbar navItem={1} />
@@ -1867,7 +1867,8 @@ export default function Travel() {
               </p>
 
               <p>
-              The latest on how to claim Meerkat Rewards* such as restaurant discounts, and 2 for 1 cinema tickets.
+                The latest on how to claim Meerkat Rewards* such as restaurant
+                discounts, and 2 for 1 cinema tickets.
               </p>
 
               <p>
@@ -2014,7 +2015,7 @@ export default function Travel() {
                           // ['contactWithPost']: false
                         });
                         // handleDonNotContact();
-                        toggleClassForHover('contactwith_5');
+                        toggleClassForHover("contactwith_5");
                       }}
                       id="dontContact"
                       type="checkbox"
@@ -2028,7 +2029,6 @@ export default function Travel() {
                     </div>
                   </label>
                 </div>
-
               </Checkboxes>
               {/* validation */}
               {valudationError === true ? (
@@ -2038,6 +2038,38 @@ export default function Travel() {
                   </>
                 ) : null
               ) : null}
+            </div>
+          </div>
+        </ContentWrapper>
+        {/* Your Data */}
+        <ContentWrapper
+          primaryColor={theme.primaryColor}
+          secondaryColor={theme.secondaryColor}
+          whiteColor={theme.whiteColor}
+          grayColor={theme.grayColor}
+          blackColor={theme.blackColor}
+          liteprimaryColor={theme.liteprimaryColor}
+          liteBlackColor={theme.liteBlackColor}
+          litewhiteColor={theme.litewhiteColor}
+          warningColor={theme.warningColor}
+          hoverColor={theme.hoverColor}
+        >
+          <div className="left-side">
+            <h2 className="section_header_title">Your Data</h2>
+          </div>
+
+          <div className="right-side">
+            {/* Your email address */}
+            <div className="single-card-wrapper">
+              <div class="see_cover_details">
+               <p>What you need to know about how your data will be used:</p>
+    
+                  <ul>
+                    <li>You can find full details of how your data will be used by quotemeeasy.co.uk  including information about your rights in our <a href="#"><strong> Privacy Policy</strong></a> and  <a href="#"><strong>Cookie Policy</strong></a> which you should read before progressing.</li>
+                    <li>Some insurance providers may use data they already hold about you (for example, data from existing products, loyalty scheme or transactional data) to assess and rate your cover and determine your premium</li>
+                    <li>If you are providing information about someone else you must make sure they are aware of our <a href="#"><strong>Privacy Policy</strong></a> .</li>
+                  </ul>
+              </div>
             </div>
           </div>
         </ContentWrapper>
